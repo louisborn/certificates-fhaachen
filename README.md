@@ -1,4 +1,4 @@
-## General info ![](https://img.shields.io/badge/Beta-0.9-informational?style=flat&logoColor=white&color=ffa500)
+## Certificates ![](https://img.shields.io/badge/Beta-0.9-informational?style=flat&logoColor=white&color=ffa500)
 
 This project is part of the evaluation of the course ‘Mobile Information Systems’ during 
 the summer semester of 2021.
