@@ -22,4 +22,6 @@ Project is created with:
 * Dart: 2.12.3
 * Android SDK version: 30.0.3
 
+Using _Visual Studio Code_ as editor please ensure to install the **"Better Comments"** extension (Version 2.1.0).
+
 ### _More information coming soon_
