@@ -21,6 +21,9 @@ app will allow to check that the student has the certificate
 ![Login](certificates_login_flow.png)
 1. The generated **token** could either be send per email/ phone number to the student or be displayed via a authenticator application. _In this case we assumed that the token was send per email to the student_.
 
+#### Access workspace with QR code:
+![Access workspace](certificates_accessw_flow.png)
+
 ## Technologies
 Project is created with:
 * Flutter version: 2.0.6 (Channel stable)
