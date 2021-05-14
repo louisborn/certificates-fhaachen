@@ -22,4 +22,4 @@ Project is created with:
 * Dart: 2.12.3
 * Android SDK version: 30.0.3
 
-_More information coming soon_
+### _More information coming soon_
