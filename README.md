@@ -17,7 +17,7 @@ equipment, he/she receives a certificate. These certificates will be provided di
 app will allow to check that the student has the certificate
 
 ## Flow
-#### Login with <sup>1</sup>2fA
+#### Login with <sup>1</sup>2fA:
 ![Login](certificates_login_flow.png)
 1. The generated **token** could either be send per email/ phone number to the student or be displayed via a authenticator application. _In this case we assumed that the token was send per email to the student_.
 
