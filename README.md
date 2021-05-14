@@ -1,16 +1,25 @@
-# certificates
+## General info ![](https://img.shields.io/badge/Beta-0.9-informational?style=flat&logoColor=white&color=ffa500)
 
-A new Flutter project.
+This project is part of the evaluation of the course ‘Mobile Information Systems’ during 
+the summer semester of 2021.
 
-## Getting Started
+## Context
+The certificates app is to be used by students from LUCA School of Arts and the persons 
+responsible for the workplaces in the school.
 
-This project is a starting point for a Flutter application.
+In the workplaces students can use different machines while working on their projects. 
+Typical machines are sawing machines, milling machines, electrical screwdrivers, 3D printers, 
+laser cutters,…Certain equipment can be used without instruction, but other, more specialized, 
+equipment may only be used when some training has been followed successfully. 
 
-A few resources to get you started if this is your first Flutter project:
+To prove that a student has the required knowledge to use a certain machine of 
+equipment, he/she receives a certificate. These certificates will be provided digitally only. The 
+app will allow to check that the student has the certificate
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Technologies
+Project is created with:
+* Flutter version: 2.0.6 (Channel stable)
+* Dart: 2.12.3
+* Android SDK version: 30.0.3
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+_More information coming soon_
