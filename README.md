@@ -28,6 +28,7 @@ app will allow to check that the student has the certificate
 Project is created with:
 * Flutter version: 2.0.6 (Channel stable)
 * Dart: 2.12.3
+* Firebase Firestore: latest
 * Android SDK version: 30.0.3
 
 Using _Visual Studio Code_ as editor please ensure to install the **"Better Comments"** extension (Version 2.1.0).
