@@ -9,7 +9,7 @@ enum DBError {
 //* A provider for the access control of workspaces.
 //*
 //* Implements a [enterWorkspace()] and [leaveWorkspace()]
-//* function to enter and leave a workspace.
+//* function to enter and leave a workspace
 //*
 class DatabaseProvider extends ChangeNotifier {
   String _dbException = '';
