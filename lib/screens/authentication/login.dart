@@ -1,4 +1,3 @@
-import 'package:certificates/providers/database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,8 +23,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     AuthenticationProvider _provider =
         Provider.of<AuthenticationProvider>(context);
-    //! For testing. Will be removed.
-    DatabaseProvider _testing = Provider.of<DatabaseProvider>(context);
 
     var loading = Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -48,14 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
     };
 
     return Scaffold(
-      body: Center(
-        child: GestureDetector(
-          onTap: () => _testing.leaveWorkspace(""),
-          child: Text(
-            'Testing',
-          ),
-        ),
-      ),
+      body: Center(),
     );
   }
 }
