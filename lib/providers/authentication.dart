@@ -6,39 +6,39 @@ import 'package:certificates/models/models.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-enum AStatus {
+enum AuthenticationStatus {
   NotLoggedIn,
   Authenticating,
   ReadyFor2fA,
   WaitingFor2fAToken,
 }
 
-enum AError {
+enum AuthenticationError {
   NoError,
   NetworkError,
   AuthError,
 }
 
-//* A provider for the authentication of a user in the application.
-//*
-//* Implements a basic [login()] function based on the [studentId] and
-//* [lastName] and a [init2fA()] creating a two factor authentication.
-//*
+/// A provider for the authentication of a user in the application.
+///
+/// Implements a basic [login] function based on the [studentId] and
+/// [_lastName] and a [init2fA] creating a two factor authentication.
+///
 class AuthenticationProvider extends ChangeNotifier {
   String _studentId, _lastName;
 
   static const String API =
       'https://mis21-61b88-default-rtdb.europe-west1.firebasedatabase.app/studentprofile/';
 
-  AError _errorStatus = AError.NoError;
-  AStatus _loggedInStatus = AStatus.NotLoggedIn;
+  AuthenticationError _errorStatus = AuthenticationError.NoError;
+  AuthenticationStatus _loggedInStatus = AuthenticationStatus.NotLoggedIn;
 
-  AError get errorStatus => _errorStatus;
-  AStatus get loggedInStatus => _loggedInStatus;
+  AuthenticationError get errorStatus => _errorStatus;
+  AuthenticationStatus get loggedInStatus => _loggedInStatus;
 
-  //* Authenticates a user with the [studentId] and [lastName].
+  /// Authenticates a user with the [studentId] and [lastName].
   Future login(String studentId, String lastName) async {
-    _loggedInStatus = AStatus.Authenticating;
+    _loggedInStatus = AuthenticationStatus.Authenticating;
     notifyListeners();
 
     try {
@@ -52,7 +52,7 @@ class AuthenticationProvider extends ChangeNotifier {
           initLocalStudentVariables(_student.studentId, _student.lastName);
           await initAndPatch2fAToken();
 
-          _loggedInStatus = AStatus.ReadyFor2fA;
+          _loggedInStatus = AuthenticationStatus.ReadyFor2fA;
           notifyListeners();
         } else
           catchAuthenticationError();
@@ -72,8 +72,8 @@ class AuthenticationProvider extends ChangeNotifier {
     return _student;
   }
 
-  //* Returns 'true' if the input last name is equal to the last name
-  //* in the database.
+  /// Returns 'true' if the input last name is equal to the last name
+  /// in the database.
   bool validateStudentLastName(String lastNameFromDb, String inputLastName) {
     return lastNameFromDb == inputLastName ? true : false;
   }
@@ -83,8 +83,8 @@ class AuthenticationProvider extends ChangeNotifier {
     this._lastName = lastName;
   }
 
-  //* Initializes the two factor authentication and patches the
-  //* created [token] to the database.
+  /// Initializes the two factor authentication and patches the
+  /// created [_token] to the database.
   Future initAndPatch2fAToken() async {
     var _token = '';
 
@@ -97,7 +97,7 @@ class AuthenticationProvider extends ChangeNotifier {
       );
 
       if (response.statusCode == 200) {
-        _loggedInStatus = AStatus.WaitingFor2fAToken;
+        _loggedInStatus = AuthenticationStatus.WaitingFor2fAToken;
         notifyListeners();
       } else
         catchAuthenticationError();
@@ -108,8 +108,8 @@ class AuthenticationProvider extends ChangeNotifier {
     }
   }
 
-  //* Returns the 2fA [token] if the two factor authentication
-  //* initialization succeeds.
+  /// Returns the 2fA [token] if the two factor authentication
+  /// initialization succeeds.
   String init2fA() {
     String base64str, token = '';
     var rndIndex, rndChar = [];
@@ -126,7 +126,7 @@ class AuthenticationProvider extends ChangeNotifier {
     return token;
   }
 
-  //* Returns a random number of 15 character between 0-100.
+  /// Returns a random number of 15 character between 0-100.
   Iterable calculateRandomNumberWith15Char() {
     Random random = new Random();
     var rndChar = [];
@@ -145,7 +145,7 @@ class AuthenticationProvider extends ChangeNotifier {
     return base64str;
   }
 
-  //* Returns 5 indices picked from the [base64str].
+  /// Returns 5 indices picked from the [base64str].
   Iterable pick5RandomIndices(var base64str) {
     Random random = new Random();
     var rndIndex = [];
@@ -165,9 +165,9 @@ class AuthenticationProvider extends ChangeNotifier {
     return token;
   }
 
-  //* Validates the entered token by the user.
+  /// Validates the entered token by the user.
   Future validate2fAToken(String token) async {
-    _loggedInStatus = AStatus.Authenticating;
+    _loggedInStatus = AuthenticationStatus.Authenticating;
     notifyListeners();
 
     try {
@@ -190,12 +190,12 @@ class AuthenticationProvider extends ChangeNotifier {
   }
 
   void catchNetworkException() {
-    _errorStatus = AError.NetworkError;
+    _errorStatus = AuthenticationError.NetworkError;
     notifyListeners();
   }
 
   void catchAuthenticationError() {
-    _errorStatus = AError.AuthError;
+    _errorStatus = AuthenticationError.AuthError;
     notifyListeners();
   }
 }

@@ -1,12 +1,13 @@
+import 'package:certificates/providers/database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:certificates/providers/authentication.dart';
 import 'package:certificates/theme/theme.dart';
 
-//* A screen to provide a student authentication to get access
-//* to the application.
-//*
+/// A screen to provide a student authentication to get access
+/// to the application.
+///
 class LoginScreen extends StatefulWidget {
   static const String route = '/login';
 
@@ -23,6 +24,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     AuthenticationProvider _provider =
         Provider.of<AuthenticationProvider>(context);
+    //! Only for testing. Remove after.
+    DatabaseProvider _testing = Provider.of<DatabaseProvider>(context);
 
     var loading = Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -45,7 +48,12 @@ class _LoginScreenState extends State<LoginScreen> {
     };
 
     return Scaffold(
-      body: Center(),
+      body: Center(
+        child: GestureDetector(
+          onTap: () => _testing.enterWorkspace("9kU3kD1Bs9JlHmVbGtQu"),
+          child: Text('Enter WS'),
+        ),
+      ),
     );
   }
 }
