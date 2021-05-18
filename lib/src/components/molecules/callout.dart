@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:certificates/components/atoms/atoms.dart';
-import 'package:certificates/theme/theme.dart';
+import 'package:certificates/components.dart';
+import 'package:certificates/theme.dart';
 
 //* A Callout to display a success information.
 //* @params title The title message of the callout.
