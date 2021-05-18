@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:certificates/providers/providers.dart';
 
+import '../../providers.dart';
+
+/// Indicates the current access status of a user.
+///
 enum UserAccessStatus {
   NotEntered,
   Entered,
@@ -10,35 +14,55 @@ enum UserAccessStatus {
   Denied,
 }
 
-enum DatabaseErrorStatus {
+/// Indicates how to handle transaction errors.
+enum AccessControlError {
   NoError,
   Exception,
 }
 
-/// [Update class documentation]
+/// A service to provide a access control system for workspaces.
 ///
+/// The service consists of an [enterWorkspace] and a [leaveWorkspace]
+/// function.
 ///
-class DatabaseProvider extends ChangeNotifier {
-  String _dbException = '';
+/// The [enterWorkspace] includes a [checkUserCountInWorkspace] and
+/// denies an access if the current number of users > max allowed users.
+/// If an  access is granted to a user [logUserEntrance] is called.
+///
+/// The [leaveWorkspace] includes a [logUserExit] to update the leave
+/// time in the log.
+///
+/// [setAccessControlError] is used to output any exception occurring
+/// during transactions.
+///
+class AccessControlProvider extends ChangeNotifier {
+  /// A text containing the current exception that occurred.
+  ///
+  late String exception;
 
-  static const String _WORKSPACE = "workspaces";
-  static const String _LOG = "log";
+  /// The collection name for the workspaces.
+  static const String collection_workspace = "workspaces";
 
-  DatabaseErrorStatus _errorStatus = DatabaseErrorStatus.NoError;
-  DatabaseErrorStatus get errorStatus => _errorStatus;
+  /// The collection name for the logs.
+  static const String collection_log = "log";
 
-  UserAccessStatus _userAccessStatus = UserAccessStatus.NotEntered;
+  /// Returns any [exception] message occurred during transaction.
+  ///
+  String get accessControlException => exception;
+
+  /// Getter and setter for the current error status.
+  ///
+  AccessControlError get accessControlError => _accessControlError;
+  AccessControlError _accessControlError = AccessControlError.NoError;
+
+  /// Getter and setter for the current user access status.
+  ///
   UserAccessStatus get userAccessStatus => _userAccessStatus;
+  UserAccessStatus _userAccessStatus = UserAccessStatus.NotEntered;
 
-  String get dbException => _dbException;
-  set dbException(String exception) => this._dbException = exception;
-
-  /// Logs/ enters a user to a workspace if the current number of users
-  /// is not higher than the max number allowed.
   Future<void> enterWorkspace(String docId) async {
     //! Exchange "" with var id.
     var _docRef = getDocReference("");
-
     try {
       var workspaceInformation = await getWorkspaceInformation(_docRef);
       if (checkUserCountInWorkspace(
@@ -52,21 +76,28 @@ class DatabaseProvider extends ChangeNotifier {
       } else
         setUserAccessStatus(UserAccessStatus.Denied);
     } catch (exception) {
-      setDatabaseErrorStatus(DatabaseErrorStatus.Exception, exception);
+      catchAnyException(
+        AccessControlError.Exception,
+        exception.toString(),
+      );
+      throw Exception("Failed to enter workspace");
     }
   }
 
   Future<void> leaveWorkspace() async {
     //! Exchange "" with var id.
     var _docRef = getDocReference("");
-
     try {
       var timestamp =
           await ApplicationPreferences().getEntryTimestampOfSharedPreferences();
 
-      await logUserExit(timestamp, _docRef);
+      await logUserExit(timestamp!, _docRef);
     } catch (exception) {
-      setDatabaseErrorStatus(DatabaseErrorStatus.Exception, exception);
+      catchAnyException(
+        AccessControlError.Exception,
+        exception.toString(),
+      );
+      throw Exception("Failed to leave workspace");
     }
   }
 
@@ -76,7 +107,8 @@ class DatabaseProvider extends ChangeNotifier {
   }
 
   Future<void> logUserEntrance(String studentId, String workspaceName) async {
-    CollectionReference _collRef = FirebaseFirestore.instance.collection(_LOG);
+    CollectionReference _collRef =
+        FirebaseFirestore.instance.collection(collection_log);
 
     // ignore: non_constant_identifier_names
     var NOW = DateTime.now();
@@ -101,12 +133,17 @@ class DatabaseProvider extends ChangeNotifier {
       ApplicationPreferences()
           .saveEntryTimestampAsSharedPreference(YEAR_MONTH_DAY_HOUR24_MINUTE);
     } catch (exception) {
-      setDatabaseErrorStatus(DatabaseErrorStatus.Exception, exception);
+      catchAnyException(
+        AccessControlError.Exception,
+        exception.toString(),
+      );
+      throw Exception("Failed to log user entrance");
     }
   }
 
   Future<void> logUserExit(String timestamp, DocumentReference docRef) async {
-    CollectionReference _collRef = FirebaseFirestore.instance.collection(_LOG);
+    CollectionReference _collRef =
+        FirebaseFirestore.instance.collection(collection_log);
 
     // ignore: non_constant_identifier_names
     var NOW = DateTime.now();
@@ -121,23 +158,23 @@ class DatabaseProvider extends ChangeNotifier {
       );
       decrementUserInWorkspace(docRef);
     } catch (exception) {
-      setDatabaseErrorStatus(DatabaseErrorStatus.Exception, exception);
+      catchAnyException(
+        AccessControlError.Exception,
+        exception.toString(),
+      );
+      throw Exception("Failed to log user exit");
     }
   }
 
-  /// Returns a document reference based on the [id].
   DocumentReference getDocReference(String id) {
     DocumentReference _docRef = FirebaseFirestore.instance
-        .collection(_WORKSPACE)
+        .collection(collection_workspace)
         //! Id string only for development. Remove and replace by [docId].
         .doc("9kU3kD1Bs9JlHmVbGtQu");
 
     return _docRef;
   }
 
-  /// Returns the current, the max allowed users and the name of a workspace as iterable.
-  ///
-  /// Throws an [Exception] if the document snapshot could not be initialized.
   Future<Iterable> getWorkspaceInformation(DocumentReference docRef) async {
     try {
       DocumentSnapshot snapshot = await docRef.get();
@@ -148,8 +185,11 @@ class DatabaseProvider extends ChangeNotifier {
         snapshot["name"]
       ];
     } catch (exception) {
-      setDatabaseErrorStatus(DatabaseErrorStatus.Exception, exception);
-      return null;
+      catchAnyException(
+        AccessControlError.Exception,
+        exception.toString(),
+      );
+      throw Exception("Failed to get workspace information");
     }
   }
 
@@ -160,35 +200,37 @@ class DatabaseProvider extends ChangeNotifier {
       return false;
   }
 
-  /// Increments the current user in workspace by +1.
-  ///
-  /// Throws an [Exception] if the update could not be conducted.
   Future<void> incrementUserInWorkspace(DocumentReference docRef) async {
     try {
       await docRef.update(
         {"currentInWorkspace": FieldValue.increment(1)},
       );
     } catch (exception) {
-      setDatabaseErrorStatus(DatabaseErrorStatus.Exception, exception);
+      catchAnyException(
+        AccessControlError.Exception,
+        exception.toString(),
+      );
+      throw Exception("Failed to increment");
     }
   }
 
-  /// Decrements the current user in a workspace by -1.
-  ///
-  /// Throws an [Exception] if the update could not be conducted.
   Future<void> decrementUserInWorkspace(DocumentReference docRef) async {
     try {
       await docRef.update(
         {"currentInWorkspace": FieldValue.increment(-1)},
       );
     } catch (exception) {
-      setDatabaseErrorStatus(DatabaseErrorStatus.Exception, exception);
+      catchAnyException(
+        AccessControlError.Exception,
+        exception.toString(),
+      );
+      throw Exception("Failed to decrement");
     }
   }
 
-  setDatabaseErrorStatus(DatabaseErrorStatus status, String exception) {
-    dbException = exception;
-    _errorStatus = status;
+  void catchAnyException(AccessControlError error, String exception) {
+    this.exception = exception;
+    _accessControlError = error;
     notifyListeners();
   }
 }

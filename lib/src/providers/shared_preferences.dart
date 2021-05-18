@@ -30,7 +30,7 @@ class ApplicationPreferences {
     }
   }
 
-  Future<String> getEntryTimestampOfSharedPreferences() async {
+  Future<String?> getEntryTimestampOfSharedPreferences() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     try {
@@ -38,7 +38,7 @@ class ApplicationPreferences {
       return timestamp;
     } catch (exception) {
       print(exception);
-      return null;
+      throw Exception("Failed to get timestamp");
     }
   }
 

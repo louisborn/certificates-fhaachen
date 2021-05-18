@@ -1,9 +1,9 @@
-import 'package:certificates/providers/database.dart';
+import 'package:certificates/src/providers/access_control.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:certificates/providers/authentication.dart';
-import 'package:certificates/theme/theme.dart';
+import 'package:certificates/src/providers/authentication.dart';
+import 'package:certificates/theme.dart';
 
 /// A screen to provide a student authentication to get access
 /// to the application.
@@ -18,14 +18,15 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
 
-  String _studentId, _studentLastname;
+  String? _studentId, _studentLastname;
 
   @override
   Widget build(BuildContext context) {
     AuthenticationProvider _provider =
         Provider.of<AuthenticationProvider>(context);
     //! Only for testing. Remove after.
-    DatabaseProvider _testing = Provider.of<DatabaseProvider>(context);
+    AccessControlProvider _testing =
+        Provider.of<AccessControlProvider>(context);
 
     var loading = Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -40,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     var doLogin = () async {
       final form = formKey.currentState;
-      if (form.validate()) {
+      if (form!.validate()) {
         form.save();
 
         //Todo: Add login logic.
