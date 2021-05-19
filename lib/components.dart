@@ -4,7 +4,6 @@
 ///
 library components;
 
-export 'src/components/atoms/button.dart';
 export 'src/components/atoms/icon.dart';
 
 export 'src/components/molecules/callout.dart';

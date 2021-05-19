@@ -15,6 +15,7 @@ enum UserAccessStatus {
 }
 
 /// Indicates how to handle transaction errors.
+///
 enum AccessControlError {
   NoError,
   Exception,
@@ -38,7 +39,7 @@ enum AccessControlError {
 class AccessControlProvider extends ChangeNotifier {
   /// A text containing the current exception that occurred.
   ///
-  late String exception;
+  late String _exception;
 
   /// The collection name for the workspaces.
   static const String collection_workspace = "workspaces";
@@ -46,9 +47,9 @@ class AccessControlProvider extends ChangeNotifier {
   /// The collection name for the logs.
   static const String collection_log = "log";
 
-  /// Returns any [exception] message occurred during transaction.
+  /// Returns any [_exception] message occurred during transaction.
   ///
-  String get accessControlException => exception;
+  String get accessControlException => _exception;
 
   /// Getter and setter for the current error status.
   ///
@@ -88,8 +89,7 @@ class AccessControlProvider extends ChangeNotifier {
     //! Exchange "" with var id.
     var _docRef = getDocReference("");
     try {
-      var timestamp =
-          await ApplicationPreferences().getEntryTimestampOfSharedPreferences();
+      var timestamp = ApplicationPreferences().timestamp;
 
       await logUserExit(timestamp!, _docRef);
     } catch (exception) {
@@ -229,7 +229,7 @@ class AccessControlProvider extends ChangeNotifier {
   }
 
   void catchAnyException(AccessControlError error, String exception) {
-    this.exception = exception;
+    this._exception = exception;
     _accessControlError = error;
     notifyListeners();
   }

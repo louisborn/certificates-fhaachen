@@ -1,13 +1,28 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// A shared preferences to save single key values of users.
-///
+/// A service to persist key values.
 ///
 class ApplicationPreferences {
-  /// Saves a students id as a shared preference.
-  Future<bool> saveStudentAsSharedPreference(String studentId) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+  /// A [SharedPreferences] instance.
+  ///
+  late SharedPreferences prefs;
 
+  Future<void> getSharedPreferencesInstance() async {
+    this.prefs = await SharedPreferences.getInstance();
+  }
+
+  /// Returns the enter [timestamp] into a workspace.
+  ///
+  String? get timestamp => prefs.getString('timestamp')!;
+
+  /// Returns the entered [workspace] name.
+  String? get workspace => prefs.getString('workspace')!;
+
+  /// Returns the current logged in [student].
+  ///
+  String? get student => prefs.getString('studentId')!;
+
+  bool saveStudentAsSharedPreference(String studentId) {
     try {
       prefs.setString('studentId', studentId);
       return true;
@@ -17,10 +32,7 @@ class ApplicationPreferences {
     }
   }
 
-  /// Saves a students entry timestamp of a workspace.
-  Future<bool> saveEntryTimestampAsSharedPreference(String timestamp) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-
+  bool saveEntryTimestampAsSharedPreference(String timestamp) {
     try {
       prefs.setString('timestamp', timestamp);
       return true;
@@ -30,24 +42,9 @@ class ApplicationPreferences {
     }
   }
 
-  Future<String?> getEntryTimestampOfSharedPreferences() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-
+  bool saveEnteredWorkspaceNameAsSharedPreference(String workspace) {
     try {
-      var timestamp = prefs.getString('timestamp');
-      return timestamp;
-    } catch (exception) {
-      print(exception);
-      throw Exception("Failed to get timestamp");
-    }
-  }
-
-  /// Saves the name of the entered workspace.
-  Future<bool> saveEnteredWorkspaceNameAsSharedPreference(String name) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    try {
-      prefs.setString('workspace', name);
+      prefs.setString('workspace', workspace);
       return true;
     } catch (exception) {
       print(exception);
