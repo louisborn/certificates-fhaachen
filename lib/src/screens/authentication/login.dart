@@ -32,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(ACCENT_PINK),
+          valueColor: AlwaysStoppedAnimation<Color>(color_accent_pink),
         ),
         const SizedBox(width: 8.0),
         Text('Loading', style: BODY1),
