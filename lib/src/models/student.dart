@@ -7,20 +7,22 @@ class Student {
   ///
   /// The [studentId], [firstName] and [lastName] must not be null.
   Student({
-    this.studentId,
-    this.firstName,
-    this.lastName,
-  })  : assert(studentId != null),
+    required this.studentId,
+    required this.firstName,
+    required this.lastName,
+  })   : assert(studentId != null),
         assert(firstName != null),
         assert(lastName != null);
 
   /// The unique [studentId].
   ///
-  /// This is the unique identifier for a student.
+  /// This is the unique identifier for a user.
   final String? studentId;
 
+  /// The first name of a user.
   final String? firstName;
 
+  /// The last name of a user.
   final String? lastName;
 
   /// Decodes a json response object to a [Student] object.

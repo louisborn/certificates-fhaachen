@@ -23,9 +23,10 @@ class BuildIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget result = BuildIcon(
-      icon: icon,
-      color: color,
+    final Widget result = Icon(
+      this.icon,
+      color: this.color,
+      size: this.size,
     );
 
     return result;

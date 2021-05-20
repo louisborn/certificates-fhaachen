@@ -1,3 +1,4 @@
+import 'package:certificates/components.dart';
 import 'package:certificates/src/providers/access_control.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
           valueColor: AlwaysStoppedAnimation<Color>(color_accent_pink),
         ),
         const SizedBox(width: 8.0),
-        Text('Loading', style: BODY1),
+        Text('Loading'),
       ],
     );
 
@@ -50,9 +51,24 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       body: Center(
-        child: GestureDetector(
-          onTap: () => _testing.enterWorkspace("9kU3kD1Bs9JlHmVbGtQu"),
-          child: Text('Enter WS'),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: () => _testing.leaveWorkspace(),
+              child: Text('Enter WS'),
+            ),
+            CalloutAccessControl(
+                type: Type2.allowed,
+                title: 'Test title for allowed people',
+                subtitle: 'Subtitle'),
+            Callout(
+              title: "This is an attention",
+              type: Type1.attention,
+              exception: "No internet connection",
+            ),
+          ],
         ),
       ),
     );

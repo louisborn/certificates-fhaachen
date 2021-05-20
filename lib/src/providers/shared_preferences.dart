@@ -1,26 +1,26 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// A global [SharedPreferences] instance.
+///
+late SharedPreferences prefs;
+
 /// A service to persist key values.
 ///
 class ApplicationPreferences {
-  /// A [SharedPreferences] instance.
-  ///
-  late SharedPreferences prefs;
-
-  Future<void> getSharedPreferencesInstance() async {
-    this.prefs = await SharedPreferences.getInstance();
-  }
-
   /// Returns the enter [timestamp] into a workspace.
   ///
-  String? get timestamp => prefs.getString('timestamp')!;
+  /// ignore: await_only_futures
+  Future<String?> get timestamp async => await prefs.getString('timestamp');
 
   /// Returns the entered [workspace] name.
-  String? get workspace => prefs.getString('workspace')!;
+  ///
+  /// ignore: await_only_futures
+  Future<String?> get workspace async => await prefs.getString('workspace')!;
 
   /// Returns the current logged in [student].
   ///
-  String? get student => prefs.getString('studentId')!;
+  /// ignore: await_only_futures
+  Future<String?> get student async => await prefs.getString('studentId')!;
 
   bool saveStudentAsSharedPreference(String studentId) {
     try {

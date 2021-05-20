@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../providers.dart';
 
@@ -89,7 +90,7 @@ class AccessControlProvider extends ChangeNotifier {
     //! Exchange "" with var id.
     var _docRef = getDocReference("");
     try {
-      var timestamp = ApplicationPreferences().timestamp;
+      var timestamp = await ApplicationPreferences().timestamp;
 
       await logUserExit(timestamp!, _docRef);
     } catch (exception) {
