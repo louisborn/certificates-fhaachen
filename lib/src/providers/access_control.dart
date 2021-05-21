@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../providers.dart';
 
@@ -48,6 +47,9 @@ class AccessControlProvider extends ChangeNotifier {
   /// The collection name for the logs.
   static const String collection_log = "log";
 
+  /// The instance for the shared preferences service.
+  final sharedPreferenceService = ApplicationPreferences();
+
   /// Returns any [_exception] message occurred during transaction.
   ///
   String get accessControlException => _exception;
@@ -62,7 +64,7 @@ class AccessControlProvider extends ChangeNotifier {
   UserAccessStatus get userAccessStatus => _userAccessStatus;
   UserAccessStatus _userAccessStatus = UserAccessStatus.NotEntered;
 
-  Future<void> enterWorkspace(String docId) async {
+  Future<void> enterWorkspace(String workspaceId) async {
     //! Exchange "" with var id.
     var _docRef = getDocReference("");
     try {
@@ -73,8 +75,7 @@ class AccessControlProvider extends ChangeNotifier {
       )) {
         await logUserEntrance("r38711", workspaceInformation.elementAt(2));
         await incrementUserInWorkspace(_docRef);
-        ApplicationPreferences()
-            .saveEnteredWorkspaceNameAsSharedPreference(_docRef.id);
+        sharedPreferenceService.saveWorkspaceId(_docRef.id);
       } else
         setUserAccessStatus(UserAccessStatus.Denied);
     } catch (exception) {
@@ -90,7 +91,7 @@ class AccessControlProvider extends ChangeNotifier {
     //! Exchange "" with var id.
     var _docRef = getDocReference("");
     try {
-      var timestamp = await ApplicationPreferences().timestamp;
+      var timestamp = await sharedPreferenceService.timestamp;
 
       await logUserExit(timestamp!, _docRef);
     } catch (exception) {
@@ -131,8 +132,8 @@ class AccessControlProvider extends ChangeNotifier {
           "workspaceName": workspaceName,
         },
       );
-      ApplicationPreferences()
-          .saveEntryTimestampAsSharedPreference(YEAR_MONTH_DAY_HOUR24_MINUTE);
+      sharedPreferenceService
+          .saveEntranceTimestamp(YEAR_MONTH_DAY_HOUR24_MINUTE);
     } catch (exception) {
       catchAnyException(
         AccessControlError.Exception,
