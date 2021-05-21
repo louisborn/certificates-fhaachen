@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 import '../../models.dart';
+import '../../providers.dart';
 
 /// Indicates the current authentication status for a user.
 ///
@@ -27,13 +28,14 @@ enum AuthenticationError {
 /// A service to provide an login and two factor authentication to
 /// a user.
 ///
-/// The service consists of an [login] and [initAndPatch2fAToken].
+/// The service consists of an [login] and [createAndPatch2fAToken].
 ///
 /// The [login] validates the users input. Throws an [SocketException] in an
 /// case of an network error. Throws an [Exception] if the [_studentId] or
 /// [_lastName] fails to validate.
 ///
-class AuthenticationProvider extends ChangeNotifier {
+class AuthenticationProvider extends ChangeNotifier
+    implements BaseAuthentication {
   /// A text containing the current exception that occurred.
   ///
   late String exception;
@@ -50,10 +52,6 @@ class AuthenticationProvider extends ChangeNotifier {
   ///
   late String _token;
 
-  /// The api uri for the database.
-  static const String api =
-      'https://mis21-61b88-default-rtdb.europe-west1.firebasedatabase.app/studentprofile/';
-
   /// Sets the value of the student id.
   ///
   set studentId(String? id) => this._studentId = id!;
@@ -62,17 +60,18 @@ class AuthenticationProvider extends ChangeNotifier {
   ///
   set lastName(String? name) => this._lastName = name!;
 
-  /// Getter and setter for the current error status.
+  /// Getter and setter for the current [AuthenticationError].
   ///
   AuthenticationError get authenticationError => _authenticationError;
   AuthenticationError _authenticationError = AuthenticationError.NoError;
 
-  /// Getter and setter for the current authentication status of a user.
+  /// Getter and setter for the current [AuthenticationStatus] of a user.
   ///
   AuthenticationStatus get loggedInStatus => _loggedInStatus;
   AuthenticationStatus _loggedInStatus = AuthenticationStatus.NotLoggedIn;
 
-  Future login(String id, String name) async {
+  @override
+  Future<void> login(String id, String name) async {
     setAuthenticationStatus(AuthenticationStatus.Authenticating);
     try {
       final http.Response response = await http.get(
@@ -81,10 +80,10 @@ class AuthenticationProvider extends ChangeNotifier {
 
       if (response.statusCode == 200) {
         Student _student = createStudentModel(response);
-        if (validateStudentLastName(_student.lastName!, name)) {
+        if (validateLastName(name, _student.lastName!)) {
           studentId = _student.studentId;
           lastName = _student.lastName;
-          await initAndPatch2fAToken();
+          await startAndPatch2fAToken();
 
           setAuthenticationStatus(AuthenticationStatus.ReadyFor2fA);
         } else {
@@ -122,17 +121,17 @@ class AuthenticationProvider extends ChangeNotifier {
     return _student;
   }
 
-  bool validateStudentLastName(String lastNameFromDb, String inputLastName) {
-    return lastNameFromDb == inputLastName ? true : false;
+  @override
+  bool validateLastName(String input, String lastName) {
+    return input == lastName ? true : false;
   }
 
-  void initLocalStudentVariables(String studentId, String lastName) {
-    this._studentId = studentId;
-    this._lastName = lastName;
-  }
+  @override
+  Future<void> logout(String id) async {}
 
-  Future initAndPatch2fAToken() async {
-    this._token = init2fA();
+  @override
+  Future<void> startAndPatch2fAToken() async {
+    this._token = create2fAToken();
     try {
       final http.Response response = await http.patch(
         Uri.parse("$api$_studentId.json"),
@@ -158,15 +157,16 @@ class AuthenticationProvider extends ChangeNotifier {
     }
   }
 
-  String init2fA() {
+  @override
+  String create2fAToken() {
     String base64str, token = '';
     var rndIndex, rndChar = [];
 
     try {
-      rndChar = calculateRandomNumberWith15Char();
+      rndChar = calculateRndNumberChar();
       base64str = calculateBase64Encode(rndChar);
-      rndIndex = pick5RandomIndices(base64str);
-      token = pickAuthenticationToken(base64str, rndIndex);
+      rndIndex = return5RandomIndices(base64str);
+      token = returnAuthenticationToken(base64str, rndIndex);
     } catch (e) {
       print(e.toString());
     }
@@ -174,7 +174,8 @@ class AuthenticationProvider extends ChangeNotifier {
     return token;
   }
 
-  List calculateRandomNumberWith15Char() {
+  @override
+  List calculateRndNumberChar() {
     Random random = new Random();
     var rndChar = [];
 
@@ -184,6 +185,7 @@ class AuthenticationProvider extends ChangeNotifier {
     return rndChar;
   }
 
+  @override
   String calculateBase64Encode(var randomChar) {
     var str = this._studentId + this._lastName + randomChar.toString();
     var bytes = utf8.encode(str);
@@ -192,7 +194,8 @@ class AuthenticationProvider extends ChangeNotifier {
     return base64str;
   }
 
-  Iterable pick5RandomIndices(var base64str) {
+  @override
+  Iterable return5RandomIndices(var base64str) {
     Random random = new Random();
     var rndIndex = [];
     for (int i = 0; i < 5; i++) {
@@ -202,7 +205,8 @@ class AuthenticationProvider extends ChangeNotifier {
     return rndIndex;
   }
 
-  String pickAuthenticationToken(String base64str, Iterable rndIndex) {
+  @override
+  String returnAuthenticationToken(String base64str, Iterable rndIndex) {
     var token = '';
     for (int i = 0; i < 5; i++) {
       token = token + base64str[rndIndex.elementAt(i)];
@@ -211,7 +215,7 @@ class AuthenticationProvider extends ChangeNotifier {
     return token;
   }
 
-  Future validate2fAToken(String token) async {
+  Future<void> validate2fAToken(String token) async {
     setAuthenticationStatus(AuthenticationStatus.Authenticating);
     try {
       final http.Response response = await http.get(
@@ -252,4 +256,8 @@ class AuthenticationProvider extends ChangeNotifier {
     _authenticationError = error;
     notifyListeners();
   }
+
+  /// The api uri for the database.
+  static const String api =
+      'https://mis21-61b88-default-rtdb.europe-west1.firebasedatabase.app/studentprofile/';
 }

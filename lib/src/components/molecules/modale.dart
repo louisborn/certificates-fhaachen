@@ -5,8 +5,7 @@ import '../../../theme.dart';
 
 /// Indicates what type of callout is displayed.
 ///
-//Todo: Change name of enum.
-enum Type2 {
+enum ModaleType {
   /// Callout for denied user`s.
   denied,
 
@@ -16,26 +15,30 @@ enum Type2 {
 
 /// A callout for the access state of a user.
 ///
-class CalloutAccessControl extends StatelessWidget {
+class Modale extends StatelessWidget {
   /// Create a access control callout.
   ///
-  const CalloutAccessControl({
+  const Modale({
     required this.type,
     required this.title,
     required this.subtitle,
+    required this.actionText,
     this.textStyle =
         const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+    required this.function,
     this.constraints = const BoxConstraints(minWidth: 112.0, minHeight: 48.0),
     this.padding = const EdgeInsets.all(8.0),
-  })  : assert(type == Type2.denied || type == Type2.allowed),
+  })  : assert(type == ModaleType.denied || type == ModaleType.allowed),
         assert(title != null),
-        assert(subtitle != null);
+        assert(subtitle != null),
+        assert(actionText != null),
+        assert(function != null);
 
   /// The callout type.
   ///
   /// The allowed [type]´s are: denied and allowed.
   ///
-  final Type2 type;
+  final ModaleType type;
 
   /// The title text for the callout.
   final String? title;
@@ -43,8 +46,14 @@ class CalloutAccessControl extends StatelessWidget {
   /// The subtitle text for the callout.
   final String? subtitle;
 
+  /// The text displayed for the action.
+  final String? actionText;
+
   /// The text theme for the displayed text.
   final TextStyle? textStyle;
+
+  /// The modale`s action.
+  final Function()? function;
 
   /// Defines the callout´s size.
   ///
@@ -55,20 +64,20 @@ class CalloutAccessControl extends StatelessWidget {
   final EdgeInsetsGeometry padding;
 
   IconData icon() {
-    if (this.type == Type2.denied) return Icons.error;
-    if (this.type == Type2.allowed) return Icons.check_circle;
+    if (this.type == ModaleType.denied) return Icons.error;
+    if (this.type == ModaleType.allowed) return Icons.check_circle;
     throw Exception("Failed to assign icon");
   }
 
   Color color() {
-    if (this.type == Type2.denied) return color_error;
-    if (this.type == Type2.allowed) return color_success;
+    if (this.type == ModaleType.denied) return color_error;
+    if (this.type == ModaleType.allowed) return color_success;
     throw Exception("Failed to assign color");
   }
 
   @override
   Widget build(BuildContext context) {
-    final Widget header = Row(
+    final Widget topRow = Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Flexible(
@@ -97,11 +106,17 @@ class CalloutAccessControl extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            header,
+            topRow,
             const SizedBox(height: 16.0),
             Text(
               this.subtitle!,
               style: this.textStyle,
+            ),
+            const SizedBox(height: 16.0),
+            TertiaryButton(
+              text: this.actionText,
+              function: this.function,
+              withIcon: true,
             ),
           ],
         ),

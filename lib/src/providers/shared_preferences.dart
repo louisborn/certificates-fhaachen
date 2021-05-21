@@ -1,5 +1,6 @@
-import 'package:certificates/src/providers/base_shared_preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../providers.dart';
 
 /// A service to persist key values.
 ///
@@ -12,6 +13,7 @@ class ApplicationPreferences implements BaseSharedPreferences {
 
   ApplicationPreferences._internal();
 
+  /// A singleton instance of the [ApplicationPreferences].
   static final ApplicationPreferences _instance =
       ApplicationPreferences._internal();
 
