@@ -9,6 +9,7 @@ abstract class BaseSharedPreferences {
 
   /// Saves the enter [timestamp] of a user into a
   /// workspace as shared preference key.
+  ///
   bool saveEntranceTimestamp(String timestamp);
 
   /// Saves the workspace [id] as shared preference key.

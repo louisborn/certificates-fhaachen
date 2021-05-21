@@ -5,8 +5,7 @@ import '../../../theme.dart';
 
 /// Indicates what type of callout is displayed.
 ///
-//Todo: Change name of enum.
-enum Type1 {
+enum CalloutType {
   /// Callout with success message.
   success,
 
@@ -22,7 +21,7 @@ enum Type1 {
 class Callout extends StatelessWidget {
   /// Create a callout based on [Semantics], [Container] and [Row].
   ///
-  /// The [title], [color] and [types] must not be null.
+  /// The [title] and [types] must not be null.
   ///
   const Callout({
     required this.type,
@@ -33,15 +32,15 @@ class Callout extends StatelessWidget {
     this.constraints = const BoxConstraints(minWidth: 112.0, minHeight: 48.0),
     this.padding = const EdgeInsets.all(8.0),
   })  : assert(title != null),
-        assert(type == Type1.success ||
-            type == Type1.attention ||
-            type == Type1.error);
+        assert(type == CalloutType.success ||
+            type == CalloutType.attention ||
+            type == CalloutType.error);
 
   /// The callout type.
   ///
   /// The allowed [type]´s are: success, attention and error.
   ///
-  final Type1 type;
+  final CalloutType type;
 
   /// The general information text for the callout.
   final String? title;
@@ -60,36 +59,41 @@ class Callout extends StatelessWidget {
   /// The internal padding of the callout.
   final EdgeInsetsGeometry padding;
 
-  IconData icon() {
-    if (this.type == Type1.success) return Icons.check_circle_outline;
-    if (this.type == Type1.attention) return Icons.info_outline;
-    if (this.type == Type1.error) return Icons.error_outline;
+  IconData selectIcon() {
+    if (this.type == CalloutType.success) return Icons.check_circle_outline;
+    if (this.type == CalloutType.attention) return Icons.info_outline;
+    if (this.type == CalloutType.error) return Icons.error_outline;
     throw Exception("Failed to assign icon");
   }
 
-  Color color() {
-    if (this.type == Type1.success) return color_success;
-    if (this.type == Type1.attention) return color_attention;
-    if (this.type == Type1.error) return color_error;
+  Color selectColor() {
+    if (this.type == CalloutType.success) return color_success;
+    if (this.type == CalloutType.attention) return color_attention;
+    if (this.type == CalloutType.error) return color_error;
     throw Exception("Failed to assign color");
   }
 
   @override
   Widget build(BuildContext context) {
-    final Widget header = Row(
+    final Widget main = Row(
       children: [
-        BuildIcon(icon: icon(), color: this.color()),
+        BuildIcon(
+          icon: selectIcon(),
+          color: this.selectColor(),
+        ),
         const SizedBox(width: 16.0),
         Flexible(
           child: Text(
             this.title!,
-            style: this.textStyle!.copyWith(color: this.color()),
+            style: this.textStyle!.copyWith(
+                  color: this.selectColor(),
+                ),
           ),
         )
       ],
     );
 
-    final Widget exceptionInformation = this.exception == ""
+    final Widget excepRow = this.exception == ""
         ? Container()
         : Row(
             children: [
@@ -97,7 +101,9 @@ class Callout extends StatelessWidget {
                 child: Text(
                   "Exception: " + this.exception,
                   style: this.textStyle!.copyWith(
-                      color: this.color(), fontWeight: FontWeight.w400),
+                        color: this.selectColor(),
+                        fontWeight: FontWeight.w400,
+                      ),
                 ),
               ),
             ],
@@ -108,12 +114,14 @@ class Callout extends StatelessWidget {
       child: Container(
         constraints: this.constraints,
         padding: this.padding,
-        color: this.color().withOpacity(0.1),
+        color: this.selectColor().withOpacity(0.1),
         child: Column(
           children: [
-            header,
-            const SizedBox(height: 16.0),
-            exceptionInformation,
+            main,
+            this.exception == ""
+                ? const SizedBox(height: 0.0)
+                : const SizedBox(height: 16.0),
+            excepRow,
           ],
         ),
       ),

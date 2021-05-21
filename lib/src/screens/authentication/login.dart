@@ -59,14 +59,33 @@ class _LoginScreenState extends State<LoginScreen> {
               onTap: () => _testing.leaveWorkspace(),
               child: Text('Enter WS'),
             ),
-            CalloutAccessControl(
-                type: Type2.allowed,
-                title: 'Test title for allowed people',
-                subtitle: 'Subtitle'),
+            Modale(
+              type: ModaleType.allowed,
+              function: () {},
+              title: 'Workspace entered - Workspace: Bibliothek',
+              subtitle: 'Entered at: 02021.M.17 23:14',
+              actionText: "Leave workspace",
+            ),
+            Modale(
+              type: ModaleType.denied,
+              function: () {},
+              title: 'Workspace full - Workspace: Bibliothek',
+              subtitle: 'Current in workspace: 25',
+              actionText: "Try later again",
+            ),
             Callout(
               title: "This is an attention",
-              type: Type1.attention,
+              type: CalloutType.attention,
               exception: "No internet connection",
+            ),
+            Callout(
+              title: "This is an error",
+              type: CalloutType.error,
+              exception: "Validation in login failed",
+            ),
+            Callout(
+              title: "This is an success",
+              type: CalloutType.success,
             ),
           ],
         ),
