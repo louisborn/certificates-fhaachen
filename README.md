@@ -30,6 +30,7 @@ app will allow to check that the student has the certificate.
 * Dart version: 2.12.3
 * Android SDK version: 30.0.3
 * Firebase firestore: latest
+* Environment SDK: >=2.12.0 <3.0.0
 
 When using _Visual Studio Code_ as a editor ensure to download **"Better Comments"** as a extension.
 
