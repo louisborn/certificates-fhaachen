@@ -1,30 +1,54 @@
+import 'package:certificates/src/providers/base_shared_preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-/// A global [SharedPreferences] instance.
-///
-late SharedPreferences prefs;
 
 /// A service to persist key values.
 ///
-class ApplicationPreferences {
+class ApplicationPreferences implements BaseSharedPreferences {
+  /// Returns a single instance of this class.
+  ///
+  factory ApplicationPreferences() {
+    return _instance;
+  }
+
+  ApplicationPreferences._internal();
+
+  static final ApplicationPreferences _instance =
+      ApplicationPreferences._internal();
+
+  /// A global [SharedPreferences] instance.
+  ///
+  late SharedPreferences _prefInstance;
+
   /// Returns the enter [timestamp] into a workspace.
   ///
-  /// ignore: await_only_futures
-  Future<String?> get timestamp async => await prefs.getString('timestamp');
+  Future<String?> get timestamp async =>
+
+      /// ignore: await_only_futures
+      await _prefInstance.getString('timestamp');
 
   /// Returns the entered [workspace] name.
   ///
-  /// ignore: await_only_futures
-  Future<String?> get workspace async => await prefs.getString('workspace')!;
+  Future<String?> get workspace async =>
+
+      /// ignore: await_only_futures
+      await _prefInstance.getString('workspace')!;
 
   /// Returns the current logged in [student].
   ///
-  /// ignore: await_only_futures
-  Future<String?> get student async => await prefs.getString('studentId')!;
+  Future<String?> get student async =>
 
-  bool saveStudentAsSharedPreference(String studentId) {
+      /// ignore: await_only_futures
+      await _prefInstance.getString('studentId')!;
+
+  @override
+  Future<void> getInstance() async {
+    this._prefInstance = await SharedPreferences.getInstance();
+  }
+
+  @override
+  bool saveUserId(String studentId) {
     try {
-      prefs.setString('studentId', studentId);
+      _prefInstance.setString('studentId', studentId);
       return true;
     } catch (exception) {
       print(exception);
@@ -32,9 +56,10 @@ class ApplicationPreferences {
     }
   }
 
-  bool saveEntryTimestampAsSharedPreference(String timestamp) {
+  @override
+  bool saveEntranceTimestamp(String timestamp) {
     try {
-      prefs.setString('timestamp', timestamp);
+      _prefInstance.setString('timestamp', timestamp);
       return true;
     } catch (exception) {
       print(exception);
@@ -42,9 +67,10 @@ class ApplicationPreferences {
     }
   }
 
-  bool saveEnteredWorkspaceNameAsSharedPreference(String workspace) {
+  @override
+  bool saveWorkspaceId(String workspace) {
     try {
-      prefs.setString('workspace', workspace);
+      _prefInstance.setString('workspace', workspace);
       return true;
     } catch (exception) {
       print(exception);
