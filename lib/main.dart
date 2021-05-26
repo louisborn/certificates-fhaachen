@@ -1,9 +1,10 @@
+import 'package:certificates/services.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 
-import 'providers.dart';
+import 'services.dart';
 import 'screens.dart';
 
 Future<void> main() async {
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<AccessControlProvider>(
           create: (_) => AccessControlProvider(),
+        ),
+        ChangeNotifierProvider<UsageControlProvider>(
+          create: (_) => UsageControlProvider(),
         ),
       ],
       child: MaterialApp(

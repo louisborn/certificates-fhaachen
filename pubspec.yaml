@@ -34,8 +34,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  #assets:
-  #  - assets/images
+  assets:
+    - assets/images/
   
   #fonts:
   #  - family: LUCA
