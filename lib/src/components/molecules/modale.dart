@@ -15,10 +15,10 @@ enum ModaleType {
 
 /// A callout for the access state of a user.
 ///
-class Modale extends StatelessWidget {
+class BuildModale extends StatelessWidget {
   /// Create a access control callout.
   ///
-  const Modale({
+  const BuildModale({
     required this.type,
     required this.title,
     required this.subtitle,
@@ -113,7 +113,7 @@ class Modale extends StatelessWidget {
               style: this.textStyle,
             ),
             const SizedBox(height: 16.0),
-            TertiaryButton(
+            BuildTertiaryButton(
               text: this.actionText,
               function: this.function,
               withIcon: true,

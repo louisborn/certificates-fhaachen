@@ -1,9 +1,8 @@
 import 'package:certificates/components.dart';
-import 'package:certificates/src/providers/access_control.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:certificates/src/providers/authentication.dart';
+import 'package:certificates/services.dart';
 import 'package:certificates/theme.dart';
 
 /// A screen to provide a student authentication to get access
@@ -26,8 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
     AuthenticationProvider _provider =
         Provider.of<AuthenticationProvider>(context);
     //! Only for testing. Remove after.
-    AccessControlProvider _testing =
-        Provider.of<AccessControlProvider>(context);
+    UsageControlProvider _testing = Provider.of<UsageControlProvider>(context);
 
     var loading = Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -50,40 +48,44 @@ class _LoginScreenState extends State<LoginScreen> {
     };
 
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(64.0),
+        child: BuildAppBar(title: 'Test', centered: false),
+      ),
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             GestureDetector(
-              onTap: () => _testing.leaveWorkspace(),
-              child: Text('Enter WS'),
+              onTap: () => _testing.checkUserAuthorization(),
+              child: Text('Check'),
             ),
-            Modale(
+            BuildModale(
               type: ModaleType.allowed,
               function: () {},
               title: 'Workspace entered - Workspace: Bibliothek',
               subtitle: 'Entered at: 02021.M.17 23:14',
               actionText: "Leave workspace",
             ),
-            Modale(
+            BuildModale(
               type: ModaleType.denied,
               function: () {},
               title: 'Workspace full - Workspace: Bibliothek',
               subtitle: 'Current in workspace: 25',
               actionText: "Try later again",
             ),
-            Callout(
+            BuildCallout(
               title: "This is an attention",
               type: CalloutType.attention,
               exception: "No internet connection",
             ),
-            Callout(
+            BuildCallout(
               title: "This is an error",
               type: CalloutType.error,
               exception: "Validation in login failed",
             ),
-            Callout(
+            BuildCallout(
               title: "This is an success",
               type: CalloutType.success,
             ),

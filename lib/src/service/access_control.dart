@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../providers.dart';
+import '../../services.dart';
 
 /// Indicates the current access status of a user.
 ///
@@ -68,7 +68,7 @@ class AccessControlProvider extends ChangeNotifier {
     //! Exchange "" with var id.
     var _docRef = getDocReference("");
     try {
-      var workspaceInformation = await getWorkspaceInformation(_docRef);
+      var workspaceInformation = await getDocument(_docRef);
       if (checkUserCountInWorkspace(
         workspaceInformation.elementAt(0),
         workspaceInformation.elementAt(1),
@@ -177,7 +177,7 @@ class AccessControlProvider extends ChangeNotifier {
     return _docRef;
   }
 
-  Future<Iterable> getWorkspaceInformation(DocumentReference docRef) async {
+  Future<Iterable> getDocument(DocumentReference docRef) async {
     try {
       DocumentSnapshot snapshot = await docRef.get();
 

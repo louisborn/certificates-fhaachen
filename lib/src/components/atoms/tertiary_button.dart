@@ -5,10 +5,10 @@ import '../../../theme.dart';
 
 /// A tertiary button used in the application.
 ///
-class TertiaryButton extends StatelessWidget {
+class BuildTertiaryButton extends StatelessWidget {
   /// Create a tertiary button.
   ///
-  const TertiaryButton({
+  const BuildTertiaryButton({
     required this.text,
     required this.withIcon,
     this.icon = Icons.check_box_outline_blank,

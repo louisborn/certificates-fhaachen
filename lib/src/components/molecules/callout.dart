@@ -18,12 +18,12 @@ enum CalloutType {
 
 /// A state callout for this project.
 ///
-class Callout extends StatelessWidget {
+class BuildCallout extends StatelessWidget {
   /// Create a callout based on [Semantics], [Container] and [Row].
   ///
   /// The [title] and [types] must not be null.
   ///
-  const Callout({
+  const BuildCallout({
     required this.type,
     required this.title,
     this.exception = "",
