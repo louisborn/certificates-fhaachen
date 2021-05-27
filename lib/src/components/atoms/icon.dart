@@ -8,7 +8,7 @@ class BuildIcon extends StatelessWidget {
   /// The minimum [size] is 24.0.
   BuildIcon({
     required this.icon,
-    required this.color,
+    this.color = const Color(0xff000000),
     this.size = 24.0,
   }) : assert(size >= 24.0);
 
