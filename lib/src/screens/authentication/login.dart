@@ -50,7 +50,13 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(64.0),
-        child: BuildAppBar(title: 'Test', centered: false),
+        child: BuildAppBar(
+          title: 'Test',
+          centered: false,
+          actions: [
+            BuildIconButton(icon: Icons.arrow_forward, onTap: () => {})
+          ],
+        ),
       ),
       body: Center(
         child: Column(

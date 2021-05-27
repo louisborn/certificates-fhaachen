@@ -4,15 +4,14 @@ import '../../../components.dart';
 
 class BuildAppBar extends StatelessWidget {
   const BuildAppBar({
-    required this.title,
-    required this.centered,
+    this.title = '',
+    this.centered = false,
     this.leading,
     this.actions,
-    this.color = const Color(0xffffffff),
+    this.color = const Color(0xff000000),
     this.textStyle = const TextStyle(
-        fontSize: 24.0, fontWeight: FontWeight.bold, color: Color(0xff000000)),
-  })  : assert(title != null),
-        assert(centered == true || centered == false);
+        fontSize: 24.0, fontWeight: FontWeight.bold, color: Color(0xffffffff)),
+  });
 
   final String? title;
 
@@ -36,7 +35,7 @@ class BuildAppBar extends StatelessWidget {
             this.title!,
             style: this.textStyle,
           ),
-          centerTitle: this.centered,
+          centerTitle: this.centered!,
           actions: this.actions,
           backgroundColor: this.color,
         ),
