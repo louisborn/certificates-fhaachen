@@ -109,21 +109,18 @@ class BuildCallout extends StatelessWidget {
             ],
           );
 
-    final Widget result = Padding(
+    final Widget result = Container(
+      constraints: this.constraints,
       padding: this.padding,
-      child: Container(
-        constraints: this.constraints,
-        padding: this.padding,
-        color: this.selectColor().withOpacity(0.1),
-        child: Column(
-          children: [
-            main,
-            this.exception == ""
-                ? const SizedBox(height: 0.0)
-                : const SizedBox(height: 16.0),
-            excepRow,
-          ],
-        ),
+      color: this.selectColor().withOpacity(0.1),
+      child: Column(
+        children: [
+          main,
+          this.exception == ""
+              ? const SizedBox(height: 0.0)
+              : const SizedBox(height: 16.0),
+          excepRow,
+        ],
       ),
     );
 

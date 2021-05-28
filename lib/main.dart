@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
         home: LoginScreen(),
         routes: <String, WidgetBuilder>{
           LoginScreen.route: (context) => LoginScreen(),
+          TwoFactorScreen.route: (context) => TwoFactorScreen(),
           HomeScreen.route: (context) => HomeScreen(),
         },
       ),
