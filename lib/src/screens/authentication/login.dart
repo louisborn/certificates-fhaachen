@@ -1,9 +1,12 @@
-import 'package:certificates/components.dart';
+import 'package:certificates/screens.dart';
 import 'package:flutter/material.dart';
+
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-import 'package:certificates/services.dart';
-import 'package:certificates/theme.dart';
+import '../../../components.dart';
+import '../../../services.dart';
+import '../../../theme.dart';
 
 /// A screen to provide a student authentication to get access
 /// to the application.
@@ -24,8 +27,47 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     AuthenticationProvider _provider =
         Provider.of<AuthenticationProvider>(context);
-    //! Only for testing. Remove after.
-    UsageControlProvider _testing = Provider.of<UsageControlProvider>(context);
+
+    final PreferredSizeWidget appbar = BuildAppBar(
+      title: 'Login',
+      centered: false,
+    );
+
+    final Widget logoAndText = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SvgPicture.asset('assets/images/logo.svg'),
+        const SizedBox(height: 8.0),
+        Text(
+          'Please login into your digital.access account.',
+          style: BuildTextStyle().subtitle2,
+        ),
+      ],
+    );
+
+    final Widget inputUserId = BuildTextField(
+      hint: 'Studend id',
+      isMandatory: true,
+      onSaved: (String? value) => _studentId = value,
+      validator: (String? value) {
+        if (value == null || value.isEmpty) {
+          return 'test';
+        }
+        return '';
+      },
+    );
+
+    final Widget inputUserName = BuildTextField(
+      hint: 'Last name',
+      isMandatory: true,
+      onSaved: (String? value) => _studentLastname = value,
+      validator: (String? value) {
+        if (value == null || value.isEmpty) {
+          return 'test';
+        }
+        return '';
+      },
+    );
 
     var loading = Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -40,64 +82,42 @@ class _LoginScreenState extends State<LoginScreen> {
 
     var doLogin = () async {
       final form = formKey.currentState;
-      if (form!.validate()) {
+      if (!form!.validate()) {
         form.save();
-
-        //Todo: Add login logic.
+        await _provider.login(this._studentId!, this._studentLastname!);
+        if (_provider.loggedInStatus == AuthenticationStatus.ReadyFor2fA)
+          Navigator.pushNamed(context, HomeScreen.route);
       }
     };
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(64.0),
-        child: BuildAppBar(
-          title: 'Test',
-          centered: false,
-          actions: [
-            BuildIconButton(icon: Icons.arrow_forward, onTap: () => {})
-          ],
+      appBar: appbar,
+      body: Padding(
+        padding: EdgeInsets.only(left: 8.0, top: 24.0, right: 8.0),
+        child: Form(
+          key: formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                logoAndText,
+                const SizedBox(height: 32.0),
+                inputUserId,
+                const SizedBox(height: 16.0),
+                inputUserName,
+              ],
+            ),
+          ),
         ),
       ),
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GestureDetector(
-              onTap: () => _testing.checkUserAuthorization(),
-              child: Text('Check'),
-            ),
-            BuildModale(
-              type: ModaleType.allowed,
-              function: () {},
-              title: 'Workspace entered - Workspace: Bibliothek',
-              subtitle: 'Entered at: 02021.M.17 23:14',
-              actionText: "Leave workspace",
-            ),
-            BuildModale(
-              type: ModaleType.denied,
-              function: () {},
-              title: 'Workspace full - Workspace: Bibliothek',
-              subtitle: 'Current in workspace: 25',
-              actionText: "Try later again",
-            ),
-            BuildCallout(
-              title: "This is an attention",
-              type: CalloutType.attention,
-              exception: "No internet connection",
-            ),
-            BuildCallout(
-              title: "This is an error",
-              type: CalloutType.error,
-              exception: "Validation in login failed",
-            ),
-            BuildCallout(
-              title: "This is an success",
-              type: CalloutType.success,
-            ),
-          ],
-        ),
-      ),
+      bottomSheet:
+          _provider.loggedInStatus == AuthenticationStatus.Authenticating
+              ? loading
+              : BuildPrimaryButton(
+                  text: 'Login',
+                  withIcon: false,
+                  function: doLogin,
+                ),
     );
   }
 }

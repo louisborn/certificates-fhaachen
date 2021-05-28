@@ -140,6 +140,7 @@ class AuthenticationProvider extends ChangeNotifier
 
       if (response.statusCode == 200) {
         Student _student = createStudentModel(response);
+        print(_student);
         if (validateLastName(name, _student.lastName!)) {
           studentId = _student.studentId;
           lastName = _student.lastName;

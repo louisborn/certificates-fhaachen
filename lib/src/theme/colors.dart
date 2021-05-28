@@ -13,3 +13,4 @@ const Color color_gray100 = Color(0xff000000);
 const Color color_accent_orange = Color(0xffF56A38);
 const Color color_accent_pink = Color(0xffFFACCF);
 const Color color_accent_blue = Color(0xff324CE2);
+const Color color_accent_green = Color(0xff00CA78);
