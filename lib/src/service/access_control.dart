@@ -36,7 +36,7 @@ enum AccessControlError {
 /// [setAccessControlError] is used to output any exception occurring
 /// during transactions.
 ///
-class AccessControlProvider extends ChangeNotifier {
+class AccessControlService extends ChangeNotifier {
   /// A text containing the current exception that occurred.
   ///
   late String _exception;

@@ -6,8 +6,11 @@ abstract class BaseSharedPreferences {
   /// Returns a shared preference instance.
   Future<void> getInstance();
 
+  /// Deletes a saved key.
+  Future<void> deletePrefs();
+
   /// Saves the user [id] as shared preference key.
-  bool saveUserId(String id);
+  Future<bool> saveUserId(String id);
 
   /// Saves the enter [timestamp] of a user into a
   /// workspace as shared preference key.
@@ -64,9 +67,19 @@ class ApplicationPreferences implements BaseSharedPreferences {
   }
 
   @override
-  bool saveUserId(String studentId) {
+  Future<bool> deletePrefs() async {
     try {
-      _prefInstance.setString('studentId', studentId);
+      _prefInstance.clear();
+      return true;
+    } catch (exception) {
+      throw Exception(exception.toString());
+    }
+  }
+
+  @override
+  Future<bool> saveUserId(String studentId) async {
+    try {
+      await _prefInstance.setString('studentId', studentId);
       return true;
     } catch (exception) {
       print(exception);

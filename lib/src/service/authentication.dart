@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:certificates/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ abstract class BaseAuthentication {
   Future<void> login(String id, String name);
 
   /// Logs a user out of the application.
-  Future<void> logout(String id);
+  Future<bool> logout();
 
   /// Validates the user last name input.
   ///
@@ -95,7 +96,7 @@ enum AuthenticationError {
 /// case of an network error. Throws an [Exception] if the [_studentId] or
 /// [_lastName] fails to validate.
 ///
-class AuthenticationProvider extends ChangeNotifier
+class AuthenticationService extends ChangeNotifier
     implements BaseAuthentication {
   /// A text containing the current exception that occurred.
   ///
@@ -189,7 +190,10 @@ class AuthenticationProvider extends ChangeNotifier
   }
 
   @override
-  Future<void> logout(String id) async {}
+  Future<bool> logout() async {
+    if (await ApplicationPreferences().deletePrefs()) return true;
+    return false;
+  }
 
   @override
   Future<void> startAndPatch2fAToken() async {

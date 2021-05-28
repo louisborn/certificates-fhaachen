@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../services.dart';
 
-class UsageControlProvider extends ChangeNotifier {
+class UsageControlService extends ChangeNotifier {
   Future<DocumentSnapshot> getDocument() async {
     DocumentSnapshot data = await Document<DocumentSnapshot>(
             path: 'certificates/ZPSnJh7Sc95xdeFQ6mQ4')
