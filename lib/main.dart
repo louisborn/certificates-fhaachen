@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Certificates',
         debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
+        home: LoginScreen(),
         routes: <String, WidgetBuilder>{
           LoginScreen.route: (context) => LoginScreen(),
           HomeScreen.route: (context) => HomeScreen(),

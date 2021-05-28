@@ -9,6 +9,7 @@ export 'src/components/atoms/tertiary_button.dart';
 export 'src/components/atoms/icon_button.dart';
 export 'src/components/atoms/banner.dart';
 export 'src/components/atoms/primary_button.dart';
+export 'src/components/atoms/text_field.dart';
 
 export 'src/components/molecules/callout.dart';
 export 'src/components/molecules/modale.dart';

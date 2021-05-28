@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../components.dart';
 
-class BuildAppBar extends StatelessWidget {
+class BuildAppBar extends StatelessWidget with PreferredSizeWidget {
   const BuildAppBar({
     this.title = '',
     this.centered = false,
@@ -27,22 +27,28 @@ class BuildAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget result = Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        AppBar(
-          title: Text(
-            this.title!,
-            style: this.textStyle,
+    final Widget result = PreferredSize(
+      preferredSize: preferredSize,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          AppBar(
+            title: Text(
+              this.title!,
+              style: this.textStyle,
+            ),
+            centerTitle: this.centered!,
+            actions: this.actions,
+            backgroundColor: this.color,
           ),
-          centerTitle: this.centered!,
-          actions: this.actions,
-          backgroundColor: this.color,
-        ),
-        BuildBanner()
-      ],
+          BuildBanner()
+        ],
+      ),
     );
 
     return result;
   }
+
+  @override
+  Size get preferredSize => Size.fromHeight(64.0);
 }
