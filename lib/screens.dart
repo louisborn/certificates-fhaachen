@@ -5,5 +5,6 @@
 library screens;
 
 export 'src/screens/authentication/login.dart';
+export 'src/screens/authentication/two_factor.dart';
 
 export 'src/screens/home.dart';

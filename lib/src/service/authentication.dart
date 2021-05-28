@@ -72,6 +72,7 @@ abstract class BaseAuthentication {
 ///
 enum AuthenticationStatus {
   NotLoggedIn,
+  LoggedIn,
   Authenticating,
   ReadyFor2fA,
   WaitingFor2fAToken,
@@ -140,7 +141,6 @@ class AuthenticationProvider extends ChangeNotifier
 
       if (response.statusCode == 200) {
         Student _student = createStudentModel(response);
-        print(_student);
         if (validateLastName(name, _student.lastName!)) {
           studentId = _student.studentId;
           lastName = _student.lastName;
@@ -148,7 +148,8 @@ class AuthenticationProvider extends ChangeNotifier
 
           setAuthenticationStatus(AuthenticationStatus.ReadyFor2fA);
         } else {
-          catchAnyException(AuthenticationError.Error, "");
+          catchAnyException(AuthenticationError.Exception,
+              "Student id or last name is incorrect");
           setAuthenticationStatus(AuthenticationStatus.NotLoggedIn);
         }
       } else {
@@ -167,8 +168,8 @@ class AuthenticationProvider extends ChangeNotifier
         setAuthenticationStatus(AuthenticationStatus.NotLoggedIn);
       } else {
         catchAnyException(
-          AuthenticationError.Error,
-          e.toString(),
+          AuthenticationError.Exception,
+          exception.toString(),
         );
         setAuthenticationStatus(AuthenticationStatus.NotLoggedIn);
       }
@@ -278,17 +279,26 @@ class AuthenticationProvider extends ChangeNotifier
 
   Future<void> validate2fAToken(String token) async {
     setAuthenticationStatus(AuthenticationStatus.Authenticating);
+    print(_studentId);
     try {
       final http.Response response = await http.get(
         Uri.parse("$api$_studentId/token.json"),
       );
 
       if (response.statusCode == 200) {
+        print("200");
         var _token = jsonDecode(response.body);
-        if (_token == token)
-          print('TRUE');
-        else
-          print('FALSE');
+        print(token);
+        print(_token);
+        if (_token == token) {
+          _loggedInStatus = AuthenticationStatus.LoggedIn;
+          notifyListeners();
+        } else {
+          catchAnyException(
+            AuthenticationError.Exception,
+            "The entered token is invalid.",
+          );
+        }
       }
     } catch (e) {
       if (e is SocketException) {
@@ -299,7 +309,7 @@ class AuthenticationProvider extends ChangeNotifier
         setAuthenticationStatus(AuthenticationStatus.NotLoggedIn);
       } else {
         catchAnyException(
-          AuthenticationError.Error,
+          AuthenticationError.Exception,
           e.toString(),
         );
         setAuthenticationStatus(AuthenticationStatus.NotLoggedIn);

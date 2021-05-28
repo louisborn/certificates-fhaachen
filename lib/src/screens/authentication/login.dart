@@ -1,10 +1,10 @@
-import 'package:certificates/screens.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../components.dart';
+import '../../../screens.dart';
 import '../../../services.dart';
 import '../../../theme.dart';
 
@@ -21,7 +21,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
 
-  String? _studentId, _studentLastname;
+  late String? _studentId, _studentLastname;
 
   @override
   Widget build(BuildContext context) {
@@ -49,24 +49,16 @@ class _LoginScreenState extends State<LoginScreen> {
       hint: 'Studend id',
       isMandatory: true,
       onSaved: (String? value) => _studentId = value,
-      validator: (String? value) {
-        if (value == null || value.isEmpty) {
-          return 'test';
-        }
-        return '';
-      },
+      validator: (String? value) =>
+          value!.isEmpty ? 'This is a mandatory field' : '',
     );
 
     final Widget inputUserName = BuildTextField(
       hint: 'Last name',
       isMandatory: true,
       onSaved: (String? value) => _studentLastname = value,
-      validator: (String? value) {
-        if (value == null || value.isEmpty) {
-          return 'test';
-        }
-        return '';
-      },
+      validator: (String? value) =>
+          value!.isEmpty ? 'This is a mandatory field' : '',
     );
 
     var loading = Row(
@@ -84,9 +76,10 @@ class _LoginScreenState extends State<LoginScreen> {
       final form = formKey.currentState;
       if (!form!.validate()) {
         form.save();
-        await _provider.login(this._studentId!, this._studentLastname!);
+        await _provider.login(this._studentId!.toLowerCase(),
+            this._studentLastname!.toUpperCase());
         if (_provider.loggedInStatus == AuthenticationStatus.ReadyFor2fA)
-          Navigator.pushNamed(context, HomeScreen.route);
+          Navigator.pushNamed(context, TwoFactorScreen.route);
       }
     };
 
@@ -105,6 +98,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 inputUserId,
                 const SizedBox(height: 16.0),
                 inputUserName,
+                const SizedBox(height: 32.0),
+                _provider.authenticationError == AuthenticationError.Exception
+                    ? BuildCallout(
+                        type: CalloutType.error,
+                        title: 'An error has occurred',
+                        exception: _provider.exception,
+                      )
+                    : Container(),
               ],
             ),
           ),
