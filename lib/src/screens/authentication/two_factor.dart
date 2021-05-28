@@ -21,8 +21,8 @@ class _TwoFactorScreenState extends State<TwoFactorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    AuthenticationProvider _provider =
-        Provider.of<AuthenticationProvider>(context);
+    AuthenticationService _provider =
+        Provider.of<AuthenticationService>(context);
 
     final PreferredSizeWidget appbar = BuildAppBar(
       title: 'Two factor',

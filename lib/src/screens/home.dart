@@ -1,5 +1,8 @@
-import 'package:certificates/services.dart';
+import 'package:certificates/screens.dart';
+import 'package:certificates/src/theme/colors.dart';
+import 'package:certificates/src/theme/text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../components.dart';
 
@@ -43,12 +46,35 @@ class _HomeScreenState extends State<HomeScreen> {
     );
 
     final Widget drawer = BuildDrawer(
-      name: '',
-      lastName: 'Born',
       children: [
+        DrawerHeader(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SvgPicture.asset('assets/images/logo.svg'),
+              const SizedBox(height: 16.0),
+              Text(
+                'Personal infomration:',
+              ),
+              const SizedBox(height: 8.0),
+              Text(
+                'Louis Born; r38711',
+              ),
+            ],
+          ),
+        ),
         ListTile(
-          title: Text('Logout'),
-          onTap: () => Navigator.pop(context),
+          title: Text(
+            'Logout',
+            style: BuildTextStyle().subtitle1,
+          ),
+          leading: BuildIcon(
+            icon: Icons.logout,
+          ),
+          onTap: () => Navigator.pushNamed(
+            context,
+            LogoutScreen.route,
+          ),
         )
       ],
     );

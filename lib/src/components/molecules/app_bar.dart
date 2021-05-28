@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../components.dart';
 
@@ -33,6 +34,9 @@ class BuildAppBar extends StatelessWidget with PreferredSizeWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           AppBar(
+            backwardsCompatibility: false,
+            systemOverlayStyle:
+                SystemUiOverlayStyle(statusBarColor: Color(0xff000000)),
             title: Text(
               this.title!,
               style: this.textStyle,

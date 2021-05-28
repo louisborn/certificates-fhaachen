@@ -1,4 +1,3 @@
-import 'package:certificates/services.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -19,14 +18,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<AuthenticationProvider>(
-          create: (_) => AuthenticationProvider(),
+        ChangeNotifierProvider<AuthenticationService>(
+          create: (_) => AuthenticationService(),
         ),
-        ChangeNotifierProvider<AccessControlProvider>(
-          create: (_) => AccessControlProvider(),
+        ChangeNotifierProvider<AccessControlService>(
+          create: (_) => AccessControlService(),
         ),
-        ChangeNotifierProvider<UsageControlProvider>(
-          create: (_) => UsageControlProvider(),
+        ChangeNotifierProvider<UsageControlService>(
+          create: (_) => UsageControlService(),
         ),
       ],
       child: MaterialApp(
@@ -36,6 +35,7 @@ class MyApp extends StatelessWidget {
         routes: <String, WidgetBuilder>{
           LoginScreen.route: (context) => LoginScreen(),
           TwoFactorScreen.route: (context) => TwoFactorScreen(),
+          LogoutScreen.route: (context) => LogoutScreen(),
           HomeScreen.route: (context) => HomeScreen(),
         },
       ),

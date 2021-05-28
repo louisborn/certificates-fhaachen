@@ -25,8 +25,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    AuthenticationProvider _provider =
-        Provider.of<AuthenticationProvider>(context);
+    AuthenticationService _provider =
+        Provider.of<AuthenticationService>(context);
 
     final PreferredSizeWidget appbar = BuildAppBar(
       title: 'Login',
