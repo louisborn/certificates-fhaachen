@@ -1,6 +1,7 @@
 import 'package:certificates/components.dart';
 import 'package:certificates/screens.dart';
 import 'package:certificates/services.dart';
+import 'package:certificates/src/components/organisms/bottom_navigation_bar.dart';
 import 'package:certificates/src/theme/text_style.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +37,7 @@ class _TwoFactorScreenState extends State<TwoFactorScreen> {
         const SizedBox(height: 8.0),
         Text(
           'Please confirm your account by entering the token send per email.',
-          style: BuildTextStyle().subtitle2,
+          style: BuildTextStyle(type: TextStyleType.white).subtitle2,
         ),
       ],
     );
@@ -55,7 +56,8 @@ class _TwoFactorScreenState extends State<TwoFactorScreen> {
         form.save();
         await _provider.validate2fAToken(this._token!);
         if (_provider.loggedInStatus == AuthenticationStatus.LoggedIn)
-          Navigator.pushNamed(context, HomeScreen.route);
+          Navigator.pushNamedAndRemoveUntil(
+              context, BuildBottomNavigationBar.route, (route) => false);
       }
     };
 

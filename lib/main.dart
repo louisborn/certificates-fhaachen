@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 
+import 'components.dart';
 import 'services.dart';
 import 'screens.dart';
 
@@ -36,7 +37,11 @@ class MyApp extends StatelessWidget {
           LoginScreen.route: (context) => LoginScreen(),
           TwoFactorScreen.route: (context) => TwoFactorScreen(),
           LogoutScreen.route: (context) => LogoutScreen(),
+          BuildBottomNavigationBar.route: (context) =>
+              BuildBottomNavigationBar(),
           HomeScreen.route: (context) => HomeScreen(),
+          MoreScreen.route: (context) => MoreScreen(),
+          AccountScreen.route: (context) => AccountScreen(),
         },
       ),
     );
