@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
         const SizedBox(height: 8.0),
         Text(
           'Please login into your digital.access account.',
-          style: BuildTextStyle().subtitle2,
+          style: BuildTextStyle(type: TextStyleType.white).subtitle2,
         ),
       ],
     );

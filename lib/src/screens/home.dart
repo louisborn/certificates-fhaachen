@@ -1,9 +1,7 @@
-import 'package:certificates/screens.dart';
-import 'package:certificates/src/theme/colors.dart';
-import 'package:certificates/src/theme/text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../screens.dart';
+import '../../theme.dart';
 import '../../components.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,71 +12,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  @override
-  initState() {
-    super.initState();
-  }
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    final PreferredSizeWidget appBar = PreferredSize(
-      preferredSize: Size.fromHeight(64.0),
-      child: BuildAppBar(
-        title: 'Home',
-        actions: [
-          BuildIconButton(
-            icon: Icons.info_outline,
-            onTap: () => {},
-          ),
-          const SizedBox(width: 16.0),
-          BuildIconButton(
-            icon: Icons.history,
-            onTap: () => {},
-          ),
-          const SizedBox(width: 16.0),
-          BuildIconButton(
-            icon: Icons.person_outline,
-            onTap: () => {},
-          ),
-          const SizedBox(width: 16.0),
-        ],
-      ),
-    );
-
-    final Widget drawer = BuildDrawer(
-      children: [
-        DrawerHeader(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SvgPicture.asset('assets/images/logo.svg'),
-              const SizedBox(height: 16.0),
-              Text(
-                'Personal infomration:',
-              ),
-              const SizedBox(height: 8.0),
-              Text(
-                'Louis Born; r38711',
-              ),
-            ],
-          ),
-        ),
-        ListTile(
-          title: Text(
-            'Logout',
-            style: BuildTextStyle().subtitle1,
-          ),
-          leading: BuildIcon(
-            icon: Icons.logout,
-          ),
-          onTap: () => Navigator.pushNamed(
-            context,
-            LogoutScreen.route,
-          ),
-        )
-      ],
-    );
-
     final Widget title = Column(
       children: [
         Text(
@@ -127,22 +64,16 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
 
-    return Scaffold(
-      appBar: appBar,
-      drawer: drawer,
-      body: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            const SizedBox(height: 24.0),
-            title,
-            const SizedBox(height: 24.0),
-            buttonQrCode,
-            const SizedBox(height: 16.0),
-            buttonCertificates,
-          ],
-        ),
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        const SizedBox(height: 24.0),
+        title,
+        const SizedBox(height: 24.0),
+        buttonQrCode,
+        const SizedBox(height: 16.0),
+        buttonCertificates,
+      ],
     );
   }
 }
