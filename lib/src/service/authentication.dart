@@ -106,6 +106,10 @@ class AuthenticationService extends ChangeNotifier
   ///
   late String _studentId;
 
+  /// A value containing the name of a user.
+  ///
+  late String _firstName;
+
   /// A value containing the last name of a user.
   ///
   late String _lastName;
@@ -117,6 +121,10 @@ class AuthenticationService extends ChangeNotifier
   /// Sets the value of the student id.
   ///
   set studentId(String? id) => this._studentId = id!;
+
+  /// Sets the value of the user name.
+  ///
+  set firstName(String? name) => this._firstName = name!;
 
   /// Sets the value of the user last name.
   ///
@@ -145,6 +153,7 @@ class AuthenticationService extends ChangeNotifier
         if (validateLastName(name, _student.lastName!)) {
           studentId = _student.studentId;
           lastName = _student.lastName;
+          firstName = _student.firstName;
           await startAndPatch2fAToken();
 
           setAuthenticationStatus(AuthenticationStatus.ReadyFor2fA);
@@ -191,7 +200,7 @@ class AuthenticationService extends ChangeNotifier
 
   @override
   Future<bool> logout() async {
-    if (await ApplicationPreferences().deletePrefs()) return true;
+    if (await PreferenceService().clearAll()) return true;
     return false;
   }
 
@@ -283,7 +292,6 @@ class AuthenticationService extends ChangeNotifier
 
   Future<void> validate2fAToken(String token) async {
     setAuthenticationStatus(AuthenticationStatus.Authenticating);
-    print(_studentId);
     try {
       final http.Response response = await http.get(
         Uri.parse("$api$_studentId/token.json"),
@@ -297,6 +305,9 @@ class AuthenticationService extends ChangeNotifier
         if (_token == token) {
           _loggedInStatus = AuthenticationStatus.LoggedIn;
           notifyListeners();
+          PreferenceService().putString('studentId', _studentId);
+          PreferenceService().putString('firstName', _firstName);
+          PreferenceService().putString('lastName', _lastName);
         } else {
           catchAnyException(
             AuthenticationError.Exception,

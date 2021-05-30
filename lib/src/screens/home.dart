@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../screens.dart';
-import '../../theme.dart';
 import '../../components.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,8 +10,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     final Widget title = Column(

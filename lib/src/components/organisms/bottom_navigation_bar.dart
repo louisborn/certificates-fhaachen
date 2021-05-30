@@ -26,12 +26,12 @@ class _BuildBottomNavigationBar extends State<BuildBottomNavigationBar> {
         const SizedBox(width: 16.0),
         BuildIconButton(
           icon: Icons.history,
-          onTap: () => {},
+          onTap: () => Navigator.pushNamed(context, HistoryLogScreen.route),
         ),
         const SizedBox(width: 16.0),
         BuildIconButton(
           icon: Icons.person_outline,
-          onTap: () => {},
+          onTap: () => Navigator.pushNamed(context, AccountScreen.route),
         ),
         const SizedBox(width: 16.0),
       ],
@@ -48,7 +48,7 @@ class _BuildBottomNavigationBar extends State<BuildBottomNavigationBar> {
       onTap: _onItemTapped,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.dashboard_outlined),
+          icon: Icon(Icons.home_outlined),
           label: 'Home',
         ),
         BottomNavigationBarItem(
