@@ -40,31 +40,17 @@ class Collection<T> {
         value.docs.map((doc) => Global.models[T](doc.data()) as T).toList());
     return snapshots;
   }
-}
 
-class User {
-  User({
-    required this.id,
-  });
-
-  final String id;
-
-  /// The api uri for the database.
-  static const String api =
-      'https://mis21-61b88-default-rtdb.europe-west1.firebasedatabase.app/studentprofile/';
-
-  Future<Student> getStudent() async {
-    try {
-      print(this.id);
-      final http.Response response = await http.get(
-        Uri.parse("$api$id.json"),
-      );
-      if (response.statusCode == 200) {
-        return Global.models[Student](jsonDecode(response.body));
-      } else
-        throw Exception('Failed to get user data2');
-    } catch (exception) {
-      throw Exception('Failed to get user data');
-    }
+  Future<List<T>> getDataQueriedById() async {
+    var snapshots = await ref!
+        .where(
+          'studentId',
+          isEqualTo: PreferenceService().getString('studentId'),
+        )
+        .get()
+        .then((value) => value.docs
+            .map((doc) => Global.models[T](doc.data()) as T)
+            .toList());
+    return snapshots;
   }
 }

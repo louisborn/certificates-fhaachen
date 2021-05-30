@@ -1,3 +1,4 @@
+import 'package:certificates/services.dart';
 import 'package:certificates/src/theme/text_style.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,9 @@ class AccountScreen extends StatelessWidget {
           style: BuildTextStyle(type: TextStyleType.white).subtitle2,
         ),
         Text(
-          'Louis Born',
+          PreferenceService().getString('firstName')!.toLowerCase() +
+              ' ' +
+              PreferenceService().getString('lastName')!.toLowerCase(),
           style: BuildTextStyle(type: TextStyleType.white).header3,
         ),
       ],
@@ -42,7 +45,7 @@ class AccountScreen extends StatelessWidget {
           style: BuildTextStyle(type: TextStyleType.white).subtitle2,
         ),
         Text(
-          'r38711',
+          PreferenceService().getString('studentId')!,
           style: BuildTextStyle(type: TextStyleType.white).header3,
         ),
       ],

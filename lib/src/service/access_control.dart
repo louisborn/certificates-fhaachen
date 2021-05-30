@@ -48,7 +48,7 @@ class AccessControlService extends ChangeNotifier {
   static const String collection_log = "log";
 
   /// The instance for the shared preferences service.
-  final sharedPreferenceService = ApplicationPreferences();
+  final sharedPreferenceService = PreferenceService();
 
   /// Returns any [_exception] message occurred during transaction.
   ///
@@ -75,7 +75,7 @@ class AccessControlService extends ChangeNotifier {
       )) {
         await logUserEntrance("r38711", workspaceInformation.elementAt(2));
         await incrementUserInWorkspace(_docRef);
-        sharedPreferenceService.saveWorkspaceId(_docRef.id);
+        sharedPreferenceService.putString('workspace', _docRef.id);
       } else
         setUserAccessStatus(UserAccessStatus.Denied);
     } catch (exception) {
@@ -91,7 +91,7 @@ class AccessControlService extends ChangeNotifier {
     //! Exchange "" with var id.
     var _docRef = getDocReference("");
     try {
-      var timestamp = await sharedPreferenceService.timestamp;
+      var timestamp = await sharedPreferenceService.getString('timestamp');
 
       await logUserExit(timestamp!, _docRef);
     } catch (exception) {
@@ -132,8 +132,8 @@ class AccessControlService extends ChangeNotifier {
           "workspaceName": workspaceName,
         },
       );
-      sharedPreferenceService
-          .saveEntranceTimestamp(YEAR_MONTH_DAY_HOUR24_MINUTE);
+      sharedPreferenceService.putString(
+          'timestamp', YEAR_MONTH_DAY_HOUR24_MINUTE);
     } catch (exception) {
       catchAnyException(
         AccessControlError.Exception,

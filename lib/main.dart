@@ -9,7 +9,7 @@ import 'screens.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await ApplicationPreferences().getInstance();
+  await PreferenceService().getInstance();
   await Firebase.initializeApp();
   runApp(MyApp());
 }
@@ -32,7 +32,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Certificates',
         debugShowCheckedModeBanner: false,
-        home: LoginScreen(),
+        home: PreferenceService().getString('studentId') != ''
+            ? BuildBottomNavigationBar()
+            : LoginScreen(),
         routes: <String, WidgetBuilder>{
           LoginScreen.route: (context) => LoginScreen(),
           TwoFactorScreen.route: (context) => TwoFactorScreen(),
@@ -42,6 +44,7 @@ class MyApp extends StatelessWidget {
           HomeScreen.route: (context) => HomeScreen(),
           MoreScreen.route: (context) => MoreScreen(),
           AccountScreen.route: (context) => AccountScreen(),
+          HistoryLogScreen.route: (context) => HistoryLogScreen(),
         },
       ),
     );
