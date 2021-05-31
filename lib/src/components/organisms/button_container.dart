@@ -1,7 +1,14 @@
-import 'package:certificates/components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
+import '../../../components.dart';
+
+/// A container with a leading icon, text and a button
+/// used in this application.
+///
 class BuildButtonContainer extends StatelessWidget {
+  /// Create a button container.
+  ///
   BuildButtonContainer({
     required this.title,
     required this.subtitle,
@@ -21,12 +28,16 @@ class BuildButtonContainer extends StatelessWidget {
   })  : assert(title != null),
         assert(subtitle != null);
 
+  /// The title of the button container.
   final String? title;
 
+  /// The subtitle of the button container.
   final String? subtitle;
 
+  /// The button of the button container.
   final BuildPrimaryButton button;
 
+  /// The leading icon of the button container.
   final BuildIcon icon;
 
   /// The width of the container.
@@ -84,6 +95,9 @@ class BuildButtonContainer extends StatelessWidget {
       ),
     );
 
-    return result;
+    return Semantics(
+      label: 'A container with a icon, title, subtitle and button',
+      child: result,
+    );
   }
 }

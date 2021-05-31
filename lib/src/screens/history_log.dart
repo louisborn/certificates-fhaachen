@@ -1,9 +1,9 @@
-import 'package:certificates/components.dart';
-import 'package:certificates/services.dart';
-import 'package:certificates/src/theme/colors.dart';
-import 'package:certificates/src/theme/text_style.dart';
 import 'package:flutter/material.dart';
 
+import '../../components.dart';
+import '../../generated/i18n.dart';
+import '../../services.dart';
+import '../../theme.dart';
 import '../../models.dart';
 
 class HistoryLogScreen extends StatefulWidget {
@@ -16,13 +16,9 @@ class HistoryLogScreen extends StatefulWidget {
 class _HistoryLogScreenState extends State<HistoryLogScreen> {
   late Future future;
 
-  bool sortedByWorkspace = false;
-  bool sortedByEnter = false;
-  bool sortedByLeave = false;
-
   @override
   void initState() {
-    this.future = Collection<Log>(path: 'log').getDataQueriedById();
+    this.future = Collection<Log>(path: 'log').getDataQueriedById('studentId');
 
     super.initState();
   }
@@ -30,7 +26,7 @@ class _HistoryLogScreenState extends State<HistoryLogScreen> {
   @override
   Widget build(BuildContext context) {
     final PreferredSizeWidget appBar = BuildAppBar(
-      title: 'History log',
+      title: I18n.of(context).logTitle,
     );
 
     var loading = Row(
@@ -40,7 +36,7 @@ class _HistoryLogScreenState extends State<HistoryLogScreen> {
           valueColor: AlwaysStoppedAnimation<Color>(color_accent_green),
         ),
         const SizedBox(width: 8.0),
-        Text('Loading'),
+        Text(I18n.of(context).loading),
       ],
     );
 
@@ -52,13 +48,13 @@ class _HistoryLogScreenState extends State<HistoryLogScreen> {
           if (snapshot.hasError)
             return BuildCallout(
               type: CalloutType.error,
-              title: 'Something went wrong. Try again.',
+              title: I18n.of(context).error_default,
             );
 
           if (snapshot.hasData && snapshot.data == false)
             return BuildCallout(
               type: CalloutType.attention,
-              title: 'No history log to display.',
+              title: I18n.of(context).error_noData,
             );
 
           if (snapshot.connectionState == ConnectionState.done) {
@@ -67,7 +63,11 @@ class _HistoryLogScreenState extends State<HistoryLogScreen> {
               padding: EdgeInsets.only(left: 8.0, top: 24.0, right: 8.0),
               child: BuildTable(
                 data: data,
-                tableHeader: ['Workspace', 'Enter', 'Leave'],
+                tableHeader: [
+                  I18n.of(context).logTable_header_1,
+                  I18n.of(context).logTable_header_2,
+                  I18n.of(context).logTable_header_3,
+                ],
               ),
             );
           }

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../components.dart';
+import '../../generated/i18n.dart';
+import '../../services.dart';
+import '../../screens.dart';
+import '../../theme.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String route = '/home';
@@ -15,30 +19,28 @@ class _HomeScreenState extends State<HomeScreen> {
     final Widget title = Column(
       children: [
         Text(
-          'Hello Louis',
-          style: TextStyle(
-            fontSize: 24.0,
-            fontWeight: FontWeight.bold,
-            color: Color(0xff000000),
+          I18n.of(context).homeGreetTo(
+            PreferenceService().getString('firstName')!.toLowerCase(),
           ),
+          style: BuildTextStyle(type: TextStyleType.white).header4,
+          textAlign: TextAlign.center,
         ),
         Text(
-          'Choose a action below.',
-          style: TextStyle(
-            fontSize: 16.0,
-            color: Color(0xff000000),
-          ),
+          I18n.of(context).homeInformation,
+          style: BuildTextStyle(type: TextStyleType.white).subtitle2,
+          textAlign: TextAlign.center,
         ),
       ],
     );
 
     final Widget buttonQrCode = BuildButtonContainer(
-      title: 'Enter workspace',
-      subtitle: 'Scan the qr code at the entrance of a workspace.',
+      title: I18n.of(context).homeOption_1_title,
+      subtitle: I18n.of(context).homeOption_1_subtitle,
       button: BuildPrimaryButton(
-        text: 'Scan qr code',
+        text: I18n.of(context).homeOption_1_button,
         withIcon: false,
-        function: () => {},
+        function: () => {}, //! Add logic
+        hint: I18n.of(context).homeOption_1_hint,
       ),
       icon: BuildIcon(
         icon: Icons.qr_code,
@@ -47,12 +49,16 @@ class _HomeScreenState extends State<HomeScreen> {
     );
 
     final Widget buttonCertificates = BuildButtonContainer(
-      title: 'My certificates',
-      subtitle: 'Shows the students approved certificates.',
+      title: I18n.of(context).homeOption_2_title,
+      subtitle: I18n.of(context).homeOption_2_subtitle,
       button: BuildPrimaryButton(
-        text: 'Show certificates',
+        text: I18n.of(context).homeOption_2_button,
         withIcon: false,
-        function: () => {},
+        function: () => Navigator.pushNamed(
+          context,
+          CertificatesScreen.route,
+        ),
+        hint: I18n.of(context).homeOption_2_hint,
       ),
       icon: BuildIcon(
         icon: Icons.file_copy_outlined,

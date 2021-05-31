@@ -1,3 +1,4 @@
+import 'package:certificates/generated/i18n.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components.dart';
@@ -16,44 +17,47 @@ class _BuildBottomNavigationBar extends State<BuildBottomNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
-    final PreferredSizeWidget appBar = BuildAppBar(
-      title: 'Home',
-      actions: [
-        BuildIconButton(
-          icon: Icons.info_outline,
-          onTap: () => {},
-        ),
-        const SizedBox(width: 16.0),
-        BuildIconButton(
-          icon: Icons.history,
-          onTap: () => Navigator.pushNamed(context, HistoryLogScreen.route),
-        ),
-        const SizedBox(width: 16.0),
-        BuildIconButton(
-          icon: Icons.person_outline,
-          onTap: () => Navigator.pushNamed(context, AccountScreen.route),
-        ),
-        const SizedBox(width: 16.0),
-      ],
-    );
-
     var _onItemTapped = (int index) => setState(
           () {
             _selectedIndex = index;
           },
         );
 
+    final PreferredSizeWidget appBar = BuildAppBar(
+      title: I18n.of(context).homeTitle,
+      actions: [
+        BuildIconButton(
+          icon: Icons.info_outline,
+          hint: 'Navigates to the about page',
+          onTap: () => Navigator.pushNamed(context, AboutScreen.route),
+        ),
+        const SizedBox(width: 16.0),
+        BuildIconButton(
+          icon: Icons.history,
+          hint: 'Navigates to the about history log page',
+          onTap: () => Navigator.pushNamed(context, HistoryLogScreen.route),
+        ),
+        const SizedBox(width: 16.0),
+        BuildIconButton(
+          icon: Icons.person_outline,
+          hint: 'Navigates to the account page',
+          onTap: () => Navigator.pushNamed(context, AccountScreen.route),
+        ),
+        const SizedBox(width: 16.0),
+      ],
+    );
+
     final Widget bottomNavigationBar = BottomNavigationBar(
       currentIndex: _selectedIndex,
       onTap: _onItemTapped,
-      items: const <BottomNavigationBarItem>[
+      items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home_outlined),
-          label: 'Home',
+          label: I18n.of(context).homeTitle,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.more_horiz_outlined),
-          label: 'More',
+          label: I18n.of(context).homeMore,
         ),
       ],
       selectedItemColor: color_accent_green,

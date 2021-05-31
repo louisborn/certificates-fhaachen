@@ -3,8 +3,12 @@ import 'package:flutter/services.dart';
 
 import '../../../components.dart';
 
+/// A app bar used in the application.
+///
 class BuildAppBar extends StatelessWidget with PreferredSizeWidget {
-  const BuildAppBar({
+  /// Create a app bar.
+  ///
+  BuildAppBar({
     this.title = '',
     this.centered = false,
     this.leading,
@@ -14,16 +18,22 @@ class BuildAppBar extends StatelessWidget with PreferredSizeWidget {
         fontSize: 24.0, fontWeight: FontWeight.bold, color: Color(0xffffffff)),
   });
 
+  /// The title of the app bar.
   final String? title;
 
+  /// If `true` the title is centered.
   final bool? centered;
 
+  /// The leading icon of the app bar.
   final Widget? leading;
 
+  /// The optional actions.
   final List<Widget>? actions;
 
+  /// The background color of the app bar.
   final Color? color;
 
+  /// The text style for the title.
   final TextStyle? textStyle;
 
   @override
@@ -35,8 +45,9 @@ class BuildAppBar extends StatelessWidget with PreferredSizeWidget {
         children: [
           AppBar(
             backwardsCompatibility: false,
-            systemOverlayStyle:
-                SystemUiOverlayStyle(statusBarColor: Color(0xff000000)),
+            systemOverlayStyle: SystemUiOverlayStyle(
+              statusBarColor: Color(0xff000000),
+            ),
             title: Text(
               this.title!,
               style: this.textStyle,
@@ -50,7 +61,10 @@ class BuildAppBar extends StatelessWidget with PreferredSizeWidget {
       ),
     );
 
-    return result;
+    return Semantics(
+      label: 'A app bar',
+      child: result,
+    );
   }
 
   @override

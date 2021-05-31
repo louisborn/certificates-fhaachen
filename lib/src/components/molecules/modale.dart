@@ -28,7 +28,8 @@ class BuildModale extends StatelessWidget {
     required this.function,
     this.constraints = const BoxConstraints(minWidth: 112.0, minHeight: 48.0),
     this.padding = const EdgeInsets.all(8.0),
-  })  : assert(type == ModaleType.denied || type == ModaleType.allowed),
+    required this.hint,
+  })   : assert(type == ModaleType.denied || type == ModaleType.allowed),
         assert(title != null),
         assert(subtitle != null),
         assert(actionText != null),
@@ -62,6 +63,13 @@ class BuildModale extends StatelessWidget {
 
   /// The internal padding of the callout.
   final EdgeInsetsGeometry padding;
+
+  /// The brief textual description of the result of an action
+  /// performed on the button of the callout.
+  ///
+  /// Is used in the [Semantics] widget for accessibility reason.
+  ///
+  final String? hint;
 
   IconData icon() {
     if (this.type == ModaleType.denied) return Icons.error;
@@ -117,6 +125,7 @@ class BuildModale extends StatelessWidget {
               text: this.actionText,
               function: this.function,
               withIcon: true,
+              hint: this.hint,
             ),
           ],
         ),

@@ -1,25 +1,32 @@
 import 'package:flutter/material.dart';
 
-/// A icon for this project.
+/// A simple icon for this project.
 ///
 class BuildIcon extends StatelessWidget {
-  /// Create a callout based on [BuildIcon].
+  /// Create a icon.
   ///
   /// The minimum [size] is 24.0.
   BuildIcon({
     required this.icon,
     this.color = const Color(0xff000000),
     this.size = 24.0,
+    this.label = 'Displays an read only icon',
   }) : assert(size >= 24.0);
 
-  /// The icon data for the icon.
+  /// The displayed icon data.
   final IconData icon;
 
-  /// The icon color.
+  /// The icon`s color.
   final Color color;
 
-  /// The size of the icon.
+  /// The icon`s size.
   final double size;
+
+  /// The brief textual description of the widget.
+  ///
+  /// Is used in the [Semantics] widget for accessibility reason.
+  ///
+  final String? label;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +36,10 @@ class BuildIcon extends StatelessWidget {
       size: this.size,
     );
 
-    return result;
+    return Semantics(
+      readOnly: true,
+      label: this.label,
+      child: result,
+    );
   }
 }

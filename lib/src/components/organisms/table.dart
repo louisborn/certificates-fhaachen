@@ -66,7 +66,7 @@ class _BuildTableState extends State<BuildTable> {
         GestureDetector(
           onTap: sortByWorkspace,
           child: Container(
-            width: 80.0,
+            width: MediaQuery.of(context).size.width / 4,
             child: Text(
               widget.tableHeader[0],
               style: widget.isSortedByWorkspace == true
@@ -82,7 +82,7 @@ class _BuildTableState extends State<BuildTable> {
         GestureDetector(
           onTap: sortByEnter,
           child: Container(
-            width: 80.0,
+            width: MediaQuery.of(context).size.width / 4,
             child: Text(
               widget.tableHeader[1],
               style: widget.isSortedByEnter == true
@@ -98,7 +98,7 @@ class _BuildTableState extends State<BuildTable> {
         GestureDetector(
           onTap: sortByLeave,
           child: Container(
-            width: 80.0,
+            width: MediaQuery.of(context).size.width / 4,
             child: Text(
               widget.tableHeader[2],
               style: widget.isSortedByLeave == true
@@ -130,7 +130,7 @@ class _BuildTableState extends State<BuildTable> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width: 80.0,
+                  width: MediaQuery.of(context).size.width / 4,
                   child: Text(
                     widget.data[index].workspaceName!,
                     textAlign: TextAlign.start,
@@ -138,7 +138,7 @@ class _BuildTableState extends State<BuildTable> {
                   ),
                 ),
                 Container(
-                  width: 80.0,
+                  width: MediaQuery.of(context).size.width / 4,
                   child: Text(
                     widget.data[index].enter!,
                     textAlign: TextAlign.start,
@@ -146,7 +146,7 @@ class _BuildTableState extends State<BuildTable> {
                   ),
                 ),
                 Container(
-                  width: 80.0,
+                  width: MediaQuery.of(context).size.width / 4,
                   child: Text(
                     widget.data[index].leave!,
                     textAlign: TextAlign.start,

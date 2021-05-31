@@ -42,12 +42,18 @@ class _TwoFactorScreenState extends State<TwoFactorScreen> {
       ],
     );
 
+    final Widget vector = Align(
+      alignment: Alignment.center,
+      child: SvgPicture.asset('assets/images/vector_authentication.svg'),
+    );
+
     final Widget inputToken = BuildTextField(
-      hint: 'Unique token',
+      label: 'Unique token',
       isMandatory: true,
       onSaved: (String? value) => _token = value!,
       validator: (String? value) =>
           value!.isEmpty ? 'This is a mandatory field' : '',
+      hint: 'Input for the user`s unique two factor token',
     );
 
     var do2fA = () async {
@@ -72,7 +78,9 @@ class _TwoFactorScreenState extends State<TwoFactorScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 logoAndText,
-                const SizedBox(height: 32.0),
+                const SizedBox(height: 16.0),
+                vector,
+                const SizedBox(height: 16.0),
                 inputToken,
                 const SizedBox(height: 32.0),
                 _provider.authenticationError == AuthenticationError.Exception
@@ -91,6 +99,7 @@ class _TwoFactorScreenState extends State<TwoFactorScreen> {
         text: 'Validate token',
         withIcon: false,
         function: do2fA,
+        hint: 'Validates the input token and login the user',
       ),
     );
   }

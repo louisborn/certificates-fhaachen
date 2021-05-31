@@ -23,7 +23,7 @@ class BuildCallout extends StatelessWidget {
   ///
   /// The [title] and [types] must not be null.
   ///
-  const BuildCallout({
+  BuildCallout({
     required this.type,
     required this.title,
     this.exception = "",
