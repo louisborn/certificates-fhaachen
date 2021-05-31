@@ -1,3 +1,4 @@
+import 'package:certificates/generated/i18n.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
@@ -46,19 +47,21 @@ class _LoginScreenState extends State<LoginScreen> {
     );
 
     final Widget inputUserId = BuildTextField(
-      hint: 'Studend id',
+      label: 'Studend id',
       isMandatory: true,
       onSaved: (String? value) => _studentId = value,
       validator: (String? value) =>
           value!.isEmpty ? 'This is a mandatory field' : '',
+      hint: 'Input for the user`s student id',
     );
 
     final Widget inputUserName = BuildTextField(
-      hint: 'Last name',
+      label: 'Last name',
       isMandatory: true,
       onSaved: (String? value) => _studentLastname = value,
       validator: (String? value) =>
           value!.isEmpty ? 'This is a mandatory field' : '',
+      hint: 'Input for the user`s last name',
     );
 
     var loading = Row(
@@ -68,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
           valueColor: AlwaysStoppedAnimation<Color>(color_accent_green),
         ),
         const SizedBox(width: 8.0),
-        Text('Loading'),
+        Text(I18n.of(context).loading),
       ],
     );
 
@@ -102,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 _provider.authenticationError == AuthenticationError.Exception
                     ? BuildCallout(
                         type: CalloutType.error,
-                        title: 'An error has occurred',
+                        title: I18n.of(context).error_default,
                         exception: _provider.exception,
                       )
                     : Container(),
@@ -118,6 +121,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   text: 'Login',
                   withIcon: false,
                   function: doLogin,
+                  hint:
+                      'Validates the input data and navigates to the two factor page',
                 ),
     );
   }

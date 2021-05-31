@@ -4,6 +4,7 @@ class Certificate {
     this.description,
     this.machine,
     this.assignedTo,
+    this.safetyInstruction,
   })  : assert(name != null),
         assert(machine != null);
 
@@ -15,11 +16,15 @@ class Certificate {
 
   final List? assignedTo;
 
+  final String? safetyInstruction;
+
   factory Certificate.fromMap(Map data) {
     return Certificate(
-        name: data["name"],
-        description: data["description"],
-        machine: data["machine"],
-        assignedTo: data["assignedTo"]);
+      name: data["name"],
+      description: data["description"],
+      machine: data["machine"],
+      assignedTo: data["assignedTo"],
+      safetyInstruction: data["safetyInstruction"],
+    );
   }
 }

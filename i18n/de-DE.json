@@ -1,0 +1,65 @@
+{
+    "loading": "Daten werden geladen",
+    "error_default": "Etwas ist schiefgelaufen. Versuche es erneut.",
+    "error_noData": "Keine Daten zum Anzeigen vorhanden",
+    "textfield_error": "Dies ist ein Pflichtfeld",
+    "_comment_001": "Language for: Home screen",
+    "home": {
+        "title": "Startseite",
+        "more": "Mehr",
+        "greetTo": "Hallo {name}",
+        "information": "Wähle unten eine Aktion aus.",
+        "option_1_title": "Arbeitsbereich betreten",
+        "option_1_subtitle": "Scan den qr code am Eingang des Arbeitsbereichs.",
+        "option_1_button": "qr code scannen",
+        "option_1_hint": "Navigiert zur Seite: QR-Code scannen",
+        "option_2_title": "Meine Zertifikate",
+        "option_2_subtitle": "Zeigt die genehmigten Zertifikate des Benutzers an.",
+        "option_2_button": "Zertifikate anzeigen",
+        "option_2_hint": "Navigiert zur Seite: Zertifiakte anzeigen",
+        "appBar_hint_1": "Navigiert zur Seite: Über die App",
+        "appBar_hint_2": "Navigiert zur Seite: Verlauf",
+        "appBar_hint_3": "Navigiert zur Seite: Profil"
+    },
+    "_comment__002": "Language for: More screen",
+    "more": {
+        "listTile_1_title": "Profil",
+        "listTile_2_title": "Häufig gestellte Fragen",
+        "listTile_3_title": "Abmelden",
+        "alert_logout_title": "Bist du sicher, dass du dich abmelden möchtest?",
+        "alert_logout_cancel_text": "Nein",
+        "alert_logout_cancel_hint": "Bricht den Abmelde Prozess ab",
+        "alert_logout_logout_text": "Abmelden",
+        "alert_logout_logout_hint": "Meldet den momentanen Benutzer ab"
+    },
+    "_comment__003": "Language for: History log screen",
+    "log": {
+        "title": "Verlaufsprotokoll",
+        "table_header_1": "Name",
+        "table_header_2": "Eintritt",
+        "table_header_3": "Verlassen"
+    },
+    "_comment__004": "Language for: account screen",
+    "account": {
+        "title": "Profil",
+        "user": "Benutzer: {name}",
+        "id": "Kennung: {id}"
+    },
+    "_comment__005": "Language for: certificates screen",
+    "certificates": {
+        "title": "Zertifikate",
+        "certificate_name": "Name",
+        "certificate_usage": "Verwendung",
+        "certificate_descr": "Beschreibung",
+        "show_certificate": "Sicherheitskarte anzeigen"
+    },
+    "_comment__006": "Language for: login screen",
+    "login": {
+        "title": "Anmelden",
+        "subtitle": "Bitte melde dich in deinem digital.access Account an.",
+        "textfield_1_label": "Studenten Kennung",
+        "textfield_1_hint": "Eingabe für die Kennung des Studenten",
+        "textfield_2_label": "Nachname",
+        "textfield_2_hint": "Eingabe für den Nachname"
+    }
+}

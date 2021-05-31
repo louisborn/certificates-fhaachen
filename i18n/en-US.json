@@ -1,0 +1,55 @@
+{
+    "loading": "Loading",
+    "error_default": "Something went wrong. Try again.",
+    "error_noData": "No data available to show.",
+    "_comment_001": "Language for: Home screen",
+    "home": {
+        "title": "Home",
+        "more": "Mehr",
+        "greetTo": "Hello {name}",
+        "information": "Choose a action below.",
+        "option_1_title": "Enter workspace",
+        "option_1_subtitle": "Scan the qr code at the entrance of a workspace.",
+        "option_1_button": "scan qr code",
+        "option_1_hint": "Navigates to the page: scan qr code",
+        "option_2_title": "My certificates",
+        "option_2_subtitle": "Shows the students approved certificates.",
+        "option_2_button": "Show certificate",
+        "option_2_hint": "Navigates to the page: certificates",
+        "appBar_hint_1": "Navigates to the page: about",
+        "appBar_hint_2": "Navigates to the page: history log",
+        "appBar_hint_3": "Navigates to the page: Account"
+    },
+    "_comment__002": "Language for: More screen",
+    "more": {
+        "listTile_1_title": "Account",
+        "listTile_2_title": "Frequent questions",
+        "listTile_3_title": "Logout",
+        "alert_logout_title": "Are you sure you want to logout?",
+        "alert_logout_cancel_text": "Cancel",
+        "alert_logout_cancel_hint": "Cancel the logout process",
+        "alert_logout_logout_text": "Logout",
+        "alert_logout_logout_hint": "Logout from the application"
+    },
+    "_comment__003": "Language for: History log screen",
+    "log": {
+        "title": "History log",
+        "table_header_1": "Name",
+        "table_header_2": "Enter",
+        "table_header_3": "Exit"
+    },
+    "_comment__004": "Language for: account screen",
+    "account": {
+        "title": "Account",
+        "user": "User: {name}",
+        "id": "Id: {id}"
+    },
+    "_comment__005": "Language for: certificates screen",
+    "certificates": {
+        "title": "Certificates",
+        "certificate_name": "Name",
+        "certificate_usage": "Usage",
+        "certificate_descr": "Description",
+        "show_certificate": "Show safety card"
+    }
+}

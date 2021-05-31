@@ -41,10 +41,10 @@ class Collection<T> {
     return snapshots;
   }
 
-  Future<List<T>> getDataQueriedById() async {
+  Future<List<T>> getDataQueriedById(String field) async {
     var snapshots = await ref!
         .where(
-          'studentId',
+          field,
           isEqualTo: PreferenceService().getString('studentId'),
         )
         .get()

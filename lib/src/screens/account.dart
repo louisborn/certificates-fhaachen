@@ -1,65 +1,47 @@
-import 'package:certificates/services.dart';
-import 'package:certificates/src/theme/text_style.dart';
 import 'package:flutter/material.dart';
 
+import '../../generated/i18n.dart';
+import '../../services.dart';
+import '../../theme.dart';
 import '../../components.dart';
 
 class AccountScreen extends StatelessWidget {
   static const String route = '/account';
 
+  final String _id = PreferenceService().getString('studentId')!;
+
+  final String _firstName = PreferenceService().getString('firstName')!;
+
+  final String _lastName = PreferenceService().getString('lastName')!;
+
   @override
   Widget build(BuildContext context) {
     final PreferredSizeWidget appBar = BuildAppBar(
-      title: 'Account',
+      title: I18n.of(context).accountTitle,
     );
 
     final Widget avatar = Align(
       alignment: Alignment.center,
-      child: BuildProfileImage(
-        firstName: 'Louis',
-        lastName: 'Born',
+      child: BuildAccountCircle(
+        firstName: this._firstName,
+        lastName: this._lastName,
       ),
     );
 
-    final Widget user = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Text(
-          'User:',
-          style: BuildTextStyle(type: TextStyleType.white).subtitle2,
-        ),
-        Text(
-          PreferenceService().getString('firstName')!.toLowerCase() +
-              ' ' +
-              PreferenceService().getString('lastName')!.toLowerCase(),
-          style: BuildTextStyle(type: TextStyleType.white).header3,
-        ),
-      ],
-    );
-
-    final Widget id = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Text(
-          'Id:',
-          style: BuildTextStyle(type: TextStyleType.white).subtitle2,
-        ),
-        Text(
-          PreferenceService().getString('studentId')!,
-          style: BuildTextStyle(type: TextStyleType.white).header3,
-        ),
-      ],
-    );
-
-    final Widget personalInformation = Align(
-      alignment: Alignment.center,
-      child: Column(
-        children: [
-          user,
-          const SizedBox(height: 8.0),
-          id,
-        ],
+    final Widget user = Text(
+      I18n.of(context).accountUser(
+        this._firstName.toLowerCase() + ' ' + this._lastName.toLowerCase(),
       ),
+      style: BuildTextStyle(type: TextStyleType.white).subtitle2,
+      textAlign: TextAlign.center,
+    );
+
+    final Widget id = Text(
+      I18n.of(context).accountId(
+        this._id,
+      ),
+      style: BuildTextStyle(type: TextStyleType.white).subtitle2,
+      textAlign: TextAlign.center,
     );
 
     return Scaffold(
@@ -70,7 +52,9 @@ class AccountScreen extends StatelessWidget {
           children: [
             avatar,
             const SizedBox(height: 16.0),
-            personalInformation,
+            user,
+            const SizedBox(height: 8.0),
+            id,
           ],
         ),
       ),

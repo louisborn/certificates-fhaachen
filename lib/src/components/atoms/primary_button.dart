@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class BuildPrimaryButton extends StatelessWidget {
   /// Create a primary button.
   ///
-  const BuildPrimaryButton({
+  BuildPrimaryButton({
     required this.text,
     required this.withIcon,
     this.icon = Icons.check_box_outline_blank,
@@ -13,8 +13,12 @@ class BuildPrimaryButton extends StatelessWidget {
     this.width = double.infinity,
     this.height = 48.0,
     required this.function,
-    this.textStyle = const TextStyle(fontSize: 16.0, color: Color(0xffffffff)),
-  })  : assert(text != null),
+    this.textStyle = const TextStyle(
+      fontSize: 16.0,
+      color: Color(0xffffffff),
+    ),
+    required this.hint,
+  })   : assert(text != null),
         assert(height == 48.0),
         assert(function != null);
 
@@ -48,6 +52,13 @@ class BuildPrimaryButton extends StatelessWidget {
   /// The text theme for the displayed text.
   final TextStyle? textStyle;
 
+  /// The brief textual description of the result of an action
+  /// performed on the button.
+  ///
+  /// Is used in the [Semantics] widget for accessibility reason.
+  ///
+  final String? hint;
+
   @override
   Widget build(BuildContext context) {
     final Widget result = Container(
@@ -55,7 +66,9 @@ class BuildPrimaryButton extends StatelessWidget {
       height: this.height,
       child: ElevatedButton(
         onPressed: this.function,
-        style: ElevatedButton.styleFrom(primary: this.color),
+        style: ElevatedButton.styleFrom(
+          primary: this.color,
+        ),
         child: Text(
           this.text!.toUpperCase(),
           style: this.textStyle,
@@ -63,6 +76,10 @@ class BuildPrimaryButton extends StatelessWidget {
       ),
     );
 
-    return result;
+    return Semantics(
+      button: true,
+      hint: this.hint,
+      child: result,
+    );
   }
 }

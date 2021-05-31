@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 
-import '../../../components.dart';
-import '../../../theme.dart';
-
-/// A tertiary button used in the application.
+/// A secondary button used in the application.
 ///
-class BuildTertiaryButton extends StatelessWidget {
-  /// Create a tertiary button.
+class BuildSecondaryButton extends StatelessWidget {
+  /// Create a secondary button.
   ///
-  BuildTertiaryButton({
+  BuildSecondaryButton({
     required this.text,
     required this.withIcon,
     this.icon = Icons.check_box_outline_blank,
-    this.color = color_accent_blue,
+    this.color = const Color(0xffffffff),
+    this.width = double.infinity,
+    this.height = 48.0,
     required this.function,
     this.textStyle = const TextStyle(
       fontSize: 16.0,
-      color: color_accent_blue,
+      color: Color(0xff000000),
     ),
     required this.hint,
   })   : assert(text != null),
+        assert(height == 48.0),
         assert(function != null);
 
   /// The button`s displayed text.
@@ -40,6 +40,12 @@ class BuildTertiaryButton extends StatelessWidget {
   /// The text color.
   final Color? color;
 
+  /// The width of the button.
+  final double width;
+
+  /// The height of the button.
+  final double height;
+
   /// The button`s action.
   final Function()? function;
 
@@ -55,19 +61,18 @@ class BuildTertiaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget result = GestureDetector(
-      onTap: function,
-      child: Row(
-        children: [
-          this.withIcon
-              ? BuildIcon(icon: this.icon, color: this.color!)
-              : Container(),
-          const SizedBox(width: 8.0),
-          Text(
-            this.text!,
-            style: this.textStyle,
-          ),
-        ],
+    final Widget result = Container(
+      width: this.width,
+      height: this.height,
+      child: ElevatedButton(
+        onPressed: this.function,
+        style: ElevatedButton.styleFrom(
+          primary: this.color,
+        ),
+        child: Text(
+          this.text!.toUpperCase(),
+          style: this.textStyle,
+        ),
       ),
     );
 

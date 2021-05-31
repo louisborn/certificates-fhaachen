@@ -1,6 +1,8 @@
+import 'package:certificates/generated/i18n.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
 import 'components.dart';
@@ -17,6 +19,7 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final i18n = I18n.delegate;
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<AuthenticationService>(
@@ -35,16 +38,28 @@ class MyApp extends StatelessWidget {
         home: PreferenceService().getString('studentId') != ''
             ? BuildBottomNavigationBar()
             : LoginScreen(),
+        supportedLocales: i18n.supportedLocales,
+        localeResolutionCallback: i18n.resolution(
+          fallback: Locale('en', 'US'),
+        ),
+        localizationsDelegates: [
+          i18n,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
         routes: <String, WidgetBuilder>{
           LoginScreen.route: (context) => LoginScreen(),
           TwoFactorScreen.route: (context) => TwoFactorScreen(),
-          LogoutScreen.route: (context) => LogoutScreen(),
           BuildBottomNavigationBar.route: (context) =>
               BuildBottomNavigationBar(),
           HomeScreen.route: (context) => HomeScreen(),
           MoreScreen.route: (context) => MoreScreen(),
           AccountScreen.route: (context) => AccountScreen(),
           HistoryLogScreen.route: (context) => HistoryLogScreen(),
+          CertificatesScreen.route: (context) => CertificatesScreen(),
+          SafetyInstructionScreen.route: (context) => SafetyInstructionScreen(),
+          AboutScreen.route: (context) => AboutScreen(),
         },
       ),
     );
