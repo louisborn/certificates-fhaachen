@@ -1,4 +1,3 @@
-import 'package:certificates/generated/i18n.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -8,6 +7,8 @@ import 'package:provider/provider.dart';
 import 'components.dart';
 import 'services.dart';
 import 'screens.dart';
+
+import 'generated/i18n.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -60,6 +61,8 @@ class MyApp extends StatelessWidget {
           CertificatesScreen.route: (context) => CertificatesScreen(),
           SafetyInstructionScreen.route: (context) => SafetyInstructionScreen(),
           AboutScreen.route: (context) => AboutScreen(),
+          CampusScreen.route: (context) => CampusScreen(),
+          CampusDetailScreen.route: (context) => CampusDetailScreen(),
         },
       ),
     );

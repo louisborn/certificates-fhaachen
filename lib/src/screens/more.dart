@@ -25,7 +25,22 @@ class MoreScreen extends StatelessWidget {
       ),
     );
 
-    final Widget questions = GestureDetector(
+    final Widget listTileCampus = GestureDetector(
+      onTap: () => Navigator.pushNamed(context, CampusScreen.route),
+      child: ListTile(
+        leading: BuildIcon(
+          icon: Icons.home_work_outlined,
+        ),
+        title: Text(
+          'Campus status',
+        ),
+        trailing: BuildIcon(
+          icon: Icons.arrow_forward_ios_outlined,
+        ),
+      ),
+    );
+
+    final Widget listTileQuestions = GestureDetector(
       onTap: () {},
       child: ListTile(
         leading: BuildIcon(
@@ -58,7 +73,8 @@ class MoreScreen extends StatelessWidget {
     return Column(
       children: [
         listTileAccount,
-        questions,
+        listTileCampus,
+        listTileQuestions,
         listTileLogout,
       ],
     );
