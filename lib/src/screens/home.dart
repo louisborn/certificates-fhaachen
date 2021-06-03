@@ -1,4 +1,5 @@
 import 'package:certificates/models.dart';
+import 'package:certificates/src/screens/qr_code.dart';
 import 'package:flutter/material.dart';
 
 import '../../components.dart';
@@ -40,7 +41,10 @@ class _HomeScreenState extends State<HomeScreen> {
       button: BuildPrimaryButton(
         text: I18n.of(context).homeOption_1_button,
         withIcon: false,
-        function: () => {}, //! Add logic
+        function: () => Navigator.pushNamed(
+          context,
+          QRCodeScreen.route,
+        ),
         hint: I18n.of(context).homeOption_1_hint,
       ),
       icon: BuildIcon(
