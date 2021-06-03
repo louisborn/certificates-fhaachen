@@ -15,3 +15,5 @@ export 'src/screens/safety_instruction.dart';
 export 'src/screens/certificates.dart';
 export 'src/screens/campus.dart';
 export 'src/screens/campus_detail.dart';
+export 'src/screens/qr_code.dart';
+export 'src/screens/workspace.dart';

@@ -21,8 +21,9 @@ dependencies:
   provider:
   flutter_svg:
   http:
-  shared_preferences:
+  shared_preferences: ^2.0.6
   intl:
+  qr_code_scanner: ^0.5.1
 
 dev_dependencies:
   flutter_test:
