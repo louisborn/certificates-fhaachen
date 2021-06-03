@@ -1,3 +1,4 @@
+import 'package:certificates/models.dart';
 import 'package:flutter/material.dart';
 
 import '../../components.dart';
@@ -66,16 +67,51 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+    var loading = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const SizedBox(height: 24.0),
-        title,
-        const SizedBox(height: 24.0),
-        buttonQrCode,
-        const SizedBox(height: 16.0),
-        buttonCertificates,
+        CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(color_accent_green),
+        ),
+        const SizedBox(width: 8.0),
+        Text(I18n.of(context).loading),
       ],
+    );
+
+    return FutureBuilder(
+      future: Collection<Campus>(path: 'campus').getData(),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.hasError)
+          return BuildCallout(
+            type: CalloutType.error,
+            title: I18n.of(context).error_default,
+          );
+
+        if (snapshot.hasData && snapshot.data == false)
+          return BuildCallout(
+            type: CalloutType.attention,
+            title: I18n.of(context).error_noData,
+          );
+
+        if (snapshot.connectionState == ConnectionState.done) {
+          List<Campus> campus = snapshot.data;
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(height: 16.0),
+              title,
+              const SizedBox(height: 16.0),
+              buttonQrCode,
+              const SizedBox(height: 16.0),
+              buttonCertificates,
+            ],
+          );
+        }
+
+        return Center(
+          child: loading,
+        );
+      },
     );
   }
 }

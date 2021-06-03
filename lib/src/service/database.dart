@@ -36,8 +36,11 @@ class Collection<T> {
   CollectionReference? ref;
 
   Future<List<T>> getData() async {
-    var snapshots = await ref!.get().then((value) =>
-        value.docs.map((doc) => Global.models[T](doc.data()) as T).toList());
+    var snapshots = await ref!.get().then(
+          (value) => value.docs
+              .map((doc) => Global.models[T](doc.data()) as T)
+              .toList(),
+        );
     return snapshots;
   }
 
@@ -48,9 +51,13 @@ class Collection<T> {
           isEqualTo: PreferenceService().getString('studentId'),
         )
         .get()
-        .then((value) => value.docs
-            .map((doc) => Global.models[T](doc.data()) as T)
-            .toList());
+        .then(
+          (value) => value.docs
+              .map((doc) => Global.models[T](
+                    doc.data(),
+                  ) as T)
+              .toList(),
+        );
     return snapshots;
   }
 }

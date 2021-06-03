@@ -7,3 +7,5 @@ library models;
 export 'src/models/student.dart';
 export 'src/models/certificate.dart';
 export 'src/models/log.dart';
+export 'src/models/campus.dart';
+export 'src/models/workspace.dart';
