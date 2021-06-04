@@ -10,7 +10,7 @@ class BuildIconButton extends StatelessWidget {
   BuildIconButton({
     required this.icon,
     required this.onTap,
-    this.color = const Color(0xffffffff),
+    this.color = const Color(0xff000000),
     this.size = 24.0,
     required this.hint,
   }) : assert(size >= 24.0);

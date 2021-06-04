@@ -13,9 +13,12 @@ class BuildAppBar extends StatelessWidget with PreferredSizeWidget {
     this.centered = false,
     this.leading,
     this.actions,
-    this.color = const Color(0xff000000),
+    this.color = const Color(0xffffffff),
     this.textStyle = const TextStyle(
-        fontSize: 24.0, fontWeight: FontWeight.bold, color: Color(0xffffffff)),
+      fontSize: 24.0,
+      fontWeight: FontWeight.bold,
+      color: Color(0xff000000),
+    ),
   });
 
   /// The title of the app bar.
@@ -45,8 +48,8 @@ class BuildAppBar extends StatelessWidget with PreferredSizeWidget {
         children: [
           AppBar(
             backwardsCompatibility: false,
-            systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor: Color(0xff000000),
+            iconTheme: IconThemeData(
+              color: Color(0xff000000),
             ),
             title: Text(
               this.title!,

@@ -60,6 +60,7 @@
         "textfield_1_label": "Studenten Kennung",
         "textfield_1_hint": "Eingabe für die Kennung des Studenten",
         "textfield_2_label": "Nachname",
-        "textfield_2_hint": "Eingabe für den Nachname"
+        "textfield_2_hint": "Eingabe für den Nachname",
+        "login_btn_hint": "Validiert die Benutzer Eingabe und navigiert zur Zwei Faktor Authentifizierung"
     }
 }

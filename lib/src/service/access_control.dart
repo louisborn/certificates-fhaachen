@@ -1,3 +1,4 @@
+import 'package:certificates/models.dart';
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
@@ -12,6 +13,7 @@ enum UserAccessStatus {
   Entered,
   Left,
   Denied,
+  Pending,
 }
 
 /// Indicates how to handle transaction errors.
@@ -64,18 +66,15 @@ class AccessControlService extends ChangeNotifier {
   UserAccessStatus get userAccessStatus => _userAccessStatus;
   UserAccessStatus _userAccessStatus = UserAccessStatus.NotEntered;
 
-  Future<void> enterWorkspace(String workspaceId) async {
-    //! Exchange "" with var id.
-    var _docRef = getDocReference("");
+  Future<void> enterWorkspace(String path, Workspace workspace) async {
+    setUserAccessStatus(UserAccessStatus.Pending);
+    var _docRef = getDocReference(path);
     try {
-      var workspaceInformation = await getDocument(_docRef);
-      if (checkUserCountInWorkspace(
-        workspaceInformation.elementAt(0),
-        workspaceInformation.elementAt(1),
-      )) {
-        await logUserEntrance("r38711", workspaceInformation.elementAt(2));
+      if (workspace.currentInWorkspace! < workspace.maxInWorkspace!) {
+        await logUserEntrance(
+            PreferenceService().getString('studentId')!, workspace.name!);
         await incrementUserInWorkspace(_docRef);
-        sharedPreferenceService.putString('workspace', _docRef.id);
+        setUserAccessStatus(UserAccessStatus.Entered);
       } else
         setUserAccessStatus(UserAccessStatus.Denied);
     } catch (exception) {
@@ -87,18 +86,20 @@ class AccessControlService extends ChangeNotifier {
     }
   }
 
-  Future<void> leaveWorkspace() async {
-    //! Exchange "" with var id.
-    var _docRef = getDocReference("");
+  Future<void> leaveWorkspace(String path) async {
+    setUserAccessStatus(UserAccessStatus.Pending);
+    var _docRef = getDocReference(path);
     try {
       var timestamp = await sharedPreferenceService.getString('timestamp');
 
       await logUserExit(timestamp!, _docRef);
+      setUserAccessStatus(UserAccessStatus.NotEntered);
     } catch (exception) {
       catchAnyException(
         AccessControlError.Exception,
         exception.toString(),
       );
+      setUserAccessStatus(UserAccessStatus.Entered);
       throw Exception("Failed to leave workspace");
     }
   }
@@ -169,10 +170,7 @@ class AccessControlService extends ChangeNotifier {
   }
 
   DocumentReference getDocReference(String id) {
-    DocumentReference _docRef = FirebaseFirestore.instance
-        .collection(collection_workspace)
-        //! Id string only for development. Remove and replace by [docId].
-        .doc("9kU3kD1Bs9JlHmVbGtQu");
+    DocumentReference _docRef = FirebaseFirestore.instance.doc(id);
 
     return _docRef;
   }
