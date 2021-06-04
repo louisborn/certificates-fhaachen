@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Provider.of<AuthenticationService>(context);
 
     final PreferredSizeWidget appbar = BuildAppBar(
-      title: 'Login',
+      title: I18n.of(context).loginTitle,
       centered: false,
     );
 
@@ -40,28 +40,28 @@ class _LoginScreenState extends State<LoginScreen> {
         SvgPicture.asset('assets/images/logo.svg'),
         const SizedBox(height: 8.0),
         Text(
-          'Please login into your digital.access account.',
+          I18n.of(context).loginSubtitle,
           style: BuildTextStyle(type: TextStyleType.white).subtitle2,
         ),
       ],
     );
 
     final Widget inputUserId = BuildTextField(
-      label: 'Studend id',
+      label: I18n.of(context).loginTextfield_1_label,
       isMandatory: true,
       onSaved: (String? value) => _studentId = value,
       validator: (String? value) =>
-          value!.isEmpty ? 'This is a mandatory field' : '',
-      hint: 'Input for the user`s student id',
+          value!.isEmpty ? I18n.of(context).textfield_error : '',
+      hint: I18n.of(context).loginTextfield_1_hint,
     );
 
     final Widget inputUserName = BuildTextField(
-      label: 'Last name',
+      label: I18n.of(context).loginTextfield_2_label,
       isMandatory: true,
       onSaved: (String? value) => _studentLastname = value,
       validator: (String? value) =>
-          value!.isEmpty ? 'This is a mandatory field' : '',
-      hint: 'Input for the user`s last name',
+          value!.isEmpty ? I18n.of(context).textfield_error : '',
+      hint: I18n.of(context).loginTextfield_1_hint,
     );
 
     var loading = Row(
@@ -118,11 +118,10 @@ class _LoginScreenState extends State<LoginScreen> {
           _provider.loggedInStatus == AuthenticationStatus.Authenticating
               ? loading
               : BuildPrimaryButton(
-                  text: 'Login',
+                  text: I18n.of(context).loginTitle,
                   withIcon: false,
                   function: doLogin,
-                  hint:
-                      'Validates the input data and navigates to the two factor page',
+                  hint: I18n.of(context).loginLogin_btn_hint,
                 ),
     );
   }

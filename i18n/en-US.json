@@ -2,6 +2,7 @@
     "loading": "Loading",
     "error_default": "Something went wrong. Try again.",
     "error_noData": "No data available to show.",
+    "textfield_error": "This is a mandatory field.",
     "_comment_001": "Language for: Home screen",
     "home": {
         "title": "Home",
@@ -51,5 +52,15 @@
         "certificate_usage": "Usage",
         "certificate_descr": "Description",
         "show_certificate": "Show safety card"
+    },
+    "_comment__006": "Language for: login screen",
+    "login": {
+        "title": "Login",
+        "subtitle": "Please login into your digital.access account.",
+        "textfield_1_label": "Student id",
+        "textfield_1_hint": "Input for the student id",
+        "textfield_2_label": "Last name",
+        "textfield_2_hint": "Input for the user last name",
+        "login_btn_hint": "Validates the user input and navigates to the two factor authentication"
     }
 }

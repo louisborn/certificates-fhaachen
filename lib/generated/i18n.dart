@@ -42,6 +42,9 @@ class I18n implements WidgetsLocalizations {
   /// "No data available to show."
   String get error_noData => "No data available to show.";
 
+  /// "This is a mandatory field."
+  String get textfield_error => "This is a mandatory field.";
+
   /// "Language for: Home screen"
   String get _comment_001 => "Language for: Home screen";
 
@@ -163,6 +166,31 @@ class I18n implements WidgetsLocalizations {
 
   /// "Show safety card"
   String get certificatesShow_certificate => "Show safety card";
+
+  /// "Language for: login screen"
+  String get _comment__006 => "Language for: login screen";
+
+  /// "Login"
+  String get loginTitle => "Login";
+
+  /// "Please login into your digital.access account."
+  String get loginSubtitle => "Please login into your digital.access account.";
+
+  /// "Student id"
+  String get loginTextfield_1_label => "Student id";
+
+  /// "Input for the student id"
+  String get loginTextfield_1_hint => "Input for the student id";
+
+  /// "Last name"
+  String get loginTextfield_2_label => "Last name";
+
+  /// "Input for the user last name"
+  String get loginTextfield_2_hint => "Input for the user last name";
+
+  /// "Validates the user input and navigates to the two factor authentication"
+  String get loginLogin_btn_hint =>
+      "Validates the user input and navigates to the two factor authentication";
 }
 
 class _I18n_en_US extends I18n {
@@ -186,6 +214,10 @@ class _I18n_de_DE extends I18n {
   /// "Keine Daten zum Anzeigen vorhanden"
   @override
   String get error_noData => "Keine Daten zum Anzeigen vorhanden";
+
+  /// "Dies ist ein Pflichtfeld"
+  @override
+  String get textfield_error => "Dies ist ein Pflichtfeld";
 
   /// "Language for: Home screen"
   @override
@@ -351,6 +383,40 @@ class _I18n_de_DE extends I18n {
   @override
   String get certificatesShow_certificate => "Sicherheitskarte anzeigen";
 
+  /// "Language for: login screen"
+  @override
+  String get _comment__006 => "Language for: login screen";
+
+  /// "Anmelden"
+  @override
+  String get loginTitle => "Anmelden";
+
+  /// "Bitte melde dich in deinem digital.access Account an."
+  @override
+  String get loginSubtitle =>
+      "Bitte melde dich in deinem digital.access Account an.";
+
+  /// "Studenten Kennung"
+  @override
+  String get loginTextfield_1_label => "Studenten Kennung";
+
+  /// "Eingabe für die Kennung des Studenten"
+  @override
+  String get loginTextfield_1_hint => "Eingabe für die Kennung des Studenten";
+
+  /// "Nachname"
+  @override
+  String get loginTextfield_2_label => "Nachname";
+
+  /// "Eingabe für den Nachname"
+  @override
+  String get loginTextfield_2_hint => "Eingabe für den Nachname";
+
+  /// "Validiert die Benutzer Eingabe und navigiert zur Zwei Faktor Authentifizierung"
+  @override
+  String get loginLogin_btn_hint =>
+      "Validiert die Benutzer Eingabe und navigiert zur Zwei Faktor Authentifizierung";
+
   @override
   TextDirection get textDirection => TextDirection.ltr;
 }
@@ -369,6 +435,10 @@ class _I18n_nl_NL extends I18n {
   /// "Geen gegevens beschikbaar voor weergave"
   @override
   String get error_noData => "Geen gegevens beschikbaar voor weergave";
+
+  /// "Dit is een verplicht veld."
+  @override
+  String get textfield_error => "Dit is een verplicht veld.";
 
   /// "Language for: Home screen"
   @override
@@ -531,6 +601,40 @@ class _I18n_nl_NL extends I18n {
   /// "Toon veiligheidskaart"
   @override
   String get certificatesShow_certificate => "Toon veiligheidskaart";
+
+  /// "Language for: login screen"
+  @override
+  String get _comment__006 => "Language for: login screen";
+
+  /// "Inloggen"
+  @override
+  String get loginTitle => "Inloggen";
+
+  /// "Log in op uw digital.access account."
+  @override
+  String get loginSubtitle => "Log in op uw digital.access account.";
+
+  /// "Studenten-id"
+  @override
+  String get loginTextfield_1_label => "Studenten-id";
+
+  /// "Invoer voor de student id"
+  @override
+  String get loginTextfield_1_hint => "Invoer voor de student id";
+
+  /// "Achternaam"
+  @override
+  String get loginTextfield_2_label => "Achternaam";
+
+  /// "Invoer voor de achternaam van de gebruiker"
+  @override
+  String get loginTextfield_2_hint =>
+      "Invoer voor de achternaam van de gebruiker";
+
+  /// "Valideert de gebruikersinvoer en navigeert naar de tweefactorauthenticatie"
+  @override
+  String get loginLogin_btn_hint =>
+      "Valideert de gebruikersinvoer en navigeert naar de tweefactorauthenticatie";
 
   @override
   TextDirection get textDirection => TextDirection.ltr;

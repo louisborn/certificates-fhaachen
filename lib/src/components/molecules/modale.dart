@@ -87,6 +87,7 @@ class BuildModale extends StatelessWidget {
   Widget build(BuildContext context) {
     final Widget topRow = Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Flexible(
           child: Text(
@@ -94,6 +95,7 @@ class BuildModale extends StatelessWidget {
             style: this.textStyle,
           ),
         ),
+        const SizedBox(width: 8.0),
         BuildIcon(
           icon: this.icon(),
           color: this.color(),
@@ -101,34 +103,31 @@ class BuildModale extends StatelessWidget {
       ],
     );
 
-    final Widget result = Padding(
+    final Widget result = Container(
+      constraints: this.constraints,
       padding: this.padding,
-      child: Container(
-        constraints: this.constraints,
-        padding: this.padding,
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: this.color(),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: this.color(),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          topRow,
+          const SizedBox(height: 16.0),
+          Text(
+            this.subtitle!,
+            style: this.textStyle,
           ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            topRow,
-            const SizedBox(height: 16.0),
-            Text(
-              this.subtitle!,
-              style: this.textStyle,
-            ),
-            const SizedBox(height: 16.0),
-            BuildTertiaryButton(
-              text: this.actionText,
-              function: this.function,
-              withIcon: true,
-              hint: this.hint,
-            ),
-          ],
-        ),
+          const SizedBox(height: 16.0),
+          BuildTertiaryButton(
+            text: this.actionText,
+            function: this.function,
+            withIcon: true,
+            hint: this.hint,
+          ),
+        ],
       ),
     );
 

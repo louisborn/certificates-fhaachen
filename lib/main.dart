@@ -65,6 +65,7 @@ class MyApp extends StatelessWidget {
           CampusDetailScreen.route: (context) => CampusDetailScreen(),
           QRCodeScreen.route: (context) => QRCodeScreen(),
           WorkspaceScreen.route: (context) => WorkspaceScreen(),
+          UseMachineScreen.route: (context) => UseMachineScreen(),
         },
       ),
     );

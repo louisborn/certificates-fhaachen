@@ -2,6 +2,7 @@
     "loading": "Gegevens worden geladen",
     "error_default": "Er is iets fout gegaan. Probeer het nog eens.",
     "error_noData": "Geen gegevens beschikbaar voor weergave",
+    "textfield_error": "Dit is een verplicht veld.",
     "_comment_001": "Language for: Home screen",
     "home": {
         "title": "Startpagina",
@@ -51,5 +52,15 @@
         "certificate_usage": "Gebruik",
         "certificate_descr": "Beschrijving",
         "show_certificate": "Toon veiligheidskaart"
+    },
+    "_comment__006": "Language for: login screen",
+    "login": {
+        "title": "Inloggen",
+        "subtitle": "Log in op uw digital.access account.",
+        "textfield_1_label": "Studenten-id",
+        "textfield_1_hint": "Invoer voor de student id",
+        "textfield_2_label": "Achternaam",
+        "textfield_2_hint": "Invoer voor de achternaam van de gebruiker",
+        "login_btn_hint": "Valideert de gebruikersinvoer en navigeert naar de tweefactorauthenticatie"
     }
 }

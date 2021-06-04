@@ -99,8 +99,11 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
                 Expanded(
                   child: ListView.builder(
                     itemCount: workspace.length,
+                    scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
+                        width: 300,
+                        height: 300,
                         padding: EdgeInsets.all(8.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,7 +120,9 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
                                 Flexible(
                                   child: Text(
                                     'In workspace: ' +
-                                        workspace[index].currentInWorkspace!,
+                                        workspace[index]
+                                            .currentInWorkspace!
+                                            .toString(),
                                     style: BuildTextStyle(
                                             type: TextStyleType.white)
                                         .subtitle2,
@@ -127,7 +132,9 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
                                 Flexible(
                                   child: Text(
                                     'Max. allowed: ' +
-                                        workspace[index].maxInWorkspace!,
+                                        workspace[index]
+                                            .maxInWorkspace!
+                                            .toString(),
                                     style: BuildTextStyle(
                                             type: TextStyleType.white)
                                         .subtitle2,
