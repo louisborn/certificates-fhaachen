@@ -16,10 +16,11 @@ class CertificatesScreen extends StatefulWidget {
 class _CertificatesScreenState extends State<CertificatesScreen> {
   late Future future;
 
+  late List<Certificate> data;
+
   @override
   void initState() {
     this.future = Collection<Certificate>(path: 'certificates').getData();
-
     super.initState();
   }
 
@@ -58,7 +59,7 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
             );
 
           if (snapshot.connectionState == ConnectionState.done) {
-            List<Certificate> data = snapshot.data;
+            this.data = snapshot.data;
             return Padding(
               padding: EdgeInsets.only(left: 8.0, top: 24.0, right: 8.0),
               child: Column(

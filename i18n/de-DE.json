@@ -62,5 +62,14 @@
         "textfield_2_label": "Nachname",
         "textfield_2_hint": "Eingabe für den Nachname",
         "login_btn_hint": "Validiert die Benutzer Eingabe und navigiert zur Zwei Faktor Authentifizierung"
+    },
+    "_comment__007": "Language for: two factor authentication screen",
+    "twofa": {
+        "title": "Zwei Faktor Authenifizierung",
+        "subtitle": "Bitte bestätigen Sie Ihr Konto durch Eingabe des Tokens, welcher per Email gesendet wurde.",
+        "textfield_1_label": "Token",
+        "textfield_1_hint": "Eingabe für den zwei faktor token",
+        "btn_label": "Token validieren",
+        "btn_hint": "Validiert die Benutzer Eingabe und navigiert zur Home Seite"
     }
 }
