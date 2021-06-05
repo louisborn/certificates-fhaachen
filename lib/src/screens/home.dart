@@ -1,4 +1,3 @@
-import 'package:certificates/src/screens/qr_code.dart';
 import 'package:flutter/material.dart';
 
 import '../../components.dart';
@@ -7,17 +6,15 @@ import '../../services.dart';
 import '../../screens.dart';
 import '../../theme.dart';
 
-class HomeScreen extends StatefulWidget {
+/// A screen to provide the main actions of the application.
+///
+class HomeScreen extends StatelessWidget {
+  /// The route name for this screen.
   static const String route = '/home';
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
   Widget build(BuildContext context) {
-    final Widget title = Column(
+    final Widget greet = Column(
       children: [
         Text(
           I18n.of(context).homeGreetTo(
@@ -34,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
     );
 
-    final Widget buttonQrCode = BuildButtonContainer(
+    final Widget buttonForQrCode = BuildButtonContainer(
       title: I18n.of(context).homeOption_1_title,
       subtitle: I18n.of(context).homeOption_1_subtitle,
       button: BuildPrimaryButton(
@@ -52,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
 
-    final Widget buttonCertificates = BuildButtonContainer(
+    final Widget buttonForCertificates = BuildButtonContainer(
       title: I18n.of(context).homeOption_2_title,
       subtitle: I18n.of(context).homeOption_2_subtitle,
       button: BuildPrimaryButton(
@@ -74,12 +71,18 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const SizedBox(height: 16.0),
-          title,
-          const SizedBox(height: 16.0),
-          buttonQrCode,
-          const SizedBox(height: 16.0),
-          buttonCertificates,
+          const SizedBox(
+            height: 16.0,
+          ),
+          greet,
+          const SizedBox(
+            height: 16.0,
+          ),
+          buttonForQrCode,
+          const SizedBox(
+            height: 16.0,
+          ),
+          buttonForCertificates,
         ],
       ),
     );

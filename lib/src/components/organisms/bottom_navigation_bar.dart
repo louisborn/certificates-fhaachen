@@ -1,11 +1,12 @@
-import 'package:certificates/generated/i18n.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components.dart';
+import '../../../generated/i18n.dart';
 import '../../../screens.dart';
 import '../../../theme.dart';
 
 class BuildBottomNavigationBar extends StatefulWidget {
+  /// The route name for this screen.
   static const String route = '/bottomNavigationBar';
 
   @override
@@ -13,10 +14,20 @@ class BuildBottomNavigationBar extends StatefulWidget {
 }
 
 class _BuildBottomNavigationBar extends State<BuildBottomNavigationBar> {
+  /// The selected index for the current displayed widget.
   int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+    /// Holds a list of widgets to be displayed by the
+    /// bottom navigation.
+    ///
+    final List<Widget> _widgets = <Widget>[
+      HomeScreen(),
+      MoreScreen(),
+    ];
+
+    /// Sets the `_selectedIndex` to the current index.
     var _onItemTapped = (int index) => setState(
           () {
             _selectedIndex = index;
@@ -63,16 +74,15 @@ class _BuildBottomNavigationBar extends State<BuildBottomNavigationBar> {
       selectedItemColor: color_accent_green,
     );
 
-    final List<Widget> _widgets = <Widget>[
-      HomeScreen(),
-      MoreScreen(),
-    ];
-
     return Scaffold(
       appBar: appBar,
       bottomNavigationBar: bottomNavigationBar,
       body: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: EdgeInsets.only(
+          left: 8.0,
+          top: 24.0,
+          right: 8.0,
+        ),
         child: _widgets.elementAt(_selectedIndex),
       ),
     );

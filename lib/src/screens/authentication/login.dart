@@ -13,6 +13,7 @@ import '../../../theme.dart';
 /// to the application.
 ///
 class LoginScreen extends StatefulWidget {
+  /// The route name for this screen.
   static const String route = '/login';
 
   @override
@@ -20,9 +21,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  /// The global text field state.
   final formKey = GlobalKey<FormState>();
 
-  late String? _studentId, _studentLastname;
+  /// The user`s unique [_studentId] and [_studentLastName].
+  late String? _studentId, _studentLastName;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
       centered: false,
     );
 
-    final Widget logoAndText = Column(
+    final Widget logoAndSubtitle = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SvgPicture.asset('assets/images/logo.svg'),
@@ -46,21 +49,21 @@ class _LoginScreenState extends State<LoginScreen> {
       ],
     );
 
-    final Widget inputUserId = BuildTextField(
+    final Widget inputForId = BuildTextField(
       label: I18n.of(context).loginTextfield_1_label,
       isMandatory: true,
       onSaved: (String? value) => _studentId = value,
       validator: (value) =>
-          value!.isEmpty ? I18n.of(context).textfield_error : '',
+          value!.isEmpty ? I18n.of(context).textfield_error : null,
       hint: I18n.of(context).loginTextfield_1_hint,
     );
 
-    final Widget inputUserName = BuildTextField(
+    final Widget inputForLastName = BuildTextField(
       label: I18n.of(context).loginTextfield_2_label,
       isMandatory: true,
-      onSaved: (String? value) => _studentLastname = value,
+      onSaved: (String? value) => _studentLastName = value,
       validator: (String? value) =>
-          value!.isEmpty ? I18n.of(context).textfield_error : '',
+          value!.isEmpty ? I18n.of(context).textfield_error : null,
       hint: I18n.of(context).loginTextfield_1_hint,
     );
 
@@ -77,11 +80,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
     var doLogin = () async {
       final form = formKey.currentState;
-      if (this.formKey.currentState!.validate()) {
-        //form.save();
+      if (form!.validate()) {
+        form.save();
         await _provider.login(
           this._studentId!.toLowerCase(),
-          this._studentLastname!.toUpperCase(),
+          this._studentLastName!.toUpperCase(),
         );
         if (_provider.loggedInStatus == AuthenticationStatus.ReadyFor2fA)
           Navigator.pushNamed(context, TwoFactorScreen.route);
@@ -90,41 +93,53 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       appBar: appbar,
-      body: Form(
-        key: this.formKey,
-        child: Padding(
-          padding: EdgeInsets.only(left: 8.0, top: 24.0, right: 8.0),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                logoAndText,
-                const SizedBox(height: 32.0),
-                inputUserId,
-                const SizedBox(height: 16.0),
-                inputUserName,
-                const SizedBox(height: 32.0),
-                _provider.authenticationError == AuthenticationError.Exception
-                    ? BuildCallout(
-                        type: CalloutType.error,
-                        title: I18n.of(context).error_default,
-                        exception: _provider.exception,
-                      )
-                    : Container(),
-              ],
-            ),
-          ),
-        ),
-      ),
-      bottomSheet:
-          _provider.loggedInStatus == AuthenticationStatus.Authenticating
-              ? loading
-              : BuildPrimaryButton(
-                  text: I18n.of(context).loginTitle,
-                  withIcon: false,
-                  function: doLogin,
-                  hint: I18n.of(context).loginLogin_btn_hint,
+      body: _provider.loggedInStatus != AuthenticationStatus.Authenticating
+          ? Form(
+              key: this.formKey,
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    left: 8.0,
+                    top: 24.0,
+                    right: 8.0,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      logoAndSubtitle,
+                      const SizedBox(
+                        height: 32.0,
+                      ),
+                      inputForId,
+                      const SizedBox(
+                        height: 16.0,
+                      ),
+                      inputForLastName,
+                      const SizedBox(
+                        height: 32.0,
+                      ),
+                      _provider.authenticationError ==
+                              AuthenticationError.Exception
+                          ? BuildCallout(
+                              type: CalloutType.error,
+                              title: I18n.of(context).error_default,
+                              exception: _provider.exception,
+                            )
+                          : Container(),
+                    ],
+                  ),
                 ),
+              ),
+            )
+          : Center(
+              child: loading,
+            ),
+      bottomSheet: BuildPrimaryButton(
+        text: I18n.of(context).loginTitle,
+        withIcon: false,
+        function: doLogin,
+        hint: I18n.of(context).loginLogin_btn_hint,
+      ),
     );
   }
 }

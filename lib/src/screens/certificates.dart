@@ -7,15 +7,20 @@ import '../../services.dart';
 import '../../theme.dart';
 
 class CertificatesScreen extends StatefulWidget {
-  static const String route = '/certificates';
+  /// The route name for this screen.
+  static const String route = '/home/certificates';
 
   @override
   _CertificatesScreenState createState() => _CertificatesScreenState();
 }
 
 class _CertificatesScreenState extends State<CertificatesScreen> {
+  /// A future for a potential value from the database.
   late Future future;
 
+  /// The list of certificates that is fetched from the
+  /// database.
+  ///
   late List<Certificate> data;
 
   @override
@@ -47,21 +52,39 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
         future: this.future,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasError)
-            return BuildCallout(
-              type: CalloutType.error,
-              title: I18n.of(context).error_default,
+            return Padding(
+              padding: EdgeInsets.only(
+                left: 8.0,
+                top: 24.0,
+                right: 8.0,
+              ),
+              child: BuildCallout(
+                type: CalloutType.error,
+                title: I18n.of(context).error_default,
+              ),
             );
 
           if (snapshot.hasData && snapshot.data == false)
-            return BuildCallout(
-              type: CalloutType.attention,
-              title: I18n.of(context).error_noData,
+            return Padding(
+              padding: EdgeInsets.only(
+                left: 8.0,
+                top: 24.0,
+                right: 8.0,
+              ),
+              child: BuildCallout(
+                type: CalloutType.attention,
+                title: I18n.of(context).error_noData,
+              ),
             );
 
           if (snapshot.connectionState == ConnectionState.done) {
             this.data = snapshot.data;
             return Padding(
-              padding: EdgeInsets.only(left: 8.0, top: 24.0, right: 8.0),
+              padding: EdgeInsets.only(
+                left: 8.0,
+                top: 24.0,
+                right: 8.0,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -86,7 +109,6 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
               ),
             );
           }
-
           return Center(
             child: loading,
           );

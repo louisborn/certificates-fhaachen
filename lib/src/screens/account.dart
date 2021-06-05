@@ -6,12 +6,16 @@ import '../../theme.dart';
 import '../../components.dart';
 
 class AccountScreen extends StatelessWidget {
-  static const String route = '/account';
+  /// The route name for this screen.
+  static const String route = '/home/account';
 
+  /// The unique [_id] of a user.
   final String _id = PreferenceService().getString('studentId')!;
 
+  /// The [_firstName] of a user.
   final String _firstName = PreferenceService().getString('firstName')!;
 
+  /// The [_lastName] of a user.
   final String _lastName = PreferenceService().getString('lastName')!;
 
   @override
@@ -47,13 +51,21 @@ class AccountScreen extends StatelessWidget {
     return Scaffold(
       appBar: appBar,
       body: Padding(
-        padding: EdgeInsets.only(left: 8.0, top: 24.0, right: 8.0),
+        padding: EdgeInsets.only(
+          left: 8.0,
+          top: 24.0,
+          right: 8.0,
+        ),
         child: Column(
           children: [
             avatar,
-            const SizedBox(height: 16.0),
+            const SizedBox(
+              height: 16.0,
+            ),
             user,
-            const SizedBox(height: 8.0),
+            const SizedBox(
+              height: 8.0,
+            ),
             id,
           ],
         ),
