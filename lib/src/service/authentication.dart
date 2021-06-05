@@ -142,6 +142,7 @@ class AuthenticationService extends ChangeNotifier
 
   @override
   Future<void> login(String id, String name) async {
+    setExceptionStatus(AuthenticationError.NoError);
     setAuthenticationStatus(AuthenticationStatus.Authenticating);
     try {
       final http.Response response = await http.get(
@@ -156,10 +157,11 @@ class AuthenticationService extends ChangeNotifier
           firstName = _student.firstName;
           await startAndPatch2fAToken();
 
+          setExceptionStatus(AuthenticationError.NoError);
           setAuthenticationStatus(AuthenticationStatus.ReadyFor2fA);
         } else {
           catchAnyException(AuthenticationError.Exception,
-              "Student id or last name is incorrect");
+              "Student id or last name is incorrect.");
           setAuthenticationStatus(AuthenticationStatus.NotLoggedIn);
         }
       } else {
@@ -291,6 +293,7 @@ class AuthenticationService extends ChangeNotifier
   }
 
   Future<void> validate2fAToken(String token) async {
+    setExceptionStatus(AuthenticationError.NoError);
     setAuthenticationStatus(AuthenticationStatus.Authenticating);
     try {
       final http.Response response = await http.get(
@@ -308,6 +311,8 @@ class AuthenticationService extends ChangeNotifier
           PreferenceService().putString('studentId', _studentId);
           PreferenceService().putString('firstName', _firstName);
           PreferenceService().putString('lastName', _lastName);
+
+          setExceptionStatus(AuthenticationError.NoError);
         } else {
           catchAnyException(
             AuthenticationError.Exception,
@@ -334,6 +339,11 @@ class AuthenticationService extends ChangeNotifier
 
   void setAuthenticationStatus(AuthenticationStatus status) {
     _loggedInStatus = status;
+    notifyListeners();
+  }
+
+  void setExceptionStatus(AuthenticationError status) {
+    _authenticationError = status;
     notifyListeners();
   }
 

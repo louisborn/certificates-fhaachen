@@ -28,7 +28,7 @@ class BuildTextField extends StatelessWidget {
 
   final void Function(String?)? onSaved;
 
-  final String Function(String? s)? validator;
+  final String? Function(String? s)? validator;
 
   /// The text style of the input text.
   final TextStyle textStyle;

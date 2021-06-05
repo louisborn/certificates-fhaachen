@@ -6,7 +6,7 @@
     "_comment_001": "Language for: Home screen",
     "home": {
         "title": "Home",
-        "more": "Mehr",
+        "more": "More",
         "greetTo": "Hello {name}",
         "information": "Choose a action below.",
         "option_1_title": "Enter workspace",
