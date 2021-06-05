@@ -62,5 +62,14 @@
         "textfield_2_label": "Achternaam",
         "textfield_2_hint": "Invoer voor de achternaam van de gebruiker",
         "login_btn_hint": "Valideert de gebruikersinvoer en navigeert naar de tweefactorauthenticatie"
+    },
+    "_comment__007": "Language for: two factor authentication screen",
+    "twofa": {
+        "title": "Twee-factor authenticatie",
+        "subtitle": "Bevestig uw account door het token in te voeren dat u per e-mail hebt verzonden.",
+        "textfield_1_label": "Uniek token",
+        "textfield_1_hint": "Invoer voor het unieke token",
+        "btn_label": "Teken valideren",
+        "btn_hint": "Valideert het door de gebruiker ingevoerde token en navigeert naar het beginscherm"
     }
 }

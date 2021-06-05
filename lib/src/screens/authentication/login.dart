@@ -1,10 +1,10 @@
-import 'package:certificates/generated/i18n.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../components.dart';
+import '../../../generated/i18n.dart';
 import '../../../screens.dart';
 import '../../../services.dart';
 import '../../../theme.dart';
@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
       label: I18n.of(context).loginTextfield_1_label,
       isMandatory: true,
       onSaved: (String? value) => _studentId = value,
-      validator: (String? value) =>
+      validator: (value) =>
           value!.isEmpty ? I18n.of(context).textfield_error : '',
       hint: I18n.of(context).loginTextfield_1_hint,
     );
@@ -77,10 +77,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
     var doLogin = () async {
       final form = formKey.currentState;
-      if (!form!.validate()) {
-        form.save();
-        await _provider.login(this._studentId!.toLowerCase(),
-            this._studentLastname!.toUpperCase());
+      if (this.formKey.currentState!.validate()) {
+        //form.save();
+        await _provider.login(
+          this._studentId!.toLowerCase(),
+          this._studentLastname!.toUpperCase(),
+        );
         if (_provider.loggedInStatus == AuthenticationStatus.ReadyFor2fA)
           Navigator.pushNamed(context, TwoFactorScreen.route);
       }
@@ -88,10 +90,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       appBar: appbar,
-      body: Padding(
-        padding: EdgeInsets.only(left: 8.0, top: 24.0, right: 8.0),
-        child: Form(
-          key: formKey,
+      body: Form(
+        key: this.formKey,
+        child: Padding(
+          padding: EdgeInsets.only(left: 8.0, top: 24.0, right: 8.0),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

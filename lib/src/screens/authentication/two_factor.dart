@@ -1,12 +1,12 @@
-import 'package:certificates/components.dart';
-import 'package:certificates/screens.dart';
-import 'package:certificates/services.dart';
-import 'package:certificates/src/components/organisms/bottom_navigation_bar.dart';
-import 'package:certificates/src/theme/text_style.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+
+import '../../../components.dart';
+import '../../../generated/i18n.dart';
+import '../../../services.dart';
+import '../../../theme.dart';
 
 class TwoFactorScreen extends StatefulWidget {
   static const String route = '/twofactor';
@@ -26,7 +26,7 @@ class _TwoFactorScreenState extends State<TwoFactorScreen> {
         Provider.of<AuthenticationService>(context);
 
     final PreferredSizeWidget appbar = BuildAppBar(
-      title: 'Two factor',
+      title: I18n.of(context).twofaTitle,
       centered: false,
     );
 
@@ -36,7 +36,7 @@ class _TwoFactorScreenState extends State<TwoFactorScreen> {
         SvgPicture.asset('assets/images/logo.svg'),
         const SizedBox(height: 8.0),
         Text(
-          'Please confirm your account by entering the token send per email.',
+          I18n.of(context).twofaSubtitle,
           style: BuildTextStyle(type: TextStyleType.white).subtitle2,
         ),
       ],
@@ -48,12 +48,12 @@ class _TwoFactorScreenState extends State<TwoFactorScreen> {
     );
 
     final Widget inputToken = BuildTextField(
-      label: 'Unique token',
+      label: I18n.of(context).twofaTextfield_1_label,
       isMandatory: true,
       onSaved: (String? value) => _token = value!,
       validator: (String? value) =>
-          value!.isEmpty ? 'This is a mandatory field' : '',
-      hint: 'Input for the user`s unique two factor token',
+          value!.isEmpty ? I18n.of(context).textfield_error : '',
+      hint: I18n.of(context).twofaTextfield_1_hint,
     );
 
     var do2fA = () async {
@@ -86,7 +86,7 @@ class _TwoFactorScreenState extends State<TwoFactorScreen> {
                 _provider.authenticationError == AuthenticationError.Exception
                     ? BuildCallout(
                         type: CalloutType.error,
-                        title: 'An error has occured',
+                        title: I18n.of(context).error_default,
                         exception: _provider.exception,
                       )
                     : Container(),
@@ -96,10 +96,10 @@ class _TwoFactorScreenState extends State<TwoFactorScreen> {
         ),
       ),
       bottomSheet: BuildPrimaryButton(
-        text: 'Validate token',
+        text: I18n.of(context).twofa_btn_label,
         withIcon: false,
         function: do2fA,
-        hint: 'Validates the input token and login the user',
+        hint: I18n.of(context).twofa_btn_hint,
       ),
     );
   }

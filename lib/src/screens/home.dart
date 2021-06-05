@@ -70,16 +70,18 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        const SizedBox(height: 16.0),
-        title,
-        const SizedBox(height: 16.0),
-        buttonQrCode,
-        const SizedBox(height: 16.0),
-        buttonCertificates,
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const SizedBox(height: 16.0),
+          title,
+          const SizedBox(height: 16.0),
+          buttonQrCode,
+          const SizedBox(height: 16.0),
+          buttonCertificates,
+        ],
+      ),
     );
   }
 }

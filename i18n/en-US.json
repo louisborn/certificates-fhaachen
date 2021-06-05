@@ -62,5 +62,14 @@
         "textfield_2_label": "Last name",
         "textfield_2_hint": "Input for the user last name",
         "login_btn_hint": "Validates the user input and navigates to the two factor authentication"
+    },
+    "_comment__007": "Language for: two factor authentication screen",
+    "twofa": {
+        "title": "Two-factor authentication",
+        "subtitle": "Please confirm your account by entering the token send per email.",
+        "textfield_1_label": "Unique token",
+        "textfield_1_hint": "Input for the unique token",
+        "btn_label": "Validate token",
+        "btn_hint": "Validates the user entered token and navigates to the home screen"
     }
 }

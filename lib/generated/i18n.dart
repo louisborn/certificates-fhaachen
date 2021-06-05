@@ -191,6 +191,29 @@ class I18n implements WidgetsLocalizations {
   /// "Validates the user input and navigates to the two factor authentication"
   String get loginLogin_btn_hint =>
       "Validates the user input and navigates to the two factor authentication";
+
+  /// "Language for: two factor authentication screen"
+  String get _comment__007 => "Language for: two factor authentication screen";
+
+  /// "Two-factor authentication"
+  String get twofaTitle => "Two-factor authentication";
+
+  /// "Please confirm your account by entering the token send per email."
+  String get twofaSubtitle =>
+      "Please confirm your account by entering the token send per email.";
+
+  /// "Unique token"
+  String get twofaTextfield_1_label => "Unique token";
+
+  /// "Input for the unique token"
+  String get twofaTextfield_1_hint => "Input for the unique token";
+
+  /// "Validate token"
+  String get twofa_btn_label => "Validate token";
+
+  /// "Validates the user entered token and navigates to the home screen"
+  String get twofa_btn_hint =>
+      "Validates the user entered token and navigates to the home screen";
 }
 
 class _I18n_en_US extends I18n {
@@ -417,6 +440,36 @@ class _I18n_de_DE extends I18n {
   String get loginLogin_btn_hint =>
       "Validiert die Benutzer Eingabe und navigiert zur Zwei Faktor Authentifizierung";
 
+  /// "Language for: two factor authentication screen"
+  @override
+  String get _comment__007 => "Language for: two factor authentication screen";
+
+  /// "Zwei Faktor Authenifizierung"
+  @override
+  String get twofaTitle => "Zwei Faktor Authenifizierung";
+
+  /// "Bitte bestätigen Sie Ihr Konto durch Eingabe des Tokens, welcher per Email gesendet wurde."
+  @override
+  String get twofaSubtitle =>
+      "Bitte bestätigen Sie Ihr Konto durch Eingabe des Tokens, welcher per Email gesendet wurde.";
+
+  /// "Token"
+  @override
+  String get twofaTextfield_1_label => "Token";
+
+  /// "Eingabe für den zwei faktor token"
+  @override
+  String get twofaTextfield_1_hint => "Eingabe für den zwei faktor token";
+
+  /// "Token validieren"
+  @override
+  String get twofa_btn_label => "Token validieren";
+
+  /// "Validiert die Benutzer Eingabe und navigiert zur Home Seite"
+  @override
+  String get twofa_btn_hint =>
+      "Validiert die Benutzer Eingabe und navigiert zur Home Seite";
+
   @override
   TextDirection get textDirection => TextDirection.ltr;
 }
@@ -635,6 +688,36 @@ class _I18n_nl_NL extends I18n {
   @override
   String get loginLogin_btn_hint =>
       "Valideert de gebruikersinvoer en navigeert naar de tweefactorauthenticatie";
+
+  /// "Language for: two factor authentication screen"
+  @override
+  String get _comment__007 => "Language for: two factor authentication screen";
+
+  /// "Twee-factor authenticatie"
+  @override
+  String get twofaTitle => "Twee-factor authenticatie";
+
+  /// "Bevestig uw account door het token in te voeren dat u per e-mail hebt verzonden."
+  @override
+  String get twofaSubtitle =>
+      "Bevestig uw account door het token in te voeren dat u per e-mail hebt verzonden.";
+
+  /// "Uniek token"
+  @override
+  String get twofaTextfield_1_label => "Uniek token";
+
+  /// "Invoer voor het unieke token"
+  @override
+  String get twofaTextfield_1_hint => "Invoer voor het unieke token";
+
+  /// "Teken valideren"
+  @override
+  String get twofa_btn_label => "Teken valideren";
+
+  /// "Valideert het door de gebruiker ingevoerde token en navigeert naar het beginscherm"
+  @override
+  String get twofa_btn_hint =>
+      "Valideert het door de gebruiker ingevoerde token en navigeert naar het beginscherm";
 
   @override
   TextDirection get textDirection => TextDirection.ltr;
