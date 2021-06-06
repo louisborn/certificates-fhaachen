@@ -20,12 +20,12 @@ class HomeScreen extends StatelessWidget {
           I18n.of(context).homeGreetTo(
             PreferenceService().getString('firstName')!.toLowerCase(),
           ),
-          style: BuildTextStyle(type: TextStyleType.white).header4,
+          style: BuildTextStyle(type: TextBackground.white).header5,
           textAlign: TextAlign.center,
         ),
         Text(
           I18n.of(context).homeInformation,
-          style: BuildTextStyle(type: TextStyleType.white).subtitle2,
+          style: BuildTextStyle(type: TextBackground.white).body2,
           textAlign: TextAlign.center,
         ),
       ],
@@ -71,12 +71,9 @@ class HomeScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const SizedBox(
-            height: 16.0,
-          ),
           greet,
           const SizedBox(
-            height: 16.0,
+            height: 24.0,
           ),
           buttonForQrCode,
           const SizedBox(

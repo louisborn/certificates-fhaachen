@@ -43,7 +43,7 @@ class _TwoFactorScreenState extends State<TwoFactorScreen> {
         const SizedBox(height: 8.0),
         Text(
           I18n.of(context).twofaSubtitle,
-          style: BuildTextStyle(type: TextStyleType.white).subtitle2,
+          style: BuildTextStyle(type: TextBackground.white).body2,
         ),
       ],
     );

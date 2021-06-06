@@ -22,7 +22,7 @@ class _WorkspaceScreenState extends State<WorkspaceScreen> {
     AccessControlService _provider = Provider.of<AccessControlService>(context);
 
     final PreferredSizeWidget appBar = BuildAppBar(
-      title: 'Workspace',
+      title: args.name,
     );
 
     final Widget enteredStatus = BuildModale(
@@ -30,6 +30,7 @@ class _WorkspaceScreenState extends State<WorkspaceScreen> {
       title: 'Workspace entered - Workspace: ' + args.name!,
       subtitle: 'Entered at: ' + PreferenceService().getString('timestamp')!,
       actionText: 'Leave current workspace',
+      icon: Icons.close,
       function: () async {
         await _provider.leaveWorkspace(args.path);
         if (_provider.userAccessStatus == UserAccessStatus.NotEntered) {
@@ -45,6 +46,7 @@ class _WorkspaceScreenState extends State<WorkspaceScreen> {
       title: 'Workspace closed - Workspace: ' + args.name!,
       subtitle: 'Current in workspace: ' + args.currentInWorkspace.toString(),
       actionText: 'Try again later',
+      icon: Icons.close,
       function: () => Navigator.pushNamedAndRemoveUntil(
           context, BuildBottomNavigationBar.route, (route) => false),
       hint: 'Modale information for denied user in workspace',

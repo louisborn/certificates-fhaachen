@@ -36,7 +36,7 @@ class AccountScreen extends StatelessWidget {
       I18n.of(context).accountUser(
         this._firstName.toLowerCase() + ' ' + this._lastName.toLowerCase(),
       ),
-      style: BuildTextStyle(type: TextStyleType.white).subtitle2,
+      style: BuildTextStyle(type: TextBackground.white).body2,
       textAlign: TextAlign.center,
     );
 
@@ -44,7 +44,7 @@ class AccountScreen extends StatelessWidget {
       I18n.of(context).accountId(
         this._id,
       ),
-      style: BuildTextStyle(type: TextStyleType.white).subtitle2,
+      style: BuildTextStyle(type: TextBackground.white).body2,
       textAlign: TextAlign.center,
     );
 

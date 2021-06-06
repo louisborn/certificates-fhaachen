@@ -1,3 +1,4 @@
+import 'package:certificates/src/theme/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -16,15 +17,6 @@ class BuildButtonContainer extends StatelessWidget {
     required this.icon,
     this.width = double.infinity,
     this.padding = 8.0,
-    this.titleStyle = const TextStyle(
-      fontSize: 20.0,
-      fontWeight: FontWeight.bold,
-      color: Color(0xff000000),
-    ),
-    this.subtitleStyle = const TextStyle(
-      fontSize: 16.0,
-      color: Color(0xff000000),
-    ),
   })  : assert(title != null),
         assert(subtitle != null);
 
@@ -47,10 +39,12 @@ class BuildButtonContainer extends StatelessWidget {
   final double padding;
 
   /// The text theme for the displayed title.
-  final TextStyle? titleStyle;
+  final TextStyle? titleStyle =
+      BuildTextStyle(type: TextBackground.white).header3;
 
   /// The text theme for the displayed subtitle.
-  final TextStyle? subtitleStyle;
+  final TextStyle? subtitleStyle =
+      BuildTextStyle(type: TextBackground.white).body2;
 
   @override
   Widget build(BuildContext context) {

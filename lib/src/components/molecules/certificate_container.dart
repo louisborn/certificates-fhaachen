@@ -35,8 +35,8 @@ class BuildCertificateContainer extends StatelessWidget {
       ),
       child: Text(
         I18n.of(context).certificatesShow_certificate,
-        style: BuildTextStyle(type: TextStyleType.white)
-            .subtitle2
+        style: BuildTextStyle(type: TextBackground.white)
+            .body2
             .copyWith(color: color_accent_blue),
       ),
     );
@@ -65,19 +65,19 @@ class BuildCertificateContainer extends StatelessWidget {
       children: [
         Text(
           I18n.of(context).certificatesCertificate_name + ': ' + this.name!,
-          style: BuildTextStyle(type: TextStyleType.white).header3,
+          style: BuildTextStyle(type: TextBackground.white).body1,
         ),
         const SizedBox(height: 8.0),
         Text(
           I18n.of(context).certificatesCertificate_usage + ': ' + this.usage!,
-          style: BuildTextStyle(type: TextStyleType.white).header3,
+          style: BuildTextStyle(type: TextBackground.white).body1,
         ),
         const SizedBox(height: 16.0),
         Text(
           I18n.of(context).certificatesCertificate_descr +
               ': ' +
               this.descripition!,
-          style: BuildTextStyle(type: TextStyleType.white).subtitle2,
+          style: BuildTextStyle(type: TextBackground.white).body2,
         ),
       ],
     );

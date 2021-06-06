@@ -29,22 +29,22 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
         children: [
           Text(
             args.name!,
-            style: BuildTextStyle(type: TextStyleType.white).header4,
+            style: BuildTextStyle(type: TextBackground.white).header4,
           ),
           const SizedBox(height: 24.0),
           Text(
             args.phone!,
-            style: BuildTextStyle(type: TextStyleType.white).subtitle2,
+            style: BuildTextStyle(type: TextBackground.white).body2,
           ),
           const SizedBox(height: 8.0),
           Text(
             args.email!,
-            style: BuildTextStyle(type: TextStyleType.white).subtitle2,
+            style: BuildTextStyle(type: TextBackground.white).body2,
           ),
           const SizedBox(height: 8.0),
           Text(
             args.street! + ' ' + args.postal! + ' ' + args.city!,
-            style: BuildTextStyle(type: TextStyleType.white).subtitle2,
+            style: BuildTextStyle(type: TextBackground.white).body2,
           ),
         ],
       ),
@@ -54,7 +54,7 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
       padding: EdgeInsets.all(8.0),
       child: Text(
         'Current capacity status:',
-        style: BuildTextStyle(type: TextStyleType.white).header4,
+        style: BuildTextStyle(type: TextBackground.white).header4,
       ),
     );
 
@@ -110,7 +110,7 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
                           children: [
                             Text(
                               workspace[index].name!,
-                              style: BuildTextStyle(type: TextStyleType.white)
+                              style: BuildTextStyle(type: TextBackground.white)
                                   .header3,
                             ),
                             Row(
@@ -124,8 +124,8 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
                                             .currentInWorkspace!
                                             .toString(),
                                     style: BuildTextStyle(
-                                            type: TextStyleType.white)
-                                        .subtitle2,
+                                            type: TextBackground.white)
+                                        .body2,
                                   ),
                                 ),
                                 const SizedBox(width: 24.0),
@@ -136,8 +136,8 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
                                             .maxInWorkspace!
                                             .toString(),
                                     style: BuildTextStyle(
-                                            type: TextStyleType.white)
-                                        .subtitle2,
+                                            type: TextBackground.white)
+                                        .body2,
                                   ),
                                 ),
                               ],

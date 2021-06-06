@@ -1,53 +1,66 @@
 import 'package:flutter/material.dart';
 
-enum TextStyleType {
+/// Indicates what type of text style color is displayed.
+///
+enum TextBackground {
+  /// Text style for dark background.
   dark,
+
+  /// Text style for white background.
   white,
 }
 
+/// A text style for the application.
+///
 class BuildTextStyle {
-  BuildTextStyle({
+  /// Creates a text style.
+  ///
+  const BuildTextStyle({
     required this.type,
   });
 
-  final TextStyleType? type;
+  /// The text style dependent on the background type.
+  final TextBackground? type;
 
   TextStyle get header5 => TextStyle(
+        fontFamily: 'LUCA',
         fontSize: 28.0,
-        fontWeight: FontWeight.bold,
-        color: this.type == TextStyleType.dark
+        fontWeight: FontWeight.w900,
+        color: this.type == TextBackground.dark
             ? Color(0xffffffff)
             : Color(0xff000000),
       );
 
   TextStyle get header4 => TextStyle(
+        fontFamily: 'LUCA',
         fontSize: 24.0,
-        fontWeight: FontWeight.bold,
-        color: this.type == TextStyleType.dark
+        fontWeight: FontWeight.w900,
+        color: this.type == TextBackground.dark
             ? Color(0xffffffff)
             : Color(0xff000000),
       );
 
   TextStyle get header3 => TextStyle(
+        fontFamily: 'LUCA',
         fontSize: 20.0,
-        fontWeight: FontWeight.bold,
-        color: this.type == TextStyleType.dark
+        fontWeight: FontWeight.w900,
+        color: this.type == TextBackground.dark
             ? Color(0xffffffff)
             : Color(0xff000000),
       );
 
-  TextStyle get subtitle1 => TextStyle(
+  TextStyle get body1 => TextStyle(
         fontSize: 20.0,
         fontWeight: FontWeight.normal,
-        color: this.type == TextStyleType.dark
+        color: this.type == TextBackground.dark
             ? Color(0xffffffff)
             : Color(0xff000000),
       );
 
-  TextStyle get subtitle2 => TextStyle(
+  TextStyle get body2 => TextStyle(
         fontSize: 16.0,
         fontWeight: FontWeight.normal,
-        color: this.type == TextStyleType.dark
+        color: this.type == TextBackground.dark
             ? Color(0xffffffff)
             : Color(0xff000000),
       );
