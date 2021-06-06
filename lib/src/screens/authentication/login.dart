@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
         const SizedBox(height: 8.0),
         Text(
           I18n.of(context).loginSubtitle,
-          style: BuildTextStyle(type: TextStyleType.white).subtitle2,
+          style: BuildTextStyle(type: TextBackground.white).body2,
         ),
       ],
     );

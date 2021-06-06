@@ -23,6 +23,7 @@ class BuildModale extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.actionText,
+    this.icon,
     this.textStyle =
         const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
     required this.function,
@@ -50,6 +51,9 @@ class BuildModale extends StatelessWidget {
   /// The text displayed for the action.
   final String? actionText;
 
+  /// The icon data for the modale.
+  final IconData? icon;
+
   /// The text theme for the displayed text.
   final TextStyle? textStyle;
 
@@ -71,13 +75,13 @@ class BuildModale extends StatelessWidget {
   ///
   final String? hint;
 
-  IconData icon() {
+  IconData getIcon() {
     if (this.type == ModaleType.denied) return Icons.error;
     if (this.type == ModaleType.allowed) return Icons.check_circle;
     throw Exception("Failed to assign icon");
   }
 
-  Color color() {
+  Color getColor() {
     if (this.type == ModaleType.denied) return color_error;
     if (this.type == ModaleType.allowed) return color_success;
     throw Exception("Failed to assign color");
@@ -97,8 +101,8 @@ class BuildModale extends StatelessWidget {
         ),
         const SizedBox(width: 8.0),
         BuildIcon(
-          icon: this.icon(),
-          color: this.color(),
+          icon: this.getIcon(),
+          color: this.getColor(),
         ),
       ],
     );
@@ -108,7 +112,7 @@ class BuildModale extends StatelessWidget {
       padding: this.padding,
       decoration: BoxDecoration(
         border: Border.all(
-          color: this.color(),
+          color: this.getColor(),
         ),
       ),
       child: Column(
@@ -125,6 +129,7 @@ class BuildModale extends StatelessWidget {
             text: this.actionText,
             function: this.function,
             withIcon: true,
+            icon: this.icon!,
             hint: this.hint,
           ),
         ],

@@ -27,8 +27,9 @@ class _UseMachineScreenState extends State<UseMachineScreen> {
     final Widget usingStatus = BuildModale(
       type: ModaleType.allowed,
       title: 'Machine in use: ' + args.machine!,
-      subtitle: 'Certificate name: ' + args.name!,
+      subtitle: 'Description: ' + args.description!,
       actionText: 'Exit current machine',
+      icon: Icons.close,
       function: () => Navigator.pop(context),
       hint: 'Modale information for entered user in workspace',
     );
@@ -38,6 +39,7 @@ class _UseMachineScreenState extends State<UseMachineScreen> {
       title: 'Workspace not available - Machine: ' + args.machine!,
       subtitle: 'Needed certificate: ' + args.name!,
       actionText: 'Use other machine',
+      icon: Icons.close,
       function: () => Navigator.pop(context),
       hint: 'Modale information for entered user in workspace',
     );
@@ -46,17 +48,23 @@ class _UseMachineScreenState extends State<UseMachineScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         usingStatus,
-        const SizedBox(height: 32.0),
+        const SizedBox(
+          height: 32.0,
+        ),
         Text(
           'Safety instruction',
-          style: BuildTextStyle(type: TextStyleType.white).header3,
+          style: BuildTextStyle(type: TextBackground.white).header3,
         ),
-        const SizedBox(height: 8.0),
+        const SizedBox(
+          height: 16.0,
+        ),
         BuildCallout(
           type: CalloutType.attention,
           title: 'Make sure to follow the safety instructions below.',
         ),
-        const SizedBox(height: 16.0),
+        const SizedBox(
+          height: 16.0,
+        ),
         Image.network(args.safetyInstruction!),
       ],
     );
@@ -64,7 +72,11 @@ class _UseMachineScreenState extends State<UseMachineScreen> {
     return Scaffold(
       appBar: appBar,
       body: Padding(
-        padding: EdgeInsets.only(left: 8.0, top: 24.0, right: 8.0),
+        padding: EdgeInsets.only(
+          left: 8.0,
+          top: 24.0,
+          right: 8.0,
+        ),
         child: SingleChildScrollView(
           child: Column(
             children: [

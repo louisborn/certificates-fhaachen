@@ -70,10 +70,10 @@ class _BuildTableState extends State<BuildTable> {
             child: Text(
               widget.tableHeader[0],
               style: widget.isSortedByWorkspace == true
-                  ? BuildTextStyle(type: TextStyleType.white)
+                  ? BuildTextStyle(type: TextBackground.white)
                       .header3
                       .copyWith(color: color_accent_green)
-                  : BuildTextStyle(type: TextStyleType.white).header3,
+                  : BuildTextStyle(type: TextBackground.white).header3,
               textAlign: TextAlign.start,
               overflow: TextOverflow.ellipsis,
             ),
@@ -86,10 +86,10 @@ class _BuildTableState extends State<BuildTable> {
             child: Text(
               widget.tableHeader[1],
               style: widget.isSortedByEnter == true
-                  ? BuildTextStyle(type: TextStyleType.white)
+                  ? BuildTextStyle(type: TextBackground.white)
                       .header3
                       .copyWith(color: color_accent_green)
-                  : BuildTextStyle(type: TextStyleType.white).header3,
+                  : BuildTextStyle(type: TextBackground.white).header3,
               textAlign: TextAlign.start,
               overflow: TextOverflow.ellipsis,
             ),
@@ -102,10 +102,10 @@ class _BuildTableState extends State<BuildTable> {
             child: Text(
               widget.tableHeader[2],
               style: widget.isSortedByLeave == true
-                  ? BuildTextStyle(type: TextStyleType.white)
+                  ? BuildTextStyle(type: TextBackground.white)
                       .header3
                       .copyWith(color: color_accent_green)
-                  : BuildTextStyle(type: TextStyleType.white).header3,
+                  : BuildTextStyle(type: TextBackground.white).header3,
               textAlign: TextAlign.start,
               overflow: TextOverflow.ellipsis,
             ),
