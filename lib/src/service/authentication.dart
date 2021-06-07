@@ -306,18 +306,18 @@ class AuthenticationService extends ChangeNotifier
         print(token);
         print(_token);
         if (_token == token) {
-          _loggedInStatus = AuthenticationStatus.LoggedIn;
-          notifyListeners();
           PreferenceService().putString('studentId', _studentId);
           PreferenceService().putString('firstName', _firstName);
           PreferenceService().putString('lastName', _lastName);
 
+          setAuthenticationStatus(AuthenticationStatus.LoggedIn);
           setExceptionStatus(AuthenticationError.NoError);
         } else {
           catchAnyException(
             AuthenticationError.Exception,
             "The entered token is invalid.",
           );
+          setAuthenticationStatus(AuthenticationStatus.NotLoggedIn);
         }
       }
     } catch (e) {
