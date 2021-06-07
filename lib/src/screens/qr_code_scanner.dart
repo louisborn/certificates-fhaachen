@@ -1,55 +1,71 @@
 import 'dart:io';
 
-import 'package:certificates/components.dart';
-import 'package:certificates/generated/i18n.dart';
-import 'package:certificates/models.dart';
-import 'package:certificates/screens.dart';
-import 'package:certificates/services.dart';
-import 'package:certificates/src/theme/colors.dart';
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-class QRCodeScreen extends StatefulWidget {
-  static const String route = '/scan';
+import '../../components.dart';
+import '../../generated/i18n.dart';
+import '../../models.dart';
+import '../../screens.dart';
+import '../../services.dart';
+import '../../theme.dart';
+
+/// A screen to provide a qr code scanner.
+///
+class QRCodeScannerScreen extends StatefulWidget {
+  /// The route name for this screen.
+  static const String route = '/home/qr_scan';
 
   @override
-  State<StatefulWidget> createState() => _QRCodeScreenState();
+  State<StatefulWidget> createState() => _QRCodeScannerScreenState();
 }
 
-class _QRCodeScreenState extends State<QRCodeScreen> {
+class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
+  /// The result of the qr code scan.
   Barcode? result;
-  QRViewController? controller;
+
+  /// The controller for the [QRView].
+  late QRViewController? controller;
+
+  /// The key for the [QRView].
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
-  // In order to get hot reload to work we need to pause the camera if the platform
-  // is android, or resume the camera if the platform is iOS.
+  /// In order to get hot reload to work we need to pause the camera if the platform
+  /// is android, or resume the camera if the platform is iOS.
+  ///
   @override
   void reassemble() {
-    super.reassemble();
     if (Platform.isAndroid) {
       controller!.pauseCamera();
     }
     controller!.resumeCamera();
+
+    super.reassemble();
   }
 
   @override
   Widget build(BuildContext context) {
-    AccessControlService _providerAccess =
+    /// The consumer of a provider service.
+    final AccessControlService _providerAccess =
         Provider.of<AccessControlService>(context);
-    UsageControlService _providerUsage =
+
+    /// The consumer of a provider service.
+    final UsageControlService _providerUsage =
         Provider.of<UsageControlService>(context);
 
+    /// The app bar for this screen.
     final PreferredSizeWidget appBar = BuildAppBar(
       title: 'Scan QR code',
     );
 
-    var doEnter = () async {
+    var doValidateWorkspaceData = () async {
       var data = await Document<Workspace>(path: result!.code).getData();
       await _providerAccess.enterWorkspace(result!.code, data);
       Navigator.pushNamedAndRemoveUntil(
         context,
-        WorkspaceScreen.route,
+        AccessWorkpsaceScreen.route,
         (route) => false,
         arguments: Workspace(
             path: result!.code,
@@ -60,7 +76,7 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
       );
     };
 
-    var doValidateCertificate = () async {
+    var doValidateCertificateData = () async {
       var data = await Document<Certificate>(path: result!.code).getData();
       await _providerUsage.checkUserAuthorization(data.assignedTo!);
       Navigator.pushNamed(
@@ -76,22 +92,25 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
       );
     };
 
+    /// The button to validate the qr code scan.
     final Widget button = Align(
       alignment: Alignment.bottomCenter,
       child: Container(
         padding: EdgeInsets.all(16.0),
         child: BuildSecondaryButton(
-          text: 'Next',
-          withIcon: false,
-          width: 114.0,
-          function: () =>
-              result!.code.length > 35 ? doEnter() : doValidateCertificate(),
+          text: 'Validate data',
+          withIcon: true,
+          icon: Icons.qr_code_outlined,
+          function: () => result!.code.length > 35
+              ? doValidateWorkspaceData()
+              : doValidateCertificateData(),
           hint: 'Validate qr code data',
         ),
       ),
     );
 
-    var loading = Row(
+    /// The loading animation for this screen.
+    final Widget loading = Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CircularProgressIndicator(
@@ -117,6 +136,7 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
     );
   }
 
+  /// The QR code widget that is displayed in this screen.
   Widget _buildQrView(BuildContext context) {
     var scanArea = (MediaQuery.of(context).size.width < 400 ||
             MediaQuery.of(context).size.height < 400)

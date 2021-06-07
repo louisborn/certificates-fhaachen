@@ -71,5 +71,26 @@
         "textfield_1_hint": "Eingabe für den zwei faktor token",
         "btn_label": "Token validieren",
         "btn_hint": "Validiert die Benutzer Eingabe und navigiert zur Home Seite"
+    },
+    "_comment__008": "Language for: workspace screen",
+    "workspace": {
+        "enteredTitle": "Arbeitsbereich betreten - Arbeitsbereich: {name}",
+        "enteredSubtitle": "Betreten am: {date}",
+        "enteredAction": "Aktuellen Arbeitsbereich verlassen",
+        "deniedTitle": "Arbeitsbereich voll - Arbeitsbereich: {name}",
+        "deniedSubtitle": "Aktuell im Arbeitsbereich: {number}",
+        "deniedAction": "Versuche es später nochmal"
+    },
+    "_comment__009": "Language for: machine screen",
+    "machine": {
+        "title": "Maschine",
+        "safetyInstruction": "Sicherheitshinweise",
+        "safetyInfo": "Beachten Sie unbedingt die folgenden Sicherheitshinweise",
+        "usingTitle": "Maschine in Benutzung - Maschine: {name}",
+        "usingSubtitle": "Beschreibung: {description}",
+        "usingAction": "Aktuelle Maschine verlassen",
+        "deniedTitle": "Maschine nicht verfügbar - Maschine: {name}",
+        "deniedSubtitle": "Benötigtes Zertifikat: {certificate}",
+        "deniedAction": "Andere Maschine benutzen"
     }
 }

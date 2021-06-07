@@ -1,13 +1,19 @@
-import 'package:certificates/components.dart';
-import 'package:certificates/models.dart';
-import 'package:certificates/screens.dart';
-import 'package:certificates/services.dart';
-import 'package:certificates/src/theme/text_style.dart';
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 
+import '../../components.dart';
+import '../../generated/i18n.dart';
+import '../../models.dart';
+import '../../services.dart';
+import '../../theme.dart';
+
+/// A screen to provide access to machine`s in a workspace.
+///
 class UseMachineScreen extends StatefulWidget {
-  static const String route = '/usemachine';
+  /// The route name for this screen.
+  static const String route = '/home/access_machine';
+
   const UseMachineScreen({Key? key}) : super(key: key);
 
   @override
@@ -17,33 +23,55 @@ class UseMachineScreen extends StatefulWidget {
 class _UseMachineScreenState extends State<UseMachineScreen> {
   @override
   Widget build(BuildContext context) {
-    UsageControlService _provider = Provider.of<UsageControlService>(context);
+    /// The arguments for this screen.
     final args = ModalRoute.of(context)!.settings.arguments as Certificate;
 
+    /// The consumer of a provider service.
+    final UsageControlService _provider =
+        Provider.of<UsageControlService>(context);
+
+    /// The app bar for this screen.
     final PreferredSizeWidget appBar = BuildAppBar(
-      title: 'Machine',
+      title: I18n.of(context).machineTitle,
     );
 
+    /// The information modale for when a user is using
+    /// a machine.
+    ///
     final Widget usingStatus = BuildModale(
       type: ModaleType.allowed,
-      title: 'Machine in use: ' + args.machine!,
-      subtitle: 'Description: ' + args.description!,
-      actionText: 'Exit current machine',
+      title: I18n.of(context).machineDeniedTitle(
+        args.machine!,
+      ),
+      subtitle: I18n.of(context).machineUsingSubtitle(
+        args.description!,
+      ),
+      actionText: I18n.of(context).machineUsingAction,
       icon: Icons.close,
       function: () => Navigator.pop(context),
       hint: 'Modale information for entered user in workspace',
     );
 
+    /// The information modale for when a user is denied to
+    /// use a machine.
+    ///
     final Widget deniedStatus = BuildModale(
       type: ModaleType.denied,
-      title: 'Workspace not available - Machine: ' + args.machine!,
-      subtitle: 'Needed certificate: ' + args.name!,
-      actionText: 'Use other machine',
+      title: I18n.of(context).machineDeniedTitle(
+        args.machine!,
+      ),
+      subtitle: I18n.of(context).machineDeniedSubtitle(
+        args.name!,
+      ),
+      actionText: I18n.of(context).machineDeniedAction,
       icon: Icons.close,
       function: () => Navigator.pop(context),
       hint: 'Modale information for entered user in workspace',
     );
 
+    /// The main information that is displayed only when a user
+    /// is allowed to use a machine.
+    ///
     final Widget main = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -52,7 +80,7 @@ class _UseMachineScreenState extends State<UseMachineScreen> {
           height: 32.0,
         ),
         Text(
-          'Safety instruction',
+          I18n.of(context).machineSafetyInstruction,
           style: BuildTextStyle(type: TextBackground.white).header3,
         ),
         const SizedBox(
@@ -60,7 +88,7 @@ class _UseMachineScreenState extends State<UseMachineScreen> {
         ),
         BuildCallout(
           type: CalloutType.attention,
-          title: 'Make sure to follow the safety instructions below.',
+          title: I18n.of(context).machineSafetyInfo,
         ),
         const SizedBox(
           height: 16.0,
