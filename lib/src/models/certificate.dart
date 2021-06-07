@@ -3,12 +3,12 @@
 class Certificate {
   /// Creates a certificate.
   const Certificate({
-    this.name,
-    this.description,
-    this.machine,
-    this.assignedTo,
-    this.safetyInstruction,
-  })  : assert(name != null),
+    required this.name,
+    required this.description,
+    required this.machine,
+    required this.assignedTo,
+    required this.safetyInstruction,
+  })   : assert(name != null),
         assert(machine != null);
 
   /// The name of a certificate.

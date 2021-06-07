@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
     var loading = Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CircularProgressIndicator(
+        const CircularProgressIndicator(
           valueColor: AlwaysStoppedAnimation<Color>(color_accent_green),
         ),
         const SizedBox(width: 8.0),
@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
               key: this.formKey,
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     left: 8.0,
                     top: 24.0,
                     right: 8.0,
