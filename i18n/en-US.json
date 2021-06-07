@@ -71,5 +71,26 @@
         "textfield_1_hint": "Input for the unique token",
         "btn_label": "Validate token",
         "btn_hint": "Validates the user entered token and navigates to the home screen"
+    },
+    "_comment__008": "Language for: workspace screen",
+    "workspace": {
+        "enteredTitle": "Workspace entered - Workspace: {name}",
+        "enteredSubtitle": "Entered at: {date}",
+        "enteredAction": "Leave current workspace",
+        "deniedTitle": "Workspace full - Workspace: {name}",
+        "deniedSubtitle": "Current in workspace: {number}",
+        "deniedAction": "Try later again"
+    },
+    "_comment__009": "Language for: machine screen",
+    "machine": {
+        "title": "Machine",
+        "safetyInstruction": "Safety instruction",
+        "safetyInfo": "Make sure to follow the safety instructions below",
+        "usingTitle": "Machine in use - Machine: {name}",
+        "usingSubtitle": "Description: {description}",
+        "usingAction": "Exit current machine",
+        "deniedTitle": "Machine not available - Machine: {name}",
+        "deniedSubtitle": "Needed certificate: {certificate}",
+        "deniedAction": "Use another machine"
     }
 }

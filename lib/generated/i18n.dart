@@ -51,8 +51,8 @@ class I18n implements WidgetsLocalizations {
   /// "Home"
   String get homeTitle => "Home";
 
-  /// "Mehr"
-  String get homeMore => "Mehr";
+  /// "More"
+  String get homeMore => "More";
 
   /// "Hello ${name}"
   String homeGreetTo(String name) => "Hello ${name}";
@@ -209,11 +209,69 @@ class I18n implements WidgetsLocalizations {
   String get twofaTextfield_1_hint => "Input for the unique token";
 
   /// "Validate token"
-  String get twofa_btn_label => "Validate token";
+  String get twofaBtn_label => "Validate token";
 
   /// "Validates the user entered token and navigates to the home screen"
-  String get twofa_btn_hint =>
+  String get twofaBtn_hint =>
       "Validates the user entered token and navigates to the home screen";
+
+  /// "Language for: workspace screen"
+  String get _comment__008 => "Language for: workspace screen";
+
+  /// "Workspace entered - Workspace: ${name}"
+  String workspaceEnteredTitle(String name) =>
+      "Workspace entered - Workspace: ${name}";
+
+  /// "Entered at: ${date}"
+  String workspaceEnteredSubtitle(String date) => "Entered at: ${date}";
+
+  /// "Leave current workspace"
+  String get workspaceEnteredAction => "Leave current workspace";
+
+  /// "Workspace full - Workspace: ${name}"
+  String workspaceDeniedTitle(String name) =>
+      "Workspace full - Workspace: ${name}";
+
+  /// "Current in workspace: ${number}"
+  String workspaceDeniedSubtitle(String number) =>
+      "Current in workspace: ${number}";
+
+  /// "Try later again"
+  String get workspaceDeniedAction => "Try later again";
+
+  /// "Language for: machine screen"
+  String get _comment__009 => "Language for: machine screen";
+
+  /// "Machine"
+  String get machineTitle => "Machine";
+
+  /// "Safety instruction"
+  String get machineSafetyInstruction => "Safety instruction";
+
+  /// "Make sure to follow the safety instructions below"
+  String get machineSafetyInfo =>
+      "Make sure to follow the safety instructions below";
+
+  /// "Machine in use - Machine: ${name}"
+  String machineUsingTitle(String name) => "Machine in use - Machine: ${name}";
+
+  /// "Description: ${description}"
+  String machineUsingSubtitle(String description) =>
+      "Description: ${description}";
+
+  /// "Exit current machine"
+  String get machineUsingAction => "Exit current machine";
+
+  /// "Machine not available - Machine: ${name}"
+  String machineDeniedTitle(String name) =>
+      "Machine not available - Machine: ${name}";
+
+  /// "Needed certificate: ${certificate}"
+  String machineDeniedSubtitle(String certificate) =>
+      "Needed certificate: ${certificate}";
+
+  /// "Use another machine"
+  String get machineDeniedAction => "Use another machine";
 }
 
 class _I18n_en_US extends I18n {
@@ -463,12 +521,88 @@ class _I18n_de_DE extends I18n {
 
   /// "Token validieren"
   @override
-  String get twofa_btn_label => "Token validieren";
+  String get twofaBtn_label => "Token validieren";
 
   /// "Validiert die Benutzer Eingabe und navigiert zur Home Seite"
   @override
-  String get twofa_btn_hint =>
+  String get twofaBtn_hint =>
       "Validiert die Benutzer Eingabe und navigiert zur Home Seite";
+
+  /// "Language for: workspace screen"
+  @override
+  String get _comment__008 => "Language for: workspace screen";
+
+  /// "Arbeitsbereich betreten - Arbeitsbereich: ${name}"
+  @override
+  String workspaceEnteredTitle(String name) =>
+      "Arbeitsbereich betreten - Arbeitsbereich: ${name}";
+
+  /// "Betreten am: ${date}"
+  @override
+  String workspaceEnteredSubtitle(String date) => "Betreten am: ${date}";
+
+  /// "Aktuellen Arbeitsbereich verlassen"
+  @override
+  String get workspaceEnteredAction => "Aktuellen Arbeitsbereich verlassen";
+
+  /// "Arbeitsbereich voll - Arbeitsbereich: ${name}"
+  @override
+  String workspaceDeniedTitle(String name) =>
+      "Arbeitsbereich voll - Arbeitsbereich: ${name}";
+
+  /// "Aktuell im Arbeitsbereich: ${number}"
+  @override
+  String workspaceDeniedSubtitle(String number) =>
+      "Aktuell im Arbeitsbereich: ${number}";
+
+  /// "Versuche es später nochmal"
+  @override
+  String get workspaceDeniedAction => "Versuche es später nochmal";
+
+  /// "Language for: machine screen"
+  @override
+  String get _comment__009 => "Language for: machine screen";
+
+  /// "Maschine"
+  @override
+  String get machineTitle => "Maschine";
+
+  /// "Sicherheitshinweise"
+  @override
+  String get machineSafetyInstruction => "Sicherheitshinweise";
+
+  /// "Beachten Sie unbedingt die folgenden Sicherheitshinweise"
+  @override
+  String get machineSafetyInfo =>
+      "Beachten Sie unbedingt die folgenden Sicherheitshinweise";
+
+  /// "Maschine in Benutzung - Maschine: ${name}"
+  @override
+  String machineUsingTitle(String name) =>
+      "Maschine in Benutzung - Maschine: ${name}";
+
+  /// "Beschreibung: ${description}"
+  @override
+  String machineUsingSubtitle(String description) =>
+      "Beschreibung: ${description}";
+
+  /// "Aktuelle Maschine verlassen"
+  @override
+  String get machineUsingAction => "Aktuelle Maschine verlassen";
+
+  /// "Maschine nicht verfügbar - Maschine: ${name}"
+  @override
+  String machineDeniedTitle(String name) =>
+      "Maschine nicht verfügbar - Maschine: ${name}";
+
+  /// "Benötigtes Zertifikat: ${certificate}"
+  @override
+  String machineDeniedSubtitle(String certificate) =>
+      "Benötigtes Zertifikat: ${certificate}";
+
+  /// "Andere Maschine benutzen"
+  @override
+  String get machineDeniedAction => "Andere Maschine benutzen";
 
   @override
   TextDirection get textDirection => TextDirection.ltr;
@@ -712,12 +846,88 @@ class _I18n_nl_NL extends I18n {
 
   /// "Teken valideren"
   @override
-  String get twofa_btn_label => "Teken valideren";
+  String get twofaBtn_label => "Teken valideren";
 
   /// "Valideert het door de gebruiker ingevoerde token en navigeert naar het beginscherm"
   @override
-  String get twofa_btn_hint =>
+  String get twofaBtn_hint =>
       "Valideert het door de gebruiker ingevoerde token en navigeert naar het beginscherm";
+
+  /// "Language for: workspace screen"
+  @override
+  String get _comment__008 => "Language for: workspace screen";
+
+  /// "Betreed het werkgebied - Werkgebied: ${name}"
+  @override
+  String workspaceEnteredTitle(String name) =>
+      "Betreed het werkgebied - Werkgebied: ${name}";
+
+  /// "Kom binnen bij: ${date}"
+  @override
+  String workspaceEnteredSubtitle(String date) => "Kom binnen bij: ${date}";
+
+  /// "Verlaat huidige werkgebied"
+  @override
+  String get workspaceEnteredAction => "Verlaat huidige werkgebied";
+
+  /// "Werkruimte vol - Werkruimte: ${name}"
+  @override
+  String workspaceDeniedTitle(String name) =>
+      "Werkruimte vol - Werkruimte: ${name}";
+
+  /// "Stroom in werkruimte: ${number}"
+  @override
+  String workspaceDeniedSubtitle(String number) =>
+      "Stroom in werkruimte: ${number}";
+
+  /// "Probeer het later nog eens."
+  @override
+  String get workspaceDeniedAction => "Probeer het later nog eens.";
+
+  /// "Language for: machine screen"
+  @override
+  String get _comment__009 => "Language for: machine screen";
+
+  /// "Machine"
+  @override
+  String get machineTitle => "Machine";
+
+  /// "Veiligheidsinstructie"
+  @override
+  String get machineSafetyInstruction => "Veiligheidsinstructie";
+
+  /// "Zorg ervoor dat u de veiligheidsinstructies hieronder volgt"
+  @override
+  String get machineSafetyInfo =>
+      "Zorg ervoor dat u de veiligheidsinstructies hieronder volgt";
+
+  /// "Machine in gebruik - Machine: ${name}"
+  @override
+  String machineUsingTitle(String name) =>
+      "Machine in gebruik - Machine: ${name}";
+
+  /// "Beschrijving: ${description}"
+  @override
+  String machineUsingSubtitle(String description) =>
+      "Beschrijving: ${description}";
+
+  /// "Huidige machine verlaten"
+  @override
+  String get machineUsingAction => "Huidige machine verlaten";
+
+  /// "Machine niet beschikbaar - Machine: ${name}"
+  @override
+  String machineDeniedTitle(String name) =>
+      "Machine niet beschikbaar - Machine: ${name}";
+
+  /// "Benodigd certificaat: ${certificate}"
+  @override
+  String machineDeniedSubtitle(String certificate) =>
+      "Benodigd certificaat: ${certificate}";
+
+  /// "Gebruik een andere machine"
+  @override
+  String get machineDeniedAction => "Gebruik een andere machine";
 
   @override
   TextDirection get textDirection => TextDirection.ltr;

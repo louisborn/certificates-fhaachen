@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
         withIcon: false,
         function: () => Navigator.pushNamed(
           context,
-          QRCodeScreen.route,
+          QRCodeScannerScreen.route,
         ),
         hint: I18n.of(context).homeOption_1_hint,
       ),

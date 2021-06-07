@@ -71,5 +71,26 @@
         "textfield_1_hint": "Invoer voor het unieke token",
         "btn_label": "Teken valideren",
         "btn_hint": "Valideert het door de gebruiker ingevoerde token en navigeert naar het beginscherm"
+    },
+    "_comment__008": "Language for: workspace screen",
+    "workspace": {
+        "enteredTitle": "Betreed het werkgebied - Werkgebied: {name}",
+        "enteredSubtitle": "Kom binnen bij: {date}",
+        "enteredAction": "Verlaat huidige werkgebied",
+        "deniedTitle": "Werkruimte vol - Werkruimte: {name}",
+        "deniedSubtitle": "Stroom in werkruimte: {number}",
+        "deniedAction": "Probeer het later nog eens."
+    },
+    "_comment__009": "Language for: machine screen",
+    "machine": {
+        "title": "Machine",
+        "safetyInstruction": "Veiligheidsinstructie",
+        "safetyInfo": "Zorg ervoor dat u de veiligheidsinstructies hieronder volgt",
+        "usingTitle": "Machine in gebruik - Machine: {name}",
+        "usingSubtitle": "Beschrijving: {description}",
+        "usingAction": "Huidige machine verlaten",
+        "deniedTitle": "Machine niet beschikbaar - Machine: {name}",
+        "deniedSubtitle": "Benodigd certificaat: {certificate}",
+        "deniedAction": "Gebruik een andere machine"
     }
 }

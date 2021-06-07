@@ -67,7 +67,7 @@ class _TwoFactorScreenState extends State<TwoFactorScreen> {
     var loading = Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CircularProgressIndicator(
+        const CircularProgressIndicator(
           valueColor: AlwaysStoppedAnimation<Color>(color_accent_green),
         ),
         const SizedBox(width: 8.0),
@@ -93,7 +93,7 @@ class _TwoFactorScreenState extends State<TwoFactorScreen> {
               key: this.formKey,
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     left: 8.0,
                     top: 24.0,
                     right: 8.0,
@@ -130,10 +130,10 @@ class _TwoFactorScreenState extends State<TwoFactorScreen> {
               child: loading,
             ),
       bottomSheet: BuildPrimaryButton(
-        text: I18n.of(context).twofa_btn_label,
+        text: I18n.of(context).twofaBtn_label,
         withIcon: false,
         function: do2fA,
-        hint: I18n.of(context).twofa_btn_hint,
+        hint: I18n.of(context).twofaBtn_hint,
       ),
     );
   }
