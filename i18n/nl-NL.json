@@ -92,5 +92,10 @@
         "deniedTitle": "Machine niet beschikbaar - Machine: {name}",
         "deniedSubtitle": "Benodigd certificaat: {certificate}",
         "deniedAction": "Gebruik een andere machine"
+    },
+    "_comment__010": "Language for: about screen",
+    "about": {
+        "title": "Over",
+        "information": "Digital.access is een mobiele applicatie die voorziet in toegangscontrole via qr-codes voor werkplekken voor de hogeschool voor de kunsten LUCA."
     }
 }

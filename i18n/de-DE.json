@@ -92,5 +92,10 @@
         "deniedTitle": "Maschine nicht verfügbar - Maschine: {name}",
         "deniedSubtitle": "Benötigtes Zertifikat: {certificate}",
         "deniedAction": "Andere Maschine benutzen"
+    },
+    "_comment__010": "Language for: about screen",
+    "about": {
+        "title": "Über",
+        "information": "Digital.access ist eine mobile Anwendung, die eine Zugangskontrolle über qr-Codes für Arbeitsplätze für die Universität LUCA Kunsthochschule bietet."
     }
 }

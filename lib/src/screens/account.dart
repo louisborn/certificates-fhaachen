@@ -20,10 +20,14 @@ class AccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// The app bar for this screen.
     final PreferredSizeWidget appBar = BuildAppBar(
       title: I18n.of(context).accountTitle,
     );
 
+    /// The circle avatar with the first letter of the
+    /// user first and last name.
+    ///
     final Widget avatar = Align(
       alignment: Alignment.center,
       child: BuildAccountCircle(
@@ -32,7 +36,8 @@ class AccountScreen extends StatelessWidget {
       ),
     );
 
-    final Widget user = Text(
+    /// The user`s name.
+    final Widget textWithUserName = Text(
       I18n.of(context).accountUser(
         this._firstName.toLowerCase() + ' ' + this._lastName.toLowerCase(),
       ),
@@ -40,7 +45,8 @@ class AccountScreen extends StatelessWidget {
       textAlign: TextAlign.center,
     );
 
-    final Widget id = Text(
+    /// The user`s student id.
+    final Widget textWithUserId = Text(
       I18n.of(context).accountId(
         this._id,
       ),
@@ -51,7 +57,7 @@ class AccountScreen extends StatelessWidget {
     return Scaffold(
       appBar: appBar,
       body: Padding(
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           left: 8.0,
           top: 24.0,
           right: 8.0,
@@ -62,11 +68,11 @@ class AccountScreen extends StatelessWidget {
             const SizedBox(
               height: 16.0,
             ),
-            user,
+            textWithUserName,
             const SizedBox(
               height: 8.0,
             ),
-            id,
+            textWithUserId,
           ],
         ),
       ),

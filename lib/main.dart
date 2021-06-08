@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 import 'components.dart';
 import 'services.dart';
 import 'screens.dart';
-
 import 'generated/i18n.dart';
 
 Future<void> main() async {
@@ -59,7 +58,8 @@ class MyApp extends StatelessWidget {
           AccountScreen.route: (context) => AccountScreen(),
           HistoryLogScreen.route: (context) => HistoryLogScreen(),
           CertificatesScreen.route: (context) => CertificatesScreen(),
-          SafetyInstructionScreen.route: (context) => SafetyInstructionScreen(),
+          ShowSafetyInstructionScreen.route: (context) =>
+              ShowSafetyInstructionScreen(),
           AboutScreen.route: (context) => AboutScreen(),
           CampusScreen.route: (context) => CampusScreen(),
           CampusDetailScreen.route: (context) => CampusDetailScreen(),

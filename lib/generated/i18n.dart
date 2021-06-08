@@ -272,6 +272,16 @@ class I18n implements WidgetsLocalizations {
 
   /// "Use another machine"
   String get machineDeniedAction => "Use another machine";
+
+  /// "Language for: about screen"
+  String get _comment__010 => "Language for: about screen";
+
+  /// "About"
+  String get aboutTitle => "About";
+
+  /// "Digital.access is a mobile application that provides access control via qr codes for workplaces for the university LUCA school of arts."
+  String get aboutInformation =>
+      "Digital.access is a mobile application that provides access control via qr codes for workplaces for the university LUCA school of arts.";
 }
 
 class _I18n_en_US extends I18n {
@@ -604,6 +614,19 @@ class _I18n_de_DE extends I18n {
   @override
   String get machineDeniedAction => "Andere Maschine benutzen";
 
+  /// "Language for: about screen"
+  @override
+  String get _comment__010 => "Language for: about screen";
+
+  /// "Über"
+  @override
+  String get aboutTitle => "Über";
+
+  /// "Digital.access ist eine mobile Anwendung, die eine Zugangskontrolle über qr-Codes für Arbeitsplätze für die Universität LUCA Kunsthochschule bietet."
+  @override
+  String get aboutInformation =>
+      "Digital.access ist eine mobile Anwendung, die eine Zugangskontrolle über qr-Codes für Arbeitsplätze für die Universität LUCA Kunsthochschule bietet.";
+
   @override
   TextDirection get textDirection => TextDirection.ltr;
 }
@@ -928,6 +951,19 @@ class _I18n_nl_NL extends I18n {
   /// "Gebruik een andere machine"
   @override
   String get machineDeniedAction => "Gebruik een andere machine";
+
+  /// "Language for: about screen"
+  @override
+  String get _comment__010 => "Language for: about screen";
+
+  /// "Over"
+  @override
+  String get aboutTitle => "Over";
+
+  /// "Digital.access is een mobiele applicatie die voorziet in toegangscontrole via qr-codes voor werkplekken voor de hogeschool voor de kunsten LUCA."
+  @override
+  String get aboutInformation =>
+      "Digital.access is een mobiele applicatie die voorziet in toegangscontrole via qr-codes voor werkplekken voor de hogeschool voor de kunsten LUCA.";
 
   @override
   TextDirection get textDirection => TextDirection.ltr;

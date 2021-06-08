@@ -92,5 +92,10 @@
         "deniedTitle": "Machine not available - Machine: {name}",
         "deniedSubtitle": "Needed certificate: {certificate}",
         "deniedAction": "Use another machine"
+    },
+    "_comment__010": "Language for: about screen",
+    "about": {
+        "title": "About",
+        "information": "Digital.access is a mobile application that provides access control via qr codes for workplaces for the university LUCA school of arts."
     }
 }

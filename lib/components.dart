@@ -16,7 +16,6 @@ export 'src/components/atoms/secondary_button.dart';
 export 'src/components/molecules/callout.dart';
 export 'src/components/molecules/modale.dart';
 export 'src/components/molecules/app_bar.dart';
-export 'src/components/molecules/certificate_container.dart';
 
 export 'src/components/organisms/button_container.dart';
 export 'src/components/organisms/bottom_navigation_bar.dart';
