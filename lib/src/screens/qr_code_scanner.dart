@@ -109,7 +109,7 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
       ),
     );
 
-    /// The loading animation for this screen.
+    /// The loading widget for this screen.
     final Widget loading = Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

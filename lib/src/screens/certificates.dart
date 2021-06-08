@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../generated/i18n.dart';
 import "../../components.dart";
+import '../../generated/i18n.dart';
+import '../../screens.dart';
 import '../../models.dart';
 import '../../services.dart';
 import '../../theme.dart';
@@ -31,15 +32,45 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    /// The app bar for this screen.
     final PreferredSizeWidget appBar = BuildAppBar(
       title: I18n.of(context).certificatesTitle,
     );
 
+    /// The displayed message if a snapshot has an error.
+    final Widget snapshotHasError = Padding(
+      padding: EdgeInsets.only(
+        left: 8.0,
+        top: 24.0,
+        right: 8.0,
+      ),
+      child: BuildCallout(
+        type: CalloutType.error,
+        title: I18n.of(context).error_default,
+      ),
+    );
+
+    /// The displayed message if a snapshot data is false.
+    final Widget snapshotFalseData = Padding(
+      padding: EdgeInsets.only(
+        left: 8.0,
+        top: 24.0,
+        right: 8.0,
+      ),
+      child: BuildCallout(
+        type: CalloutType.attention,
+        title: I18n.of(context).error_noData,
+      ),
+    );
+
+    /// The loading widget for this screen.
     var loading = Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(color_accent_green),
+          valueColor: AlwaysStoppedAnimation<Color>(
+            color_accent_green,
+          ),
         ),
         const SizedBox(width: 8.0),
         Text(I18n.of(context).loading),
@@ -51,31 +82,10 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
       body: FutureBuilder(
         future: this.future,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasError)
-            return Padding(
-              padding: EdgeInsets.only(
-                left: 8.0,
-                top: 24.0,
-                right: 8.0,
-              ),
-              child: BuildCallout(
-                type: CalloutType.error,
-                title: I18n.of(context).error_default,
-              ),
-            );
+          if (snapshot.hasError) return snapshotHasError;
 
           if (snapshot.hasData && snapshot.data == false)
-            return Padding(
-              padding: EdgeInsets.only(
-                left: 8.0,
-                top: 24.0,
-                right: 8.0,
-              ),
-              child: BuildCallout(
-                type: CalloutType.attention,
-                title: I18n.of(context).error_noData,
-              ),
-            );
+            return snapshotFalseData;
 
           if (snapshot.connectionState == ConnectionState.done) {
             this.data = snapshot.data;
@@ -91,15 +101,19 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
                   Expanded(
                     child: ListView.builder(
                       itemCount: data.length,
-                      itemBuilder: (BuildContext context, int index) {
+                      itemBuilder: (
+                        BuildContext context,
+                        int index,
+                      ) {
                         return Padding(
-                          padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
-                          child: BuildCertificateContainer(
-                            name: data[index].name,
-                            usage: data[index].machine,
-                            assignedTo: data[index].assignedTo,
-                            descripition: data[index].description,
-                            safetyInstruction: data[index].safetyInstruction,
+                          padding: EdgeInsets.only(
+                            top: 8.0,
+                            right: 8.0,
+                            bottom: 8.0,
+                          ),
+                          child: _buildCertificateContainer(
+                            context,
+                            index,
                           ),
                         );
                       },
@@ -115,5 +129,92 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
         },
       ),
     );
+  }
+
+  /// The certificate container widget.
+  ///
+  /// The [index] is the current index of the list item [data].
+  ///
+  Widget _buildCertificateContainer(BuildContext context, int index) {
+    final Widget link = GestureDetector(
+      onTap: () => Navigator.pushNamed(
+        context,
+        ShowSafetyInstructionScreen.route,
+        arguments: ImageModel(imageRef: data[index].safetyInstruction),
+      ),
+      child: Text(
+        I18n.of(context).certificatesShow_certificate,
+        style: BuildTextStyle(type: TextBackground.white)
+            .body2
+            .copyWith(color: color_accent_blue),
+      ),
+    );
+
+    final Widget iconAndLink = Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        BuildIcon(
+          icon: data[index].assignedTo!.contains(
+                    PreferenceService().getString('studentId'),
+                  )
+              ? Icons.check_box_outlined
+              : Icons.indeterminate_check_box_outlined,
+          color: data[index].assignedTo!.contains(
+                    PreferenceService().getString('studentId'),
+                  )
+              ? color_success
+              : color_error,
+        ),
+        link,
+      ],
+    );
+
+    final Widget certificateInformation = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          I18n.of(context).certificatesCertificate_name +
+              ': ' +
+              data[index].name!,
+          style: BuildTextStyle(type: TextBackground.white).body1,
+        ),
+        const SizedBox(height: 8.0),
+        Text(
+          I18n.of(context).certificatesCertificate_usage +
+              ': ' +
+              data[index].machine!,
+          style: BuildTextStyle(type: TextBackground.white).body1,
+        ),
+        const SizedBox(height: 16.0),
+        Text(
+          I18n.of(context).certificatesCertificate_descr +
+              ': ' +
+              data[index].description!,
+          style: BuildTextStyle(type: TextBackground.white).body2,
+        ),
+      ],
+    );
+
+    final Widget result = Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Color(0xff000000),
+          width: 2.0,
+        ),
+        borderRadius: BorderRadius.zero,
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            iconAndLink,
+            const SizedBox(height: 24.0),
+            certificateInformation,
+          ],
+        ),
+      ),
+    );
+
+    return result;
   }
 }
