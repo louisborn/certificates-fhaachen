@@ -97,5 +97,11 @@
     "about": {
         "title": "About",
         "information": "Digital.access is a mobile application that provides access control via qr codes for workplaces for the university LUCA school of arts."
+    },
+    "_comment__011": "Language for: qr code screen",
+    "qr": {
+        "title": "Scan qr code",
+        "information": "Please scan the QR code to either enter a workspace or put a machine into use.",
+        "btn": "Next"
     }
 }

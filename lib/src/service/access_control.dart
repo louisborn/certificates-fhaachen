@@ -126,7 +126,7 @@ class AccessControlService extends ChangeNotifier {
     try {
       _collRef.doc(YEAR_MONTH_DAY_HOUR24_MINUTE).set(
         {
-          "date:": YEAR_NUM_MONTH_DAY,
+          "date": YEAR_NUM_MONTH_DAY,
           "enter": HOUR24_MINUTE,
           "leave": "",
           "studentId": studentId,

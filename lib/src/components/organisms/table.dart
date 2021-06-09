@@ -1,3 +1,4 @@
+import 'package:certificates/components.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models.dart';
@@ -66,7 +67,7 @@ class _BuildTableState extends State<BuildTable> {
         GestureDetector(
           onTap: sortByWorkspace,
           child: Container(
-            width: MediaQuery.of(context).size.width / 4,
+            width: MediaQuery.of(context).size.width / 3,
             child: Text(
               widget.tableHeader[0],
               style: widget.isSortedByWorkspace == true
@@ -98,7 +99,7 @@ class _BuildTableState extends State<BuildTable> {
         GestureDetector(
           onTap: sortByLeave,
           child: Container(
-            width: MediaQuery.of(context).size.width / 4,
+            width: MediaQuery.of(context).size.width / 3.4,
             child: Text(
               widget.tableHeader[2],
               style: widget.isSortedByLeave == true
@@ -125,33 +126,50 @@ class _BuildTableState extends State<BuildTable> {
         itemCount: widget.data.length,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
-            padding: EdgeInsets.only(top: 4.0, bottom: 4.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            padding: EdgeInsets.only(
+              top: 4.0,
+              bottom: 4.0,
+            ),
+            child: Column(
               children: [
-                Container(
-                  width: MediaQuery.of(context).size.width / 4,
-                  child: Text(
-                    widget.data[index].workspaceName!,
-                    textAlign: TextAlign.start,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width / 3,
+                      child: Text(
+                        widget.data[index].workspaceName!,
+                        textAlign: TextAlign.start,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 5,
+                      child: Text(
+                        widget.data[index].enter!,
+                        textAlign: TextAlign.start,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 5,
+                      child: Text(
+                        widget.data[index].leave!,
+                        textAlign: TextAlign.start,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    BuildIconButton(
+                      icon: Icons.more_vert_outlined,
+                      onTap: () async {
+                        _showInformation(index);
+                      },
+                      hint: 'hint',
+                    ),
+                  ],
                 ),
-                Container(
-                  width: MediaQuery.of(context).size.width / 4,
-                  child: Text(
-                    widget.data[index].enter!,
-                    textAlign: TextAlign.start,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width / 4,
-                  child: Text(
-                    widget.data[index].leave!,
-                    textAlign: TextAlign.start,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                Divider(
+                  color: color_gray50,
                 ),
               ],
             ),
@@ -171,5 +189,52 @@ class _BuildTableState extends State<BuildTable> {
     );
 
     return result;
+  }
+
+  Future<void> _showInformation(int index) async {
+    await showDialog<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return SimpleDialog(
+            title: const Text('More information'),
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(
+                  left: 24.0,
+                  right: 24.0,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Name: '),
+                          Text('Date: '),
+                          Text('Enter time: '),
+                          Text('Leave time: '),
+                          Text('Student id: '),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(widget.data[index].workspaceName!),
+                          Text(widget.data[index].date!),
+                          Text(widget.data[index].enter!),
+                          Text(widget.data[index].leave!),
+                          Text(widget.data[index].studentId!),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          );
+        });
   }
 }

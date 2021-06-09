@@ -282,6 +282,19 @@ class I18n implements WidgetsLocalizations {
   /// "Digital.access is a mobile application that provides access control via qr codes for workplaces for the university LUCA school of arts."
   String get aboutInformation =>
       "Digital.access is a mobile application that provides access control via qr codes for workplaces for the university LUCA school of arts.";
+
+  /// "Language for: qr code screen"
+  String get _comment__011 => "Language for: qr code screen";
+
+  /// "Scan qr code"
+  String get qrTitle => "Scan qr code";
+
+  /// "Please scan the QR code to either enter a workspace or put a machine into use."
+  String get qrInformation =>
+      "Please scan the QR code to either enter a workspace or put a machine into use.";
+
+  /// "Next"
+  String get qrBtn => "Next";
 }
 
 class _I18n_en_US extends I18n {
@@ -627,6 +640,23 @@ class _I18n_de_DE extends I18n {
   String get aboutInformation =>
       "Digital.access ist eine mobile Anwendung, die eine Zugangskontrolle über qr-Codes für Arbeitsplätze für die Universität LUCA Kunsthochschule bietet.";
 
+  /// "Language for: qr code screen"
+  @override
+  String get _comment__011 => "Language for: qr code screen";
+
+  /// "QR-Code scannen"
+  @override
+  String get qrTitle => "QR-Code scannen";
+
+  /// "Bitte scannen Sie den QR-Code, um entweder ein Arbeitsbereich zu betreten oder eine Maschine in Nutzung zu nehmen."
+  @override
+  String get qrInformation =>
+      "Bitte scannen Sie den QR-Code, um entweder ein Arbeitsbereich zu betreten oder eine Maschine in Nutzung zu nehmen.";
+
+  /// "Weiter"
+  @override
+  String get qrBtn => "Weiter";
+
   @override
   TextDirection get textDirection => TextDirection.ltr;
 }
@@ -964,6 +994,23 @@ class _I18n_nl_NL extends I18n {
   @override
   String get aboutInformation =>
       "Digital.access is een mobiele applicatie die voorziet in toegangscontrole via qr-codes voor werkplekken voor de hogeschool voor de kunsten LUCA.";
+
+  /// "Language for: qr code screen"
+  @override
+  String get _comment__011 => "Language for: qr code screen";
+
+  /// "Scan qr code"
+  @override
+  String get qrTitle => "Scan qr code";
+
+  /// "Scan de QR-code om een werkruimte te betreden of een machine in gebruik te nemen."
+  @override
+  String get qrInformation =>
+      "Scan de QR-code om een werkruimte te betreden of een machine in gebruik te nemen.";
+
+  /// "Volgende"
+  @override
+  String get qrBtn => "Volgende";
 
   @override
   TextDirection get textDirection => TextDirection.ltr;
