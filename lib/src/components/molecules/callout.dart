@@ -6,6 +6,9 @@ import '../../../theme.dart';
 /// Indicates what type of callout is displayed.
 ///
 enum CalloutType {
+  /// Callout with information message.
+  information,
+
   /// Callout with success message.
   success,
 
@@ -32,9 +35,12 @@ class BuildCallout extends StatelessWidget {
     this.constraints = const BoxConstraints(minWidth: 112.0, minHeight: 48.0),
     this.padding = const EdgeInsets.all(8.0),
   })  : assert(title != null),
-        assert(type == CalloutType.success ||
-            type == CalloutType.attention ||
-            type == CalloutType.error);
+        assert(
+          type == CalloutType.success ||
+              type == CalloutType.attention ||
+              type == CalloutType.error ||
+              type == CalloutType.information,
+        );
 
   /// The callout type.
   ///
@@ -60,6 +66,7 @@ class BuildCallout extends StatelessWidget {
   final EdgeInsetsGeometry padding;
 
   IconData selectIcon() {
+    if (this.type == CalloutType.information) return Icons.info_outline;
     if (this.type == CalloutType.success) return Icons.check_circle_outline;
     if (this.type == CalloutType.attention) return Icons.info_outline;
     if (this.type == CalloutType.error) return Icons.error_outline;
@@ -67,6 +74,7 @@ class BuildCallout extends StatelessWidget {
   }
 
   Color selectColor() {
+    if (this.type == CalloutType.information) return color_accent_blue;
     if (this.type == CalloutType.success) return color_success;
     if (this.type == CalloutType.attention) return color_attention;
     if (this.type == CalloutType.error) return color_error;
