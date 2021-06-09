@@ -57,7 +57,7 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
 
     /// The app bar for this screen.
     final PreferredSizeWidget appBar = BuildAppBar(
-      title: 'Scan QR code',
+      title: I18n.of(context).qrTitle,
     );
 
     var doValidateWorkspaceData = () async {
@@ -93,19 +93,33 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
     };
 
     /// The button to validate the qr code scan.
-    final Widget button = Align(
-      alignment: Alignment.bottomCenter,
-      child: Container(
-        padding: EdgeInsets.all(16.0),
-        child: BuildSecondaryButton(
-          text: 'Validate data',
-          withIcon: true,
-          icon: Icons.qr_code_outlined,
-          function: () => result!.code.length > 35
-              ? doValidateWorkspaceData()
-              : doValidateCertificateData(),
-          hint: 'Validate qr code data',
+    final Widget button = Padding(
+      padding: EdgeInsets.only(
+        bottom: 24.0,
+      ),
+      child: Align(
+        alignment: Alignment.bottomRight,
+        child: Container(
+          padding: EdgeInsets.all(16.0),
+          child: BuildTertiaryButton(
+            text: I18n.of(context).qrBtn,
+            withIcon: true,
+            icon: Icons.next_plan_outlined,
+            function: () => result!.code.length > 35
+                ? doValidateWorkspaceData()
+                : doValidateCertificateData(),
+            hint: 'Validate qr code data',
+          ),
         ),
+      ),
+    );
+
+    final Widget textForInformation = Align(
+      alignment: Alignment.centerLeft,
+      child: Text(
+        I18n.of(context).qrInformation,
+        style: BuildTextStyle(type: TextBackground.white).body2,
+        textAlign: TextAlign.left,
       ),
     );
 
@@ -127,11 +141,24 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
           ? Center(
               child: loading,
             )
-          : Stack(
-              children: <Widget>[
-                _buildQrView(context),
-                if (result != null) button,
-              ],
+          : Padding(
+              padding: EdgeInsets.only(
+                left: 24.0,
+                top: 24.0,
+                right: 24.0,
+              ),
+              child: Stack(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).size.height * 0.50,
+                    ),
+                    child: _buildQrView(context),
+                  ),
+                  textForInformation,
+                  if (result != null) button,
+                ],
+              ),
             ),
     );
   }
@@ -140,16 +167,13 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
   Widget _buildQrView(BuildContext context) {
     var scanArea = (MediaQuery.of(context).size.width < 400 ||
             MediaQuery.of(context).size.height < 400)
-        ? 150.0
-        : 300.0;
+        ? 200.0
+        : 400.0;
     return QRView(
       key: qrKey,
       onQRViewCreated: _onQRViewCreated,
       overlay: QrScannerOverlayShape(
-          borderColor: color_accent_green,
-          borderRadius: 10,
-          borderLength: 30,
-          borderWidth: 10,
+          borderColor: Color(0xff000000).withOpacity(0.0),
           cutOutSize: scanArea),
     );
   }

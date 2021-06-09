@@ -97,5 +97,11 @@
     "about": {
         "title": "Über",
         "information": "Digital.access ist eine mobile Anwendung, die eine Zugangskontrolle über qr-Codes für Arbeitsplätze für die Universität LUCA Kunsthochschule bietet."
+    },
+    "_comment__011": "Language for: qr code screen",
+    "qr": {
+        "title": "QR-Code scannen",
+        "information": "Bitte scannen Sie den QR-Code, um entweder ein Arbeitsbereich zu betreten oder eine Maschine in Nutzung zu nehmen.",
+        "btn": "Weiter"
     }
 }

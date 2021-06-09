@@ -97,5 +97,11 @@
     "about": {
         "title": "Over",
         "information": "Digital.access is een mobiele applicatie die voorziet in toegangscontrole via qr-codes voor werkplekken voor de hogeschool voor de kunsten LUCA."
+    },
+    "_comment__011": "Language for: qr code screen",
+    "qr": {
+        "title": "Scan qr code",
+        "information": "Scan de QR-code om een werkruimte te betreden of een machine in gebruik te nemen.",
+        "btn": "Volgende"
     }
 }
