@@ -1,5 +1,4 @@
-# certificates ![](https://img.shields.io/badge/Beta-v0.9.1-informational?style=flat&logoColor=white&color=ffef00)
-
+# certificates
 
 
 This project is part of the evaluation of the course ‘Mobile Information Systems’ during
@@ -21,10 +20,6 @@ To prove that a student has the required knowledge to use a certain machine of
 equipment, he/she receives a certificate. These certificates will be provided digitally only. The 
 app will allow to check that the student has the certificate.
 
-## Flow
-### Login with <sup>1</sup>2fA:
-![certificates_login_flow](https://user-images.githubusercontent.com/56700857/118415064-76deb580-b6a8-11eb-9a2e-1904353f7270.png)
-
 ## Technologies
 * Flutter version: 2.0.6 (Channel stable)
 * Dart version: 2.12.3
@@ -32,9 +27,5 @@ app will allow to check that the student has the certificate.
 * Firebase firestore: latest
 * Environment SDK: >=2.12.0 <3.0.0
 
-When using _Visual Studio Code_ as a editor ensure to download **"Better Comments"** as a extension.
-
 ## Footnotes
 * <sup>1</sup>[2fA]: Two factor Authentication
-
-_More information following._
