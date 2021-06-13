@@ -16,6 +16,11 @@ laser cutters,…Certain equipment can be used without instruction, but other, m
 equipment may only be used when some training has been followed successfully.
 <br>
 
+
+To prove that a student has the required knowledge to use a certain machine of 
+equipment, he/she receives a certificate. These certificates will be provided digitally only. The 
+app will allow to check that the student has the certificate.
+
 ## Technologies
 * Flutter version: 2.0.6 (Channel stable)
 * Dart version: 2.12.3
