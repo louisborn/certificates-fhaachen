@@ -28,4 +28,3 @@ app will allow to check that the student has the certificate.
 * Environment SDK: >=2.12.0 <3.0.0
 
 ## Footnotes
-* <sup>1</sup>[2fA]: Two factor Authentication
