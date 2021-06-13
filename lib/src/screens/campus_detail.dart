@@ -89,67 +89,93 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
 
           if (snapshot.connectionState == ConnectionState.done) {
             List<Workspace> workspace = snapshot.data;
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                container,
-                const SizedBox(height: 32.0),
-                title,
-                const SizedBox(height: 8.0),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: workspace.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        width: 300,
-                        height: 300,
-                        padding: EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              workspace[index].name!,
-                              style: BuildTextStyle(type: TextBackground.white)
-                                  .header3,
+            return Padding(
+              padding: const EdgeInsets.only(
+                left: 24.0,
+                top: 24.0,
+                right: 24.0,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  container,
+                  const SizedBox(height: 32.0),
+                  title,
+                  const SizedBox(height: 8.0),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: workspace.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Card(
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                              top: 8.0,
+                              bottom: 8.0,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Flexible(
-                                  child: Text(
-                                    'In workspace: ' +
-                                        workspace[index]
-                                            .currentInWorkspace!
-                                            .toString(),
+                            child: Column(
+                              children: <Widget>[
+                                ListTile(
+                                  leading: workspace[index]
+                                                  .currentInWorkspace! >
+                                              workspace[index].maxInWorkspace! /
+                                                  2 &&
+                                          workspace[index].currentInWorkspace! <
+                                              workspace[index].maxInWorkspace!
+                                      ? BuildIcon(
+                                          icon: Icons.wifi_tethering_outlined,
+                                          color: color_attention,
+                                        )
+                                      : BuildIcon(
+                                          icon: workspace[index]
+                                                      .currentInWorkspace ==
+                                                  workspace[index]
+                                                      .maxInWorkspace
+                                              ? Icons.close
+                                              : Icons.wifi_tethering_outlined,
+                                          color: workspace[index]
+                                                      .currentInWorkspace ==
+                                                  workspace[index]
+                                                      .maxInWorkspace
+                                              ? color_error
+                                              : color_success,
+                                        ),
+                                  title: Text(
+                                    workspace[index].name!,
                                     style: BuildTextStyle(
                                             type: TextBackground.white)
-                                        .body2,
+                                        .body1,
                                   ),
-                                ),
-                                const SizedBox(width: 24.0),
-                                Flexible(
-                                  child: Text(
-                                    'Max. allowed: ' +
-                                        workspace[index]
-                                            .maxInWorkspace!
-                                            .toString(),
-                                    style: BuildTextStyle(
-                                            type: TextBackground.white)
-                                        .body2,
+                                  subtitle: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(
+                                        height: 8.0,
+                                      ),
+                                      Text(
+                                        'Current students in workspace: ' +
+                                            workspace[index]
+                                                .currentInWorkspace!
+                                                .toString(),
+                                      ),
+                                      Text(
+                                        'Maximal allowed: ' +
+                                            workspace[index]
+                                                .maxInWorkspace!
+                                                .toString(),
+                                      )
+                                    ],
                                   ),
                                 ),
                               ],
                             ),
-                            const Divider(),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                )
-              ],
+                          ),
+                        );
+                      },
+                    ),
+                  )
+                ],
+              ),
             );
           }
 

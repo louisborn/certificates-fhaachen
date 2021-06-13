@@ -1,9 +1,9 @@
-import 'package:certificates/generated/i18n.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../components.dart';
+import '../../generated/i18n.dart';
 import '../../theme.dart';
 
 /// A screen to provide a information about this application.
@@ -34,9 +34,9 @@ class AboutScreen extends StatelessWidget {
       appBar: appBar,
       body: Padding(
         padding: EdgeInsets.only(
-          left: 8.0,
+          left: 24.0,
           top: 24.0,
-          right: 8.0,
+          right: 24.0,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

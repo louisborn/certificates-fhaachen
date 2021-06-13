@@ -62,7 +62,7 @@ class _AccessWorkpsaceScreenState extends State<AccessWorkpsaceScreen> {
       ),
       actionText: I18n.of(context).workspaceEnteredAction,
       icon: Icons.close,
-      function: () => doLeaveWorkspace,
+      function: () => doLeaveWorkspace(),
       hint: 'Modale information for entered user in workspace',
     );
 
@@ -77,7 +77,7 @@ class _AccessWorkpsaceScreenState extends State<AccessWorkpsaceScreen> {
       ),
       actionText: I18n.of(context).workspaceDeniedAction,
       icon: Icons.close,
-      function: () => doTryAgain,
+      function: () => doTryAgain(),
       hint: 'Modale information for denied user in workspace',
     );
 
