@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../../components.dart';
 
-/// A icon button used in this application.
+/// An icon button used in this application.
 ///
 class BuildIconButton extends StatelessWidget {
   /// Create an icon button.
+  ///
+  /// The [size] can not be smaller than 24.0 px.
   ///
   BuildIconButton({
     required this.icon,
@@ -18,13 +20,19 @@ class BuildIconButton extends StatelessWidget {
   /// The displayed icon data.
   final IconData icon;
 
-  /// The executed function on tap.
+  /// The executed on tap function.
   final Function()? onTap;
 
   /// The button`s size.
+  ///
+  /// Default/ Minimum [size] is 24.0 px.
+  ///
   final double size;
 
   /// The button`s color.
+  ///
+  /// Default [color] is black.
+  ///
   final Color color;
 
   /// The brief textual description of the result of an action
