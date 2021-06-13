@@ -1,4 +1,4 @@
-# certificates
+## certificates
 
 
 This project is part of the evaluation of the course ‘Mobile Information Systems’ during
