@@ -15,3 +15,10 @@ Typical machines are sawing machines, milling machines, electrical screwdrivers,
 laser cutters,…Certain equipment can be used without instruction, but other, more specialized, 
 equipment may only be used when some training has been followed successfully.
 <br>
+
+## Technologies
+* Flutter version: 2.0.6 (Channel stable)
+* Dart version: 2.12.3
+* Android SDK version: 30.0.3
+* Firebase firestore: latest
+* Environment SDK: >=2.12.0 <3.0.0
