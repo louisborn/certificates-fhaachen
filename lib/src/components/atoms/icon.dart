@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
-/// A simple icon for this project.
+/// A icon used in this application.
+///
+/// The [label] is used in the [Semantics] widget for accessibility reason.
 ///
 class BuildIcon extends StatelessWidget {
   /// Create a icon.
   ///
-  /// The minimum [size] is 24.0.
-  BuildIcon({
+  /// The default icon [color] is black. The minimum icon [size] is 24.0.
+  ///
+  const BuildIcon({
     required this.icon,
     this.color = const Color(0xff000000),
     this.size = 24.0,
@@ -23,9 +26,6 @@ class BuildIcon extends StatelessWidget {
   final double size;
 
   /// The brief textual description of the widget.
-  ///
-  /// Is used in the [Semantics] widget for accessibility reason.
-  ///
   final String? label;
 
   @override
