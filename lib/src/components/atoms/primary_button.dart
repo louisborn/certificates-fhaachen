@@ -2,10 +2,21 @@ import 'package:flutter/material.dart';
 
 /// A primary button used in the application.
 ///
+/// A primary button should be used for the most important action on a page.
+/// If the button is not a key action consider using a secondary button.
+///
+/// The [hint] is used in the [Semantics] widget for accessibility reason.
+///
 class BuildPrimaryButton extends StatelessWidget {
   /// Create a primary button.
   ///
-  BuildPrimaryButton({
+  /// The [height] must be 48.0 pixels. The [text] and [function] can
+  /// not be null.
+  ///
+  /// If [withIcon] is `true` then the button has a leading icon with
+  /// [Icons.check_box_outline_blank] as default.
+  ///
+  const BuildPrimaryButton({
     required this.text,
     required this.withIcon,
     this.icon = Icons.check_box_outline_blank,
@@ -26,15 +37,9 @@ class BuildPrimaryButton extends StatelessWidget {
   final String? text;
 
   /// The button`s icon.
-  ///
-  /// If `true` the button has a leading icon.
-  ///
   final bool withIcon;
 
   /// The leading icon of the button.
-  ///
-  /// The default value is [Icons.check_box_outline_blank].
-  ///
   final IconData icon;
 
   /// The text color.
@@ -46,7 +51,7 @@ class BuildPrimaryButton extends StatelessWidget {
   /// The height of the button.
   final double height;
 
-  /// The button`s action.
+  /// The button`s on tap action.
   final Function()? function;
 
   /// The text theme for the displayed text.
@@ -54,8 +59,6 @@ class BuildPrimaryButton extends StatelessWidget {
 
   /// The brief textual description of the result of an action
   /// performed on the button.
-  ///
-  /// Is used in the [Semantics] widget for accessibility reason.
   ///
   final String? hint;
 
