@@ -2,8 +2,19 @@ import 'package:flutter/material.dart';
 
 /// A secondary button used in the application.
 ///
+/// A secondary button should be used in combination with a
+/// primary button as a way to create action hierarchy.
+///
+/// The [hint] is used in the [Semantics] widget for accessibility reason.
+///
 class BuildSecondaryButton extends StatelessWidget {
   /// Create a secondary button.
+  ///
+  /// The [height] must be 48.0 pixels. The [text] and [function] can
+  /// not be null.
+  ///
+  /// If [withIcon] is `true` then the button has a leading icon with
+  /// [Icons.check_box_outline_blank] as default.
   ///
   BuildSecondaryButton({
     required this.text,
@@ -26,15 +37,9 @@ class BuildSecondaryButton extends StatelessWidget {
   final String? text;
 
   /// The button`s icon.
-  ///
-  /// If `true` the button has a leading icon.
-  ///
   final bool withIcon;
 
   /// The leading icon of the button.
-  ///
-  /// The default value is [Icons.check_box_outline_blank].
-  ///
   final IconData icon;
 
   /// The text color.
@@ -54,8 +59,6 @@ class BuildSecondaryButton extends StatelessWidget {
 
   /// The brief textual description of the result of an action
   /// performed on the button.
-  ///
-  /// Is used in the [Semantics] widget for accessibility reason.
   ///
   final String? hint;
 
