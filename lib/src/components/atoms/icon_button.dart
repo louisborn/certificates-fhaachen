@@ -4,12 +4,14 @@ import '../../../components.dart';
 
 /// An icon button used in this application.
 ///
+/// The [hint] is used in the [Semantics] widget for accessibility reason.
+///
 class BuildIconButton extends StatelessWidget {
   /// Create an icon button.
   ///
-  /// The [size] can not be smaller than 24.0 px.
+  /// The default [color] is black. The minimum [size] is 24.0 pixels.
   ///
-  BuildIconButton({
+  const BuildIconButton({
     required this.icon,
     required this.onTap,
     this.color = const Color(0xff000000),
@@ -24,21 +26,13 @@ class BuildIconButton extends StatelessWidget {
   final Function()? onTap;
 
   /// The button`s size.
-  ///
-  /// Default/ Minimum [size] is 24.0 px.
-  ///
   final double size;
 
   /// The button`s color.
-  ///
-  /// Default [color] is black.
-  ///
   final Color color;
 
   /// The brief textual description of the result of an action
   /// performed on the button.
-  ///
-  /// Is used in the [Semantics] widget for accessibility reason.
   ///
   final String? hint;
 
