@@ -27,5 +27,8 @@ app will allow to check that the student has the certificate.
 * Firebase firestore: latest
 * Environment SDK: >=2.12.0 <3.0.0
 
-## Footnotes
-
+## Contribution
+Developers:
+* [Louis Born](https://github.com/louisborn)
+* [Theodhor Zhobro](https://github.com/Theodhor21)
+* [Julia Hellebrand](https://github.com/JuliaHellebrand)
