@@ -5,8 +5,18 @@ import '../../../theme.dart';
 
 /// A tertiary button used in the application.
 ///
+/// A tertiary button should be used in isolation, for less
+/// prominent actions, or paired with a Primary or Secondary button.
+///
+/// The [hint] is used in the [Semantics] widget for accessibility reason.
+///
 class BuildTertiaryButton extends StatelessWidget {
   /// Create a tertiary button.
+  ///
+  /// The [text] and [function] must not be null.
+  ///
+  /// If [withIcon] is `true` then the button has a leading icon with
+  /// [Icons.check_box_outline_blank] as default.
   ///
   BuildTertiaryButton({
     required this.text,
@@ -26,15 +36,9 @@ class BuildTertiaryButton extends StatelessWidget {
   final String? text;
 
   /// The button`s icon.
-  ///
-  /// If `true` the button has a leading icon.
-  ///
   final bool withIcon;
 
   /// The leading icon of the button.
-  ///
-  /// The default value is [Icons.check_box_outline_blank].
-  ///
   final IconData icon;
 
   /// The text color.
@@ -48,8 +52,6 @@ class BuildTertiaryButton extends StatelessWidget {
 
   /// The brief textual description of the result of an action
   /// performed on the button.
-  ///
-  /// Is used in the [Semantics] widget for accessibility reason.
   ///
   final String? hint;
 
