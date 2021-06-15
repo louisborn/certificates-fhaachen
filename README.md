@@ -16,6 +16,7 @@ laser cutters,…Certain equipment can be used without instruction, but other, m
 equipment may only be used when some training has been followed successfully.
 <br>
 
+
 To prove that a student has the required knowledge to use a certain machine of 
 equipment, he/she receives a certificate. These certificates will be provided digitally only. The 
 app will allow to check that the student has the certificate.
@@ -26,9 +27,3 @@ app will allow to check that the student has the certificate.
 * Android SDK version: 30.0.3
 * Firebase firestore: latest
 * Environment SDK: >=2.12.0 <3.0.0
-
-## Design and color theme decision
-We wanted to offer the students an enviroment, that was familiar for them. Therefore we got inspired by the website of the LUCA School of Arts. 
-By using the same recognizable font for headlines and color for buttons, this creates an enviroment that the students automatically have a connection to.
-The green banner below the app bar is a signature that symbolizes our company.
-
