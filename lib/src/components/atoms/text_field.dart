@@ -4,8 +4,16 @@ import '../../theme/colors.dart';
 
 /// A text field used in the application.
 ///
+/// The [BuildTextField] consists of a [Column] containing a
+/// [label] text and a [TextFormField].
+///
+/// The [hint] is used in the [Semantics] widget for accessibility reason.
+///
 class BuildTextField extends StatelessWidget {
   /// Create a text field.
+  ///
+  /// The [label], [isMandatory] function, [onSaved] function,
+  /// [validator] is required.
   ///
   BuildTextField({
     required this.label,
@@ -16,7 +24,7 @@ class BuildTextField extends StatelessWidget {
       fontSize: 16.0,
       fontWeight: FontWeight.bold,
     ),
-    required this.hint,
+    this.hint,
   });
 
   /// The text field`s label text.
@@ -26,17 +34,16 @@ class BuildTextField extends StatelessWidget {
   /// or not.
   final bool? isMandatory;
 
+  /// The function to save the entered text.
   final void Function(String?)? onSaved;
 
+  /// The function to validate the entered text.
   final String? Function(String? s)? validator;
 
   /// The text style of the input text.
   final TextStyle textStyle;
 
   /// The brief textual description of the required input.
-  ///
-  /// Is used in the [Semantics] widget for accessibility reason.
-  ///
   final String? hint;
 
   @override
