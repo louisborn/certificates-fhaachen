@@ -7,21 +7,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 class BuildBanner extends StatelessWidget {
   /// Create a banner.
   ///
+  /// The default [width] is full screen size. The default
+  /// [height] is 8.0 pixels.
+  ///
   BuildBanner({
     this.width = double.infinity,
     this.height = 8.0,
   });
 
   /// The width of the banner.
-  ///
-  /// Default [width] is [double.infinity] (fill the screen width size).
-  ///
   final double width;
 
   /// The height of the banner.
-  ///
-  /// Default [height] is 8.0 px.
-  ///
   final double height;
 
   /// The banner itself.

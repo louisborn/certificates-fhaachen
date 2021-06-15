@@ -8,6 +8,10 @@ import '../../theme.dart';
 
 /// A screen to provide the main actions of the application.
 ///
+/// The [greet] widget returns a greet information text with the
+/// user`s name. The [buttonForQrCode] gives the user an option to
+/// scan a qr code to either enter a workspace or use a machine.
+/// The [buttonForCertificates]
 class HomeScreen extends StatelessWidget {
   /// The route name for this screen.
   static const String route = '/home';

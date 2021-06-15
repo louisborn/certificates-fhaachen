@@ -27,8 +27,8 @@ app will allow to check that the student has the certificate.
 * Firebase firestore: latest
 * Environment SDK: >=2.12.0 <3.0.0
 
-## Contribution
-Developers:
-* [Louis Born](https://github.com/louisborn)
-* [Theodhor Zhobro](https://github.com/Theodhor21)
-* [Julia Hellebrand](https://github.com/JuliaHellebrand)
+## Design and color theme decision
+We wanted to offer the students an enviroment, that was familiar for them. Therefore we got inspired by the website of the LUCA School of Arts. 
+By using the same recognizable font for headlines and color for buttons, this creates an enviroment that the students automatically have a connection to.
+The green banner below the app bar is a signature that symbolizes our company.
+
