@@ -19,12 +19,13 @@ enum CalloutType {
   error,
 }
 
-/// A state callout for this project.
+/// A state callout used in this application.
 ///
 class BuildCallout extends StatelessWidget {
-  /// Create a callout based on [Semantics], [Container] and [Row].
+  /// Create a callout.
   ///
-  /// The [title] and [types] must not be null.
+  /// The [title] and [types] must not be null. The [constraints] is
+  /// used to constrain the callout´s minimum size.
   ///
   BuildCallout({
     required this.type,
@@ -43,9 +44,6 @@ class BuildCallout extends StatelessWidget {
         );
 
   /// The callout type.
-  ///
-  /// The allowed [type]´s are: success, attention and error.
-  ///
   final CalloutType type;
 
   /// The general information text for the callout.
@@ -58,14 +56,13 @@ class BuildCallout extends StatelessWidget {
   final TextStyle? textStyle;
 
   /// Defines the callout´s size.
-  ///
-  /// Used to constrain the callout´s minimum size.
   final BoxConstraints constraints;
 
   /// The internal padding of the callout.
   final EdgeInsetsGeometry padding;
 
-  IconData selectIcon() {
+  /// Returns the matching icon for each callout type.
+  IconData getIcon() {
     if (this.type == CalloutType.information) return Icons.info_outline;
     if (this.type == CalloutType.success) return Icons.check_circle_outline;
     if (this.type == CalloutType.attention) return Icons.info_outline;
@@ -73,7 +70,8 @@ class BuildCallout extends StatelessWidget {
     throw Exception("Failed to assign icon");
   }
 
-  Color selectColor() {
+  /// Returns the matching color for each callout type.
+  Color getColor() {
     if (this.type == CalloutType.information) return color_accent_blue;
     if (this.type == CalloutType.success) return color_success;
     if (this.type == CalloutType.attention) return color_attention;
@@ -83,25 +81,7 @@ class BuildCallout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget main = Row(
-      children: [
-        BuildIcon(
-          icon: selectIcon(),
-          color: this.selectColor(),
-        ),
-        const SizedBox(width: 16.0),
-        Flexible(
-          child: Text(
-            this.title!,
-            style: this.textStyle!.copyWith(
-                  color: this.selectColor(),
-                ),
-          ),
-        )
-      ],
-    );
-
-    final Widget excepRow = this.exception == ""
+    final Widget textWithExceptionMessage = this.exception == ""
         ? Container()
         : Row(
             children: [
@@ -109,7 +89,7 @@ class BuildCallout extends StatelessWidget {
                 child: Text(
                   "Exception: " + this.exception,
                   style: this.textStyle!.copyWith(
-                        color: this.selectColor(),
+                        color: this.getColor(),
                         fontWeight: FontWeight.w400,
                       ),
                 ),
@@ -117,17 +97,35 @@ class BuildCallout extends StatelessWidget {
             ],
           );
 
+    final Widget main = Row(
+      children: [
+        BuildIcon(
+          icon: getIcon(),
+          color: this.getColor(),
+        ),
+        const SizedBox(width: 16.0),
+        Flexible(
+          child: Text(
+            this.title!,
+            style: this.textStyle!.copyWith(
+                  color: this.getColor(),
+                ),
+          ),
+        )
+      ],
+    );
+
     final Widget result = Container(
       constraints: this.constraints,
       padding: this.padding,
-      color: this.selectColor().withOpacity(0.1),
+      color: this.getColor().withOpacity(0.1),
       child: Column(
         children: [
           main,
           this.exception == ""
               ? const SizedBox(height: 0.0)
               : const SizedBox(height: 16.0),
-          excepRow,
+          textWithExceptionMessage,
         ],
       ),
     );
