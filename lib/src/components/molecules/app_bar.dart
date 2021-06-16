@@ -4,11 +4,18 @@ import '../../../components.dart';
 
 /// A app bar used in the application.
 ///
+/// The [BuildAppBar] consists of a [Column] containing an [AppBar]
+/// and at the bottom the [BuildBanner] for this application.
+///
 class BuildAppBar extends StatelessWidget with PreferredSizeWidget {
   /// Create a app bar.
   ///
+  /// The default background [color] is black. The [title] is by default
+  /// not [centered].
+  /// The [title] is required.
+  ///
   BuildAppBar({
-    this.title = '',
+    required this.title,
     this.centered = false,
     this.leading,
     this.actions,
@@ -64,7 +71,7 @@ class BuildAppBar extends StatelessWidget with PreferredSizeWidget {
     );
 
     return Semantics(
-      label: 'A app bar',
+      label: 'An app bar',
       child: result,
     );
   }
