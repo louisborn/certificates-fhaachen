@@ -15,8 +15,16 @@ enum ModaleType {
 
 /// A callout for the access state of a user.
 ///
+/// The [hint] is used in the [Semantics] widget for accessibility reason.
+///
 class BuildModale extends StatelessWidget {
   /// Create a access control callout.
+  ///
+  /// The [type], [title], [subtitle], [actionText], [function] and
+  /// [hint] are required. The modale [type] must either be [ModaleType.denied] or
+  /// [ModaleType.allowed].
+  ///
+  /// The [constraints] i sused to constrain the callout´s minimum size.
   ///
   const BuildModale({
     required this.type,
@@ -37,9 +45,6 @@ class BuildModale extends StatelessWidget {
         assert(function != null);
 
   /// The callout type.
-  ///
-  /// The allowed [type]´s are: denied and allowed.
-  ///
   final ModaleType type;
 
   /// The title text for the callout.
@@ -61,8 +66,6 @@ class BuildModale extends StatelessWidget {
   final Function()? function;
 
   /// Defines the callout´s size.
-  ///
-  /// Used to constrain the callout´s minimum size.
   final BoxConstraints constraints;
 
   /// The internal padding of the callout.
@@ -71,16 +74,16 @@ class BuildModale extends StatelessWidget {
   /// The brief textual description of the result of an action
   /// performed on the button of the callout.
   ///
-  /// Is used in the [Semantics] widget for accessibility reason.
-  ///
   final String? hint;
 
+  /// Returns the matching icon for the modale type.
   IconData getIcon() {
     if (this.type == ModaleType.denied) return Icons.error;
     if (this.type == ModaleType.allowed) return Icons.check_circle;
     throw Exception("Failed to assign icon");
   }
 
+  /// returns the matching color for the modale type.
   Color getColor() {
     if (this.type == ModaleType.denied) return color_error;
     if (this.type == ModaleType.allowed) return color_success;
@@ -89,7 +92,7 @@ class BuildModale extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget topRow = Row(
+    final Widget rowWithTextAndIcon = Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -118,7 +121,7 @@ class BuildModale extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          topRow,
+          rowWithTextAndIcon,
           const SizedBox(height: 16.0),
           Text(
             this.subtitle!,
@@ -136,6 +139,10 @@ class BuildModale extends StatelessWidget {
       ),
     );
 
-    return result;
+    return Semantics(
+      readOnly: true,
+      hint: this.hint,
+      child: result,
+    );
   }
 }
