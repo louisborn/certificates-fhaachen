@@ -1,14 +1,21 @@
-import 'package:certificates/src/theme/text_style.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter/rendering.dart';
 
 import '../../../components.dart';
+import '../../../theme.dart';
 
-/// A container with a leading icon, text and a button
-/// used in this application.
+/// A container with a leading [icon], [title], [subtitle] and
+/// a [button] used in this application.
+///
+/// Implements the [Semantics] widget.
 ///
 class BuildButtonContainer extends StatelessWidget {
   /// Create a button container.
+  ///
+  /// The [title] and [subtitle] can not be null.
+  /// The [title], [subtitle], [button] and a [icon] is
+  /// required.
   ///
   BuildButtonContainer({
     required this.title,
@@ -90,7 +97,7 @@ class BuildButtonContainer extends StatelessWidget {
     );
 
     return Semantics(
-      label: 'A container with a icon, title, subtitle and button',
+      label: 'A container with a leading icon, title, subtitle and button',
       child: result,
     );
   }

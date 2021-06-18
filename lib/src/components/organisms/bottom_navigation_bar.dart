@@ -7,8 +7,8 @@ import '../../../theme.dart';
 
 /// A bottom navigation for this application.
 ///
-/// Is used as the base for the [HomeScreen] and [MoreScreen] with.
-/// the bottom navigation bar to switch between those two screens.
+/// Is used as the base for the [HomeScreen] and [MoreScreen] enabling
+/// to switch between those two screens.
 ///
 class BuildBottomNavigationBar extends StatefulWidget {
   /// The route name for this screen.
@@ -33,11 +33,9 @@ class _BuildBottomNavigationBar extends State<BuildBottomNavigationBar> {
     ];
 
     /// Sets the `_selectedIndex` to the current index.
-    var _onItemTapped = (int index) => setState(
-          () {
-            _selectedIndex = index;
-          },
-        );
+    var _onItemTapped = (int index) => setState(() {
+          _selectedIndex = index;
+        });
 
     /// The app bar for this screen.
     final PreferredSizeWidget appBar = BuildAppBar(
