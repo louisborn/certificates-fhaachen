@@ -1,24 +1,41 @@
-import 'package:certificates/components.dart';
 import 'package:flutter/material.dart';
 
+import '../../../components.dart';
 import '../../../models.dart';
 import '../../../theme.dart';
 
-// ignore: must_be_immutable
+/// A table used in this application.
+///
+/// ignore: must_be_immutable
 class BuildTable extends StatefulWidget {
+  /// Create a table.
+  ///
+  /// The [data] and [tableHeader] is required.
+  ///
   BuildTable({
     required this.data,
     required this.tableHeader,
   });
 
+  /// The content for the table.
   final List<Log> data;
 
+  /// The table header.
   final List tableHeader;
 
+  /// Is used to check if the table content is sorted
+  /// by workspace.
+  ///
   bool isSortedByWorkspace = false;
 
+  /// Is used to check if the table content is sorted
+  /// by enter time.
+  ///
   bool isSortedByEnter = false;
 
+  /// Is used to check if the table content is sorted
+  /// by leave time.
+  ///
   bool isSortedByLeave = false;
 
   @override
@@ -26,6 +43,7 @@ class BuildTable extends StatefulWidget {
 }
 
 class _BuildTableState extends State<BuildTable> {
+  /// Sorts the [BuildTable] content by workspace.
   void sortByWorkspace() {
     setState(() {
       widget.data.sort(
@@ -37,6 +55,7 @@ class _BuildTableState extends State<BuildTable> {
     });
   }
 
+  /// Sorts the [BuildTable] content by the enter time.
   void sortByEnter() {
     setState(() {
       widget.data.sort(
@@ -48,6 +67,7 @@ class _BuildTableState extends State<BuildTable> {
     });
   }
 
+  /// Sorts the [BuildTable] content by the leave time.
   void sortByLeave() {
     setState(() {
       widget.data.sort(
@@ -164,7 +184,7 @@ class _BuildTableState extends State<BuildTable> {
                       onTap: () async {
                         _showInformation(index);
                       },
-                      hint: 'hint',
+                      hint: 'Shows more information',
                     ),
                   ],
                 ),
@@ -191,50 +211,54 @@ class _BuildTableState extends State<BuildTable> {
     return result;
   }
 
+  /// Shows a dialog with more specific information
+  /// on the workspace access of a user.
+  ///
   Future<void> _showInformation(int index) async {
     await showDialog<void>(
-        context: context,
-        builder: (BuildContext context) {
-          return SimpleDialog(
-            title: const Text('More information'),
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 24.0,
-                  right: 24.0,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Name: '),
-                          Text('Date: '),
-                          Text('Enter time: '),
-                          Text('Leave time: '),
-                          Text('Student id: '),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(widget.data[index].workspaceName!),
-                          Text(widget.data[index].date!),
-                          Text(widget.data[index].enter!),
-                          Text(widget.data[index].leave!),
-                          Text(widget.data[index].studentId!),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          title: const Text('More information'),
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(
+                left: 24.0,
+                right: 24.0,
               ),
-            ],
-          );
-        });
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Name: '),
+                        Text('Date: '),
+                        Text('Enter time: '),
+                        Text('Leave time: '),
+                        Text('Student id: '),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(widget.data[index].workspaceName!),
+                        Text(widget.data[index].date!),
+                        Text(widget.data[index].enter!),
+                        Text(widget.data[index].leave!),
+                        Text(widget.data[index].studentId!),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
