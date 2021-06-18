@@ -1,13 +1,16 @@
-/// A model for a campus.
+/// A model for a [Campus] object.
 ///
 class Campus {
-  /// Creates a campus.
+  /// Creates a [Campus] object.
+  ///
+  /// The [id], [name], [street], [postal] and [city]
+  /// is required.
   ///
   const Campus({
     required this.id,
     required this.name,
-    required this.phone,
-    required this.email,
+    this.phone,
+    this.email,
     required this.street,
     required this.postal,
     required this.city,
@@ -34,7 +37,8 @@ class Campus {
   /// The address of a campus.
   final String? city;
 
-  /// Decodes a map data to a [Campus] object.
+  /// Decodes map data that is fetched from the API
+  /// to a [Campus] object.
   ///
   factory Campus.fromMap(Map data) {
     return Campus(
