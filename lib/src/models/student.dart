@@ -1,11 +1,13 @@
-/// A model for a student object.
+/// A model for a [Student] object.
 ///
 /// Each individual student should have a unique [studentId], a [firstName]
 /// and a [lastName].
+///
 class Student {
   /// Creates a student object.
   ///
   /// The [studentId], [firstName] and [lastName] must not be null.
+  ///
   Student({
     required this.studentId,
     required this.firstName,
@@ -14,9 +16,7 @@ class Student {
         assert(firstName != null),
         assert(lastName != null);
 
-  /// The unique [studentId].
-  ///
-  /// This is the unique identifier for a user.
+  /// The unique id of an user.
   final String? studentId;
 
   /// The first name of a user.
