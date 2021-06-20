@@ -1,7 +1,11 @@
-/// A model for certificates.
+/// A model for a [Certificate] object.
 ///
 class Certificate {
-  /// Creates a certificate.
+  /// Creates a [Certificate] object.
+  ///
+  /// The [name], [description], [machine], [assignedTo] and
+  /// [safetyInstruction] is required.
+  ///
   const Certificate({
     required this.name,
     required this.description,
@@ -9,7 +13,8 @@ class Certificate {
     required this.assignedTo,
     required this.safetyInstruction,
   })   : assert(name != null),
-        assert(machine != null);
+        assert(machine != null),
+        assert(safetyInstruction != null);
 
   /// The name of a certificate.
   final String? name;
@@ -26,7 +31,8 @@ class Certificate {
   /// The safety instruction for a certificate.
   final String? safetyInstruction;
 
-  /// Decodes a map data to a [Certificate] object.
+  /// Decodes map data that if fecthed from the API
+  /// to a [Certificate] object.
   ///
   factory Certificate.fromMap(Map data) {
     return Certificate(
