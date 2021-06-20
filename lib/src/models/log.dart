@@ -1,7 +1,10 @@
-/// A model for the log of a user activity.
+/// A model for a [Log] object.
 ///
 class Log {
-  /// Creates a log.
+  /// Creates a [Log] object.
+  ///
+  /// The [date], [enter], [leave], [studentId] and
+  /// [workspaceName] is required.
   ///
   const Log({
     required this.date,
@@ -26,7 +29,8 @@ class Log {
   /// The accessed workspace name.
   final String? workspaceName;
 
-  /// Decodes a map object to a [Log] object.
+  /// Decodes a map data that is fetched from the API
+  /// to an [Log] object.
   ///
   factory Log.fromMap(Map data) {
     return Log(
