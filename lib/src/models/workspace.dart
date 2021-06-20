@@ -1,11 +1,14 @@
-/// A model for a workspace.
+/// A model for a [Workspace] object.
 ///
 /// Each workspace has a unique [id] and a [name].
 /// The [currentInWorkspace] and [maxInWorkspace] is used
 /// to control the access of students to a workspace.
 ///
 class Workspace {
-  /// Creates a workspace.
+  /// Creates a [Workspace] object.
+  ///
+  /// The [id], [name], [currentInWorkspace] and
+  /// [maxInWorkspace] is required.
   ///
   const Workspace({
     required this.id,
@@ -32,7 +35,8 @@ class Workspace {
   ///
   final String path;
 
-  /// Decodes a map object to a [Workspace] object.
+  /// Decodes a map data that is fetched from the API
+  /// to a [Workspace] object.
   ///
   factory Workspace.fromMap(Map data) {
     return Workspace(
