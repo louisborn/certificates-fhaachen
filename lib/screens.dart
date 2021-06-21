@@ -18,3 +18,4 @@ export 'src/screens/campus_detail.dart';
 export 'src/screens/qr_code_scanner.dart';
 export 'src/screens/access_workspace.dart';
 export 'src/screens/access_machine.dart';
+export 'src/screens/faq.dart';

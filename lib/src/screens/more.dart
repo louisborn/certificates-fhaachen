@@ -41,7 +41,7 @@ class MoreScreen extends StatelessWidget {
     );
 
     final Widget listTileQuestions = GestureDetector(
-      onTap: () {},
+      onTap: () => Navigator.pushNamed(context, FAQScreen.route),
       child: ListTile(
         leading: BuildIcon(
           icon: Icons.question_answer_outlined,
