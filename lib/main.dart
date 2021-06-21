@@ -1,3 +1,4 @@
+import 'package:certificates/src/screens/faq.dart';
 import 'package:certificates/src/screens/splash.dart';
 import 'package:flutter/material.dart';
 
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
           QRCodeScannerScreen.route: (context) => QRCodeScannerScreen(),
           AccessWorkpsaceScreen.route: (context) => AccessWorkpsaceScreen(),
           UseMachineScreen.route: (context) => UseMachineScreen(),
+          FAQScreen.route: (context) => FAQScreen(),
         },
       ),
     );
