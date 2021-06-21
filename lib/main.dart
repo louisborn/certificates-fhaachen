@@ -1,3 +1,4 @@
+import 'package:certificates/src/screens/splash.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -35,9 +36,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Certificates',
         debugShowCheckedModeBanner: false,
-        home: PreferenceService().getString('studentId') != ''
-            ? BuildBottomNavigationBar()
-            : LoginScreen(),
+        home: SplashAnimationScreen(),
         supportedLocales: i18n.supportedLocales,
         localeResolutionCallback: i18n.resolution(
           fallback: Locale('en', 'US'),
@@ -49,6 +48,7 @@ class MyApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         routes: <String, WidgetBuilder>{
+          SplashAnimationScreen.route: (context) => SplashAnimationScreen(),
           LoginScreen.route: (context) => LoginScreen(),
           TwoFactorScreen.route: (context) => TwoFactorScreen(),
           BuildBottomNavigationBar.route: (context) =>
