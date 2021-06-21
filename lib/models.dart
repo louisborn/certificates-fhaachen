@@ -9,3 +9,4 @@ export 'src/models/certificate.dart';
 export 'src/models/log.dart';
 export 'src/models/campus.dart';
 export 'src/models/workspace.dart';
+export 'src/models/faq.dart';

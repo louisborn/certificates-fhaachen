@@ -1,9 +1,5 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../models.dart';
 import '../../services.dart';
 
 class Document<T> {

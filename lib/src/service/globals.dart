@@ -8,6 +8,7 @@ class Global {
     Log: (data) => Log.fromMap(data),
     Campus: (data) => Campus.fromMap(data),
     Workspace: (data) => Workspace.fromMap(data),
+    FAQ: (data) => FAQ.fromMap(data),
   };
 
   static final Collection<Certificate> certificatesRef =
