@@ -12,14 +12,14 @@
         "option_1_title": "Arbeitsbereich betreten",
         "option_1_subtitle": "Scan den qr code am Eingang des Arbeitsbereichs.",
         "option_1_button": "qr code scannen",
-        "option_1_hint": "Navigiert zur Seite: QR-Code scannen",
+        "option_1_hint": "Bei Tastendruck: Sie werden zur Ansicht mit qr-Scan-Option navigiert",
         "option_2_title": "Meine Zertifikate",
         "option_2_subtitle": "Zeigt die genehmigten Zertifikate des Benutzers an.",
         "option_2_button": "Zertifikate anzeigen",
-        "option_2_hint": "Navigiert zur Seite: Zertifiakte anzeigen",
-        "appBar_hint_1": "Navigiert zur Seite: Über die App",
-        "appBar_hint_2": "Navigiert zur Seite: Verlauf",
-        "appBar_hint_3": "Navigiert zur Seite: Profil"
+        "option_2_hint": "Bei Tastendruck: Sie gelangen in die Ansicht mit einer Liste aller Zertifikate",
+        "appBar_hint_1": "Bei Antippen der Icon-Taste: Sie gelangen in die Info-Ansicht",
+        "appBar_hint_2": "Bei Tippen auf die Icon-Taste: Sie werden zur Ansicht des Verlaufsprotokolls navigiert",
+        "appBar_hint_3": "Bei Tippen auf die Icon-Taste: Sie werden zur Kontoansicht navigiert"
     },
     "_comment__002": "Language for: More screen",
     "more": {
@@ -91,7 +91,9 @@
         "usingAction": "Aktuelle Maschine verlassen",
         "deniedTitle": "Maschine nicht verfügbar - Maschine: {name}",
         "deniedSubtitle": "Benötigtes Zertifikat: {certificate}",
-        "deniedAction": "Andere Maschine benutzen"
+        "deniedAction": "Andere Maschine benutzen",
+        "useMachine": "Maschine benutzen",
+        "useDesc": "Scan den qr code auf der Maschine."
     },
     "_comment__010": "Language for: about screen",
     "about": {
@@ -103,5 +105,9 @@
         "title": "QR-Code scannen",
         "information": "Bitte scannen Sie den QR-Code, um entweder ein Arbeitsbereich zu betreten oder eine Maschine in Nutzung zu nehmen.",
         "btn": "Weiter"
+    },
+    "_comment__012": "Language for: faq screen",
+    "faq": {
+        "title": "Häufig gestellte Fragen"
     }
 }

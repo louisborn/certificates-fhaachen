@@ -122,12 +122,16 @@ class BuildModale extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           rowWithTextAndIcon,
-          const SizedBox(height: 16.0),
+          const SizedBox(
+            height: 16.0,
+          ),
           Text(
             this.subtitle!,
             style: this.textStyle,
           ),
-          const SizedBox(height: 16.0),
+          const SizedBox(
+            height: 16.0,
+          ),
           BuildTertiaryButton(
             text: this.actionText,
             function: this.function,

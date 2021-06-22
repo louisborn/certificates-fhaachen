@@ -26,7 +26,7 @@ class AboutScreen extends StatelessWidget {
 
     final Widget textForAppInformation = Text(
       I18n.of(context).aboutInformation,
-      style: BuildTextStyle(type: TextBackground.white).body2,
+      style: BuildTextStyle(type: TextBackground.white).body1,
       textAlign: TextAlign.left,
     );
 

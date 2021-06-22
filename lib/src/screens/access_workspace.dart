@@ -57,7 +57,7 @@ class _AccessWorkpsaceScreenState extends State<AccessWorkpsaceScreen> {
     final Widget modaleForEnteredStatus = BuildModale(
       type: ModaleType.allowed,
       title: I18n.of(context).workspaceEnteredTitle(args.name!),
-      subtitle: I18n.of(context).workspaceEnteredTitle(
+      subtitle: I18n.of(context).workspaceEnteredSubtitle(
         PreferenceService().getString('timestamp')!,
       ),
       actionText: I18n.of(context).workspaceEnteredAction,
@@ -83,8 +83,8 @@ class _AccessWorkpsaceScreenState extends State<AccessWorkpsaceScreen> {
 
     /// The button to scan a machine`s qr code inorder to use it.
     final Widget buttonForQrCode = BuildButtonContainer(
-      title: I18n.of(context).homeOption_1_title,
-      subtitle: I18n.of(context).homeOption_1_subtitle,
+      title: I18n.of(context).machineUseMachine,
+      subtitle: I18n.of(context).machineUseDesc,
       button: BuildPrimaryButton(
         text: I18n.of(context).homeOption_1_button,
         withIcon: false,

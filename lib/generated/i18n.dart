@@ -70,8 +70,9 @@ class I18n implements WidgetsLocalizations {
   /// "scan qr code"
   String get homeOption_1_button => "scan qr code";
 
-  /// "Navigates to the page: scan qr code"
-  String get homeOption_1_hint => "Navigates to the page: scan qr code";
+  /// "On button tap: you are navigated to the view with a qr scan option"
+  String get homeOption_1_hint =>
+      "On button tap: you are navigated to the view with a qr scan option";
 
   /// "My certificates"
   String get homeOption_2_title => "My certificates";
@@ -83,17 +84,21 @@ class I18n implements WidgetsLocalizations {
   /// "Show certificate"
   String get homeOption_2_button => "Show certificate";
 
-  /// "Navigates to the page: certificates"
-  String get homeOption_2_hint => "Navigates to the page: certificates";
+  /// "On button tap: you are navigated to the view with a list of all certificates"
+  String get homeOption_2_hint =>
+      "On button tap: you are navigated to the view with a list of all certificates";
 
-  /// "Navigates to the page: about"
-  String get homeAppBar_hint_1 => "Navigates to the page: about";
+  /// "On icon button tap: you are navigated to the about view"
+  String get homeAppBar_hint_1 =>
+      "On icon button tap: you are navigated to the about view";
 
-  /// "Navigates to the page: history log"
-  String get homeAppBar_hint_2 => "Navigates to the page: history log";
+  /// "On icon button tap: you are navigated to the history log view"
+  String get homeAppBar_hint_2 =>
+      "On icon button tap: you are navigated to the history log view";
 
-  /// "Navigates to the page: Account"
-  String get homeAppBar_hint_3 => "Navigates to the page: Account";
+  /// "On icon button tap: you are navigated to the account view"
+  String get homeAppBar_hint_3 =>
+      "On icon button tap: you are navigated to the account view";
 
   /// "Language for: More screen"
   String get _comment__002 => "Language for: More screen";
@@ -273,6 +278,12 @@ class I18n implements WidgetsLocalizations {
   /// "Use another machine"
   String get machineDeniedAction => "Use another machine";
 
+  /// "Use machine"
+  String get machineUseMachine => "Use machine";
+
+  /// "Scan the qr code on top of the machine."
+  String get machineUseDesc => "Scan the qr code on top of the machine.";
+
   /// "Language for: about screen"
   String get _comment__010 => "Language for: about screen";
 
@@ -295,6 +306,12 @@ class I18n implements WidgetsLocalizations {
 
   /// "Next"
   String get qrBtn => "Next";
+
+  /// "Language for: faq screen"
+  String get _comment__012 => "Language for: faq screen";
+
+  /// "Frequently asked questions"
+  String get faqTitle => "Frequently asked questions";
 }
 
 class _I18n_en_US extends I18n {
@@ -356,9 +373,10 @@ class _I18n_de_DE extends I18n {
   @override
   String get homeOption_1_button => "qr code scannen";
 
-  /// "Navigiert zur Seite: QR-Code scannen"
+  /// "Bei Tastendruck: Sie werden zur Ansicht mit qr-Scan-Option navigiert"
   @override
-  String get homeOption_1_hint => "Navigiert zur Seite: QR-Code scannen";
+  String get homeOption_1_hint =>
+      "Bei Tastendruck: Sie werden zur Ansicht mit qr-Scan-Option navigiert";
 
   /// "Meine Zertifikate"
   @override
@@ -373,21 +391,25 @@ class _I18n_de_DE extends I18n {
   @override
   String get homeOption_2_button => "Zertifikate anzeigen";
 
-  /// "Navigiert zur Seite: Zertifiakte anzeigen"
+  /// "Bei Tastendruck: Sie gelangen in die Ansicht mit einer Liste aller Zertifikate"
   @override
-  String get homeOption_2_hint => "Navigiert zur Seite: Zertifiakte anzeigen";
+  String get homeOption_2_hint =>
+      "Bei Tastendruck: Sie gelangen in die Ansicht mit einer Liste aller Zertifikate";
 
-  /// "Navigiert zur Seite: Über die App"
+  /// "Bei Antippen der Icon-Taste: Sie gelangen in die Info-Ansicht"
   @override
-  String get homeAppBar_hint_1 => "Navigiert zur Seite: Über die App";
+  String get homeAppBar_hint_1 =>
+      "Bei Antippen der Icon-Taste: Sie gelangen in die Info-Ansicht";
 
-  /// "Navigiert zur Seite: Verlauf"
+  /// "Bei Tippen auf die Icon-Taste: Sie werden zur Ansicht des Verlaufsprotokolls navigiert"
   @override
-  String get homeAppBar_hint_2 => "Navigiert zur Seite: Verlauf";
+  String get homeAppBar_hint_2 =>
+      "Bei Tippen auf die Icon-Taste: Sie werden zur Ansicht des Verlaufsprotokolls navigiert";
 
-  /// "Navigiert zur Seite: Profil"
+  /// "Bei Tippen auf die Icon-Taste: Sie werden zur Kontoansicht navigiert"
   @override
-  String get homeAppBar_hint_3 => "Navigiert zur Seite: Profil";
+  String get homeAppBar_hint_3 =>
+      "Bei Tippen auf die Icon-Taste: Sie werden zur Kontoansicht navigiert";
 
   /// "Language for: More screen"
   @override
@@ -627,6 +649,14 @@ class _I18n_de_DE extends I18n {
   @override
   String get machineDeniedAction => "Andere Maschine benutzen";
 
+  /// "Maschine benutzen"
+  @override
+  String get machineUseMachine => "Maschine benutzen";
+
+  /// "Scan den qr code auf der Maschine."
+  @override
+  String get machineUseDesc => "Scan den qr code auf der Maschine.";
+
   /// "Language for: about screen"
   @override
   String get _comment__010 => "Language for: about screen";
@@ -656,6 +686,14 @@ class _I18n_de_DE extends I18n {
   /// "Weiter"
   @override
   String get qrBtn => "Weiter";
+
+  /// "Language for: faq screen"
+  @override
+  String get _comment__012 => "Language for: faq screen";
+
+  /// "Häufig gestellte Fragen"
+  @override
+  String get faqTitle => "Häufig gestellte Fragen";
 
   @override
   TextDirection get textDirection => TextDirection.ltr;
@@ -713,9 +751,10 @@ class _I18n_nl_NL extends I18n {
   @override
   String get homeOption_1_button => "qr code scannen";
 
-  /// "Bladert naar de pagina: Scan QR code"
+  /// "Op knop tikken: u wordt genavigeerd naar de weergave met een qr-scanoptie"
   @override
-  String get homeOption_1_hint => "Bladert naar de pagina: Scan QR code";
+  String get homeOption_1_hint =>
+      "Op knop tikken: u wordt genavigeerd naar de weergave met een qr-scanoptie";
 
   /// "Mijn certificaten"
   @override
@@ -730,21 +769,25 @@ class _I18n_nl_NL extends I18n {
   @override
   String get homeOption_2_button => "Certificaten tonen";
 
-  /// "Bladert naar pagina: Certificaten tonen"
+  /// "Op knop tikken: u wordt genavigeerd naar de weergave met een lijst van alle certificaten"
   @override
-  String get homeOption_2_hint => "Bladert naar pagina: Certificaten tonen";
+  String get homeOption_2_hint =>
+      "Op knop tikken: u wordt genavigeerd naar de weergave met een lijst van alle certificaten";
 
-  /// "Navigeert naar de pagina: Via de app"
+  /// "Op pictogramknop tikken: u wordt genavigeerd naar de about view"
   @override
-  String get homeAppBar_hint_1 => "Navigeert naar de pagina: Via de app";
+  String get homeAppBar_hint_1 =>
+      "Op pictogramknop tikken: u wordt genavigeerd naar de about view";
 
-  /// "Bladert naar pagina: Geschiedenis"
+  /// "Op pictogramtoets tikken: u wordt naar de geschiedenislogboekweergave genavigeerd"
   @override
-  String get homeAppBar_hint_2 => "Bladert naar pagina: Geschiedenis";
+  String get homeAppBar_hint_2 =>
+      "Op pictogramtoets tikken: u wordt naar de geschiedenislogboekweergave genavigeerd";
 
-  /// "Bladert naar pagina: Profiel"
+  /// "Op pictogramtoets tikken: u wordt naar de rekeningweergave genavigeerd"
   @override
-  String get homeAppBar_hint_3 => "Bladert naar pagina: Profiel";
+  String get homeAppBar_hint_3 =>
+      "Op pictogramtoets tikken: u wordt naar de rekeningweergave genavigeerd";
 
   /// "Language for: More screen"
   @override
@@ -982,6 +1025,15 @@ class _I18n_nl_NL extends I18n {
   @override
   String get machineDeniedAction => "Gebruik een andere machine";
 
+  /// "Gebruik machine"
+  @override
+  String get machineUseMachine => "Gebruik machine";
+
+  /// "Scan de qr-code op de bovenkant van de machine."
+  @override
+  String get machineUseDesc =>
+      "Scan de qr-code op de bovenkant van de machine.";
+
   /// "Language for: about screen"
   @override
   String get _comment__010 => "Language for: about screen";
@@ -1011,6 +1063,14 @@ class _I18n_nl_NL extends I18n {
   /// "Volgende"
   @override
   String get qrBtn => "Volgende";
+
+  /// "Language for: faq screen"
+  @override
+  String get _comment__012 => "Language for: faq screen";
+
+  /// "Vaak gestelde vragen"
+  @override
+  String get faqTitle => "Vaak gestelde vragen";
 
   @override
   TextDirection get textDirection => TextDirection.ltr;

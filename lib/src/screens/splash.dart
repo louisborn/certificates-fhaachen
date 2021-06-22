@@ -58,7 +58,7 @@ class _SplashAnimationScreenState extends State<SplashAnimationScreen> {
           children: [
             animation,
             const SizedBox(
-              height: 16.0,
+              height: 24.0,
             ),
             logo,
           ],

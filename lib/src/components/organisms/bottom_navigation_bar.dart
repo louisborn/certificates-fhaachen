@@ -43,7 +43,7 @@ class _BuildBottomNavigationBar extends State<BuildBottomNavigationBar> {
       actions: [
         BuildIconButton(
           icon: Icons.info_outline,
-          hint: 'Navigates to the about page',
+          hint: I18n.of(context).homeAppBar_hint_1,
           onTap: () => Navigator.pushNamed(
             context,
             AboutScreen.route,
@@ -52,7 +52,7 @@ class _BuildBottomNavigationBar extends State<BuildBottomNavigationBar> {
         const SizedBox(width: 16.0),
         BuildIconButton(
           icon: Icons.history,
-          hint: 'Navigates to the about history log page',
+          hint: I18n.of(context).homeAppBar_hint_2,
           onTap: () => Navigator.pushNamed(
             context,
             HistoryLogScreen.route,
@@ -61,7 +61,7 @@ class _BuildBottomNavigationBar extends State<BuildBottomNavigationBar> {
         const SizedBox(width: 16.0),
         BuildIconButton(
           icon: Icons.person_outline,
-          hint: 'Navigates to the account page',
+          hint: I18n.of(context).homeAppBar_hint_3,
           onTap: () => Navigator.pushNamed(
             context,
             AccountScreen.route,
