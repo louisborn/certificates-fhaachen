@@ -60,7 +60,7 @@ class BuildTertiaryButton extends StatelessWidget {
     final Widget result = GestureDetector(
       onTap: function,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           this.withIcon
               ? BuildIcon(icon: this.icon, color: this.color!)

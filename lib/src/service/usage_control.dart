@@ -29,10 +29,11 @@ class UsageControlService extends ChangeNotifier {
   Future<void> checkUserAuthorization(List<dynamic> assignedTo) async {
     setUserAccessStatus(UserUsageStatus.Pending);
     for (int i = 0; i < assignedTo.length; i++) {
-      if (assignedTo[i] == PreferenceService().getString('studentId'))
+      if (assignedTo[i] == PreferenceService().getString('studentId')) {
         setUserAccessStatus(UserUsageStatus.Using);
-      else
-        setUserAccessStatus(UserUsageStatus.Denied);
+        break;
+      }
+      setUserAccessStatus(UserUsageStatus.Denied);
     }
   }
 

@@ -37,7 +37,6 @@ class BuildIcon extends StatelessWidget {
     );
 
     return Semantics(
-      readOnly: true,
       label: this.label,
       child: result,
     );

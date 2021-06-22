@@ -33,7 +33,7 @@ class _FAQScreenState extends State<FAQScreen> {
   Widget build(BuildContext context) {
     /// The app bar for this route.
     final PreferredSizeWidget appBar = BuildAppBar(
-      title: 'Häufig gestellte Fragen',
+      title: I18n.of(context).faqTitle,
     );
 
     /// The loading animation.

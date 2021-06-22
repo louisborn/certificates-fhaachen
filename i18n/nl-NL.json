@@ -12,14 +12,14 @@
         "option_1_title": "Betreed het werkgebied",
         "option_1_subtitle": "Scan de qr-code bij de ingang van de werkruimte.",
         "option_1_button": "qr code scannen",
-        "option_1_hint": "Bladert naar de pagina: Scan QR code",
+        "option_1_hint": "Op knop tikken: u wordt genavigeerd naar de weergave met een qr-scanoptie",
         "option_2_title": "Mijn certificaten",
         "option_2_subtitle": "Geeft de goedgekeurde certificaten van de gebruiker weer.",
         "option_2_button": "Certificaten tonen",
-        "option_2_hint": "Bladert naar pagina: Certificaten tonen",
-        "appBar_hint_1": "Navigeert naar de pagina: Via de app",
-        "appBar_hint_2": "Bladert naar pagina: Geschiedenis",
-        "appBar_hint_3": "Bladert naar pagina: Profiel"
+        "option_2_hint": "Op knop tikken: u wordt genavigeerd naar de weergave met een lijst van alle certificaten",
+        "appBar_hint_1": "Op pictogramknop tikken: u wordt genavigeerd naar de about view",
+        "appBar_hint_2": "Op pictogramtoets tikken: u wordt naar de geschiedenislogboekweergave genavigeerd",
+        "appBar_hint_3": "Op pictogramtoets tikken: u wordt naar de rekeningweergave genavigeerd"
     },
     "_comment__002": "Language for: More screen",
     "more": {
@@ -91,7 +91,9 @@
         "usingAction": "Huidige machine verlaten",
         "deniedTitle": "Machine niet beschikbaar - Machine: {name}",
         "deniedSubtitle": "Benodigd certificaat: {certificate}",
-        "deniedAction": "Gebruik een andere machine"
+        "deniedAction": "Gebruik een andere machine",
+        "useMachine": "Gebruik machine",
+        "useDesc": "Scan de qr-code op de bovenkant van de machine."
     },
     "_comment__010": "Language for: about screen",
     "about": {
@@ -103,5 +105,9 @@
         "title": "Scan qr code",
         "information": "Scan de QR-code om een werkruimte te betreden of een machine in gebruik te nemen.",
         "btn": "Volgende"
+    },
+    "_comment__012": "Language for: faq screen",
+    "faq": {
+        "title": "Vaak gestelde vragen"
     }
 }
