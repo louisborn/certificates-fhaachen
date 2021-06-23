@@ -301,10 +301,7 @@ class AuthenticationService extends ChangeNotifier
       );
 
       if (response.statusCode == 200) {
-        print("200");
         var _token = jsonDecode(response.body);
-        print(token);
-        print(_token);
         if (_token == token) {
           PreferenceService().putString('studentId', _studentId);
           PreferenceService().putString('firstName', _firstName);
