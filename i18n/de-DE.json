@@ -10,7 +10,7 @@
         "greetTo": "Hallo {name}",
         "information": "Wähle unten eine Aktion aus.",
         "option_1_title": "Arbeitsbereich betreten",
-        "option_1_subtitle": "Scan den qr code am Eingang des Arbeitsbereichs.",
+        "option_1_subtitle": "Scan den QR code am Eingang des Arbeitsbereichs.",
         "option_1_button": "qr code scannen",
         "option_1_hint": "Bei Tastendruck: Sie werden zur Ansicht mit qr-Scan-Option navigiert",
         "option_2_title": "Meine Zertifikate",

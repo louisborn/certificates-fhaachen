@@ -135,32 +135,39 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
       ],
     );
 
-    return Scaffold(
-      appBar: appBar,
-      body: _providerAccess.userAccessStatus == UserAccessStatus.Pending
-          ? Center(
-              child: loading,
-            )
-          : Padding(
-              padding: EdgeInsets.only(
-                left: 24.0,
-                top: 24.0,
-                right: 24.0,
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(
-                      bottom: MediaQuery.of(context).size.height * 0.50,
+    if (result != null && result!.code.length > 35)
+      doValidateWorkspaceData();
+    else if (result != null && result!.code.length < 35)
+      doValidateCertificateData();
+    else {
+      return Scaffold(
+        appBar: appBar,
+        body: _providerAccess.userAccessStatus == UserAccessStatus.Pending
+            ? Center(
+                child: loading,
+              )
+            : Padding(
+                padding: EdgeInsets.only(
+                  left: 24.0,
+                  top: 24.0,
+                  right: 24.0,
+                ),
+                child: Stack(
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).size.height * 0.50,
+                      ),
+                      child: _buildQrView(context),
                     ),
-                    child: _buildQrView(context),
-                  ),
-                  textForInformation,
-                  if (result != null) button,
-                ],
+                    textForInformation,
+                    //if (result != null) button,
+                  ],
+                ),
               ),
-            ),
-    );
+      );
+    }
+    throw Exception('Null returned');
   }
 
   /// The QR code widget that is displayed in this screen.
