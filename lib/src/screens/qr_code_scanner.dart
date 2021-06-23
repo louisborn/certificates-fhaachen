@@ -32,6 +32,8 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
   /// The key for the [QRView].
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
+  bool hasData = false;
+
   /// In order to get hot reload to work we need to pause the camera if the platform
   /// is android, or resume the camera if the platform is iOS.
   ///
@@ -92,28 +94,6 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
       );
     };
 
-    /// The button to validate the qr code scan.
-    final Widget button = Padding(
-      padding: EdgeInsets.only(
-        bottom: 24.0,
-      ),
-      child: Align(
-        alignment: Alignment.bottomRight,
-        child: Container(
-          padding: EdgeInsets.all(16.0),
-          child: BuildTertiaryButton(
-            text: I18n.of(context).qrBtn,
-            withIcon: true,
-            icon: Icons.next_plan_outlined,
-            function: () => result!.code.length > 35
-                ? doValidateWorkspaceData()
-                : doValidateCertificateData(),
-            hint: 'Validate qr code data',
-          ),
-        ),
-      ),
-    );
-
     final Widget textForInformation = Align(
       alignment: Alignment.centerLeft,
       child: Text(
@@ -135,39 +115,41 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
       ],
     );
 
-    if (result != null && result!.code.length > 35)
+    if (result != null && result!.code.length > 35 && this.hasData == false) {
+      toogleHasData();
       doValidateWorkspaceData();
-    else if (result != null && result!.code.length < 35)
+    } else if (result != null &&
+        result!.code.length < 35 &&
+        this.hasData == false) {
+      toogleHasData();
       doValidateCertificateData();
-    else {
-      return Scaffold(
-        appBar: appBar,
-        body: _providerAccess.userAccessStatus == UserAccessStatus.Pending
-            ? Center(
-                child: loading,
-              )
-            : Padding(
-                padding: EdgeInsets.only(
-                  left: 24.0,
-                  top: 24.0,
-                  right: 24.0,
-                ),
-                child: Stack(
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(
-                        bottom: MediaQuery.of(context).size.height * 0.50,
-                      ),
-                      child: _buildQrView(context),
-                    ),
-                    textForInformation,
-                    //if (result != null) button,
-                  ],
-                ),
-              ),
-      );
     }
-    throw Exception('Null returned');
+    return Scaffold(
+      appBar: appBar,
+      body: _providerAccess.userAccessStatus == UserAccessStatus.Pending
+          ? Center(
+              child: loading,
+            )
+          : Padding(
+              padding: EdgeInsets.only(
+                left: 24.0,
+                top: 24.0,
+                right: 24.0,
+              ),
+              child: Stack(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).size.height * 0.50,
+                    ),
+                    child: _buildQrView(context),
+                  ),
+                  textForInformation,
+                  //if (result != null) button,
+                ],
+              ),
+            ),
+    );
   }
 
   /// The QR code widget that is displayed in this screen.
@@ -193,6 +175,12 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
       setState(() {
         result = scanData;
       });
+    });
+  }
+
+  void toogleHasData() {
+    setState(() {
+      this.hasData = true;
     });
   }
 

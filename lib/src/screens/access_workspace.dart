@@ -1,3 +1,4 @@
+import 'package:certificates/src/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -100,6 +101,18 @@ class _AccessWorkpsaceScreenState extends State<AccessWorkpsaceScreen> {
       ),
     );
 
+    /// The loading widget for this screen.
+    final Widget loading = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(color_accent_green),
+        ),
+        const SizedBox(width: 8.0),
+        Text(I18n.of(context).loading),
+      ],
+    );
+
     final Widget main = Column(
       children: [
         modaleForEnteredStatus,
@@ -116,12 +129,18 @@ class _AccessWorkpsaceScreenState extends State<AccessWorkpsaceScreen> {
           top: 24.0,
           right: 8.0,
         ),
-        child: Column(
-          children: [
-            _provider.userAccessStatus == UserAccessStatus.Entered
-                ? main
-                : modaleForDeniedStatus,
-          ],
+        child: Consumer<AccessControlService>(
+          builder: (BuildContext context, provider, child) {
+            if (_provider.userAccessStatus == UserAccessStatus.Entered)
+              return main;
+
+            if (_provider.userAccessStatus == UserAccessStatus.Denied)
+              return modaleForDeniedStatus;
+
+            return Center(
+              child: loading,
+            );
+          },
         ),
       ),
     );
