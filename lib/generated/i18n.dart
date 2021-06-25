@@ -312,6 +312,24 @@ class I18n implements WidgetsLocalizations {
 
   /// "Frequently asked questions"
   String get faqTitle => "Frequently asked questions";
+
+  /// "Language for: campus status screen"
+  String get _comment__013 => "Language for: campus status screen";
+
+  /// "Very high"
+  String get statusLvlFull => "Very high";
+
+  /// "High"
+  String get statusLvlMid => "High";
+
+  /// "Low"
+  String get statusLvlLow => "Low";
+
+  /// "Current users in workspace: ${number}"
+  String statusUserIn(String number) => "Current users in workspace: ${number}";
+
+  /// "Capacity level: "
+  String get statusCapacity => "Capacity level: ";
 }
 
 class _I18n_en_US extends I18n {
@@ -364,10 +382,10 @@ class _I18n_de_DE extends I18n {
   @override
   String get homeOption_1_title => "Arbeitsbereich betreten";
 
-  /// "Scan den qr code am Eingang des Arbeitsbereichs."
+  /// "Scan den QR code am Eingang des Arbeitsbereichs."
   @override
   String get homeOption_1_subtitle =>
-      "Scan den qr code am Eingang des Arbeitsbereichs.";
+      "Scan den QR code am Eingang des Arbeitsbereichs.";
 
   /// "qr code scannen"
   @override
@@ -694,6 +712,31 @@ class _I18n_de_DE extends I18n {
   /// "Häufig gestellte Fragen"
   @override
   String get faqTitle => "Häufig gestellte Fragen";
+
+  /// "Language for: campus status screen"
+  @override
+  String get _comment__013 => "Language for: campus status screen";
+
+  /// "Sehr hoch"
+  @override
+  String get statusLvlFull => "Sehr hoch";
+
+  /// "Hoch"
+  @override
+  String get statusLvlMid => "Hoch";
+
+  /// "Niedrig"
+  @override
+  String get statusLvlLow => "Niedrig";
+
+  /// "Aktuelle Benutzer im Arbeitsbereich: ${number}"
+  @override
+  String statusUserIn(String number) =>
+      "Aktuelle Benutzer im Arbeitsbereich: ${number}";
+
+  /// "Kapazitätspegel: "
+  @override
+  String get statusCapacity => "Kapazitätspegel: ";
 
   @override
   TextDirection get textDirection => TextDirection.ltr;
@@ -1071,6 +1114,31 @@ class _I18n_nl_NL extends I18n {
   /// "Vaak gestelde vragen"
   @override
   String get faqTitle => "Vaak gestelde vragen";
+
+  /// "Language for: campus status screen"
+  @override
+  String get _comment__013 => "Language for: campus status screen";
+
+  /// "Zeer hoog"
+  @override
+  String get statusLvlFull => "Zeer hoog";
+
+  /// "Hoog"
+  @override
+  String get statusLvlMid => "Hoog";
+
+  /// "Laag"
+  @override
+  String get statusLvlLow => "Laag";
+
+  /// "Huidige gebruikers in werkruimte: ${number}"
+  @override
+  String statusUserIn(String number) =>
+      "Huidige gebruikers in werkruimte: ${number}";
+
+  /// "Capaciteitsniveau: "
+  @override
+  String get statusCapacity => "Capaciteitsniveau: ";
 
   @override
   TextDirection get textDirection => TextDirection.ltr;

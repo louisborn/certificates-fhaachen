@@ -49,6 +49,14 @@ class BuildTextStyle {
             : Color(0xff000000),
       );
 
+  TextStyle get header2 => TextStyle(
+        fontSize: 16.0,
+        fontWeight: FontWeight.bold,
+        color: this.type == TextBackground.dark
+            ? Color(0xffffffff)
+            : Color(0xff000000),
+      );
+
   TextStyle get body1 => TextStyle(
         fontSize: 20.0,
         fontWeight: FontWeight.normal,
