@@ -173,19 +173,19 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          I18n.of(context).certificatesCertificate_name +
-              ': ' +
-              data[index].name!,
-          style: BuildTextStyle(type: TextBackground.white).body1,
-        ),
-        const SizedBox(height: 8.0),
-        Text(
           I18n.of(context).certificatesCertificate_usage +
               ': ' +
               data[index].machine!,
-          style: BuildTextStyle(type: TextBackground.white).body1,
+          style: BuildTextStyle(type: TextBackground.white).header2,
         ),
         const SizedBox(height: 16.0),
+        Text(
+          I18n.of(context).certificatesCertificate_name +
+              ': ' +
+              data[index].name!,
+          style: BuildTextStyle(type: TextBackground.white).body2,
+        ),
+        const SizedBox(height: 8.0),
         Text(
           I18n.of(context).certificatesCertificate_descr +
               ': ' +
