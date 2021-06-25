@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:certificates/src/theme/colors.dart';
+import 'package:certificates/src/theme/text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'package:provider/provider.dart';
 
@@ -159,7 +163,11 @@ class _AccessWorkpsaceScreenState extends State<AccessWorkpsaceScreen> {
               return main;
 
             if (_provider.userAccessStatus == UserAccessStatus.Denied)
-              return modaleForDeniedStatus;
+              return Column(
+                children: [
+                  modaleForDeniedStatus,
+                ],
+              );
 
             return Center(
               child: loading,
