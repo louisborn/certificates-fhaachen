@@ -101,6 +101,24 @@ class _AccessWorkpsaceScreenState extends State<AccessWorkpsaceScreen> {
       ),
     );
 
+    final Widget buttonForCertificates = BuildButtonContainer(
+      title: I18n.of(context).homeOption_2_title,
+      subtitle: I18n.of(context).homeOption_2_subtitle,
+      button: BuildPrimaryButton(
+        text: I18n.of(context).homeOption_2_button,
+        withIcon: false,
+        function: () => Navigator.pushNamed(
+          context,
+          CertificatesScreen.route,
+        ),
+        hint: I18n.of(context).homeOption_2_hint,
+      ),
+      icon: BuildIcon(
+        icon: Icons.file_copy_outlined,
+        size: 80.0,
+      ),
+    );
+
     /// The loading widget for this screen.
     final Widget loading = Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -116,8 +134,14 @@ class _AccessWorkpsaceScreenState extends State<AccessWorkpsaceScreen> {
     final Widget main = Column(
       children: [
         modaleForEnteredStatus,
-        const SizedBox(height: 16.0),
+        const SizedBox(
+          height: 16.0,
+        ),
         buttonForQrCode,
+        const SizedBox(
+          height: 16.0,
+        ),
+        buttonForCertificates
       ],
     );
 
