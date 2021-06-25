@@ -1,12 +1,13 @@
-import 'package:certificates/components.dart';
-import 'package:certificates/generated/i18n.dart';
-import 'package:certificates/models.dart';
-import 'package:certificates/services.dart';
-import 'package:certificates/src/theme/colors.dart';
-import 'package:certificates/src/theme/text_style.dart';
 import 'package:flutter/material.dart';
 
+import '../../components.dart';
+import '../../generated/i18n.dart';
+import '../../models.dart';
+import '../../services.dart';
+import '../../theme.dart';
+
 class CampusDetailScreen extends StatefulWidget {
+  /// The route name of this screen.
   static const String route = "/campus/detail";
 
   @override
@@ -18,11 +19,13 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as Campus;
 
+    /// The app bar for this screen.
     final PreferredSizeWidget appBar = BuildAppBar(
       title: '${args.name}',
     );
 
-    final Widget container = Container(
+    /// The general campus information.
+    final Widget buildCampusInformation = Container(
       padding: EdgeInsets.all(8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,14 +53,7 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
       ),
     );
 
-    final Widget title = Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Text(
-        'Current capacity status:',
-        style: BuildTextStyle(type: TextBackground.white).header4,
-      ),
-    );
-
+    /// The loading animation for this screen.
     var loading = Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -98,78 +94,16 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  container,
+                  buildCampusInformation,
                   const SizedBox(height: 32.0),
-                  title,
-                  const SizedBox(height: 8.0),
                   Expanded(
                     child: ListView.builder(
                       itemCount: workspace.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return Card(
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              top: 8.0,
-                              bottom: 8.0,
-                            ),
-                            child: Column(
-                              children: <Widget>[
-                                ListTile(
-                                  leading: workspace[index]
-                                                  .currentInWorkspace! >
-                                              workspace[index].maxInWorkspace! /
-                                                  2 &&
-                                          workspace[index].currentInWorkspace! <
-                                              workspace[index].maxInWorkspace!
-                                      ? BuildIcon(
-                                          icon: Icons.wifi_tethering_outlined,
-                                          color: color_attention,
-                                        )
-                                      : BuildIcon(
-                                          icon: workspace[index]
-                                                      .currentInWorkspace ==
-                                                  workspace[index]
-                                                      .maxInWorkspace
-                                              ? Icons.close
-                                              : Icons.wifi_tethering_outlined,
-                                          color: workspace[index]
-                                                      .currentInWorkspace ==
-                                                  workspace[index]
-                                                      .maxInWorkspace
-                                              ? color_error
-                                              : color_success,
-                                        ),
-                                  title: Text(
-                                    workspace[index].name!,
-                                    style: BuildTextStyle(
-                                            type: TextBackground.white)
-                                        .body1,
-                                  ),
-                                  subtitle: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const SizedBox(
-                                        height: 8.0,
-                                      ),
-                                      Text(
-                                        'Current students in workspace: ' +
-                                            workspace[index]
-                                                .currentInWorkspace!
-                                                .toString(),
-                                      ),
-                                      Text(
-                                        'Maximal allowed: ' +
-                                            workspace[index]
-                                                .maxInWorkspace!
-                                                .toString(),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                        return _buildCapacityStatus(
+                          context,
+                          index,
+                          workspace,
                         );
                       },
                     ),
@@ -183,6 +117,83 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
             child: loading,
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildCapacityStatus(
+      BuildContext context, int index, List<Workspace> workspaces) {
+    final Widget buildStatusHigh = Container(
+      padding: EdgeInsets.all(8.0),
+      color: color_error,
+      child: Text(
+        I18n.of(context).statusLvlFull,
+        style: BuildTextStyle(type: TextBackground.dark).body2,
+      ),
+    );
+
+    final Widget buildStatusMid = Container(
+      padding: EdgeInsets.all(8.0),
+      color: color_warning,
+      child: Text(
+        I18n.of(context).statusLvlMid,
+        style: BuildTextStyle(type: TextBackground.dark).body2,
+      ),
+    );
+
+    final Widget buildStatusLow = Container(
+      padding: EdgeInsets.all(8.0),
+      color: color_success,
+      child: Text(
+        I18n.of(context).statusLvlLow,
+        style: BuildTextStyle(type: TextBackground.dark).body2,
+      ),
+    );
+
+    return Padding(
+      padding: const EdgeInsets.only(
+        top: 8.0,
+        bottom: 8.0,
+      ),
+      child: Column(
+        children: [
+          Divider(),
+          const SizedBox(
+            height: 16.0,
+          ),
+          Text(
+            workspaces[index].name!,
+            style: BuildTextStyle(type: TextBackground.white).header2,
+          ),
+          const SizedBox(
+            height: 8.0,
+          ),
+          Text(
+            I18n.of(context).statusUserIn(
+              workspaces[index].currentInWorkspace.toString(),
+            ),
+            style: BuildTextStyle(type: TextBackground.white).body2,
+          ),
+          const SizedBox(
+            height: 8.0,
+          ),
+          Text(
+            I18n.of(context).statusCapacity,
+            style: BuildTextStyle(type: TextBackground.white).body2,
+          ),
+          const SizedBox(
+            height: 16.0,
+          ),
+          if (workspaces[index].currentInWorkspace! >=
+              workspaces[index].maxInWorkspace!)
+            buildStatusHigh,
+          if (workspaces[index].currentInWorkspace! >
+              workspaces[index].maxInWorkspace! / 2)
+            buildStatusMid,
+          if (workspaces[index].currentInWorkspace! <
+              workspaces[index].maxInWorkspace! / 2)
+            buildStatusLow,
+        ],
       ),
     );
   }

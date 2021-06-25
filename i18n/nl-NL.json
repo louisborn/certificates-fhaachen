@@ -109,5 +109,13 @@
     "_comment__012": "Language for: faq screen",
     "faq": {
         "title": "Vaak gestelde vragen"
+    },
+    "_comment__013": "Language for: campus status screen",
+    "status": {
+        "lvlFull": "Zeer hoog",
+        "lvlMid": "Hoog",
+        "lvlLow": "Laag",
+        "userIn": "Huidige gebruikers in werkruimte: {number}",
+        "capacity": "Capaciteitsniveau: "
     }
 }

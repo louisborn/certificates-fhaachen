@@ -21,7 +21,7 @@ dependencies:
   provider:
   flutter_svg:
   http:
-  shared_preferences: ^2.0.6
+  shared_preferences: 
   intl:
   qr_code_scanner: ^0.5.1
   flutter_launcher_icons: 

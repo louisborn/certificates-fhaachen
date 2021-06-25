@@ -109,5 +109,13 @@
     "_comment__012": "Language for: faq screen",
     "faq": {
         "title": "Häufig gestellte Fragen"
+    },
+    "_comment__013": "Language for: campus status screen",
+    "status": {
+        "lvlFull": "Sehr hoch",
+        "lvlMid": "Hoch",
+        "lvlLow": "Niedrig",
+        "userIn": "Aktuelle Benutzer im Arbeitsbereich: {number}",
+        "capacity": "Kapazitätspegel: "
     }
 }
