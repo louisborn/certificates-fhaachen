@@ -163,7 +163,7 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
           ),
           Text(
             workspaces[index].name!,
-            style: BuildTextStyle(type: TextBackground.white).header2,
+            style: BuildTextStyle(type: TextBackground.white).header1,
           ),
           const SizedBox(
             height: 8.0,
