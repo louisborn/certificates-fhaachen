@@ -123,9 +123,7 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
               ),
             );
           }
-          return Center(
-            child: loading,
-          );
+          return Loading();
         },
       ),
     );
