@@ -37,55 +37,14 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
       title: I18n.of(context).certificatesTitle,
     );
 
-    /// The displayed message if a snapshot has an error.
-    final Widget snapshotHasError = Padding(
-      padding: EdgeInsets.only(
-        left: 8.0,
-        top: 24.0,
-        right: 8.0,
-      ),
-      child: BuildCallout(
-        type: CalloutType.error,
-        title: I18n.of(context).error_default,
-      ),
-    );
-
-    /// The displayed message if a snapshot data is false.
-    final Widget snapshotFalseData = Padding(
-      padding: EdgeInsets.only(
-        left: 8.0,
-        top: 24.0,
-        right: 8.0,
-      ),
-      child: BuildCallout(
-        type: CalloutType.attention,
-        title: I18n.of(context).error_noData,
-      ),
-    );
-
-    /// The loading widget for this screen.
-    var loading = Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(
-            color_accent_green,
-          ),
-        ),
-        const SizedBox(width: 8.0),
-        Text(I18n.of(context).loading),
-      ],
-    );
-
     return Scaffold(
       appBar: appBar,
       body: FutureBuilder(
         future: this.future,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasError) return snapshotHasError;
+          if (snapshot.hasError) return ErrorDefault();
 
-          if (snapshot.hasData && snapshot.data == false)
-            return snapshotFalseData;
+          if (snapshot.hasData && snapshot.data == false) return ErrorNoData();
 
           if (snapshot.connectionState == ConnectionState.done) {
             this.data = snapshot.data;
@@ -134,6 +93,7 @@ class _CertificatesScreenState extends State<CertificatesScreen> {
   /// The [index] is the current index of the list item [data].
   ///
   Widget _buildCertificateContainer(BuildContext context, int index) {
+    /// The tertiary button to show the safety instruction.
     final Widget link = GestureDetector(
       onTap: () => Navigator.pushNamed(
         context,
