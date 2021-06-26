@@ -1,3 +1,4 @@
+import 'package:certificates/screens.dart';
 import 'package:flutter/material.dart';
 
 import '../../components.dart';
@@ -71,17 +72,9 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
         future: Collection<Workspace>(path: 'campus/${args.id}/workspaces')
             .getData(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasError)
-            return BuildCallout(
-              type: CalloutType.error,
-              title: I18n.of(context).error_default,
-            );
+          if (snapshot.hasError) return ErrorDefault();
 
-          if (snapshot.hasData && snapshot.data == false)
-            return BuildCallout(
-              type: CalloutType.attention,
-              title: I18n.of(context).error_noData,
-            );
+          if (snapshot.hasData && snapshot.data == false) return ErrorNoData();
 
           if (snapshot.connectionState == ConnectionState.done) {
             List<Workspace> workspace = snapshot.data;
@@ -113,16 +106,18 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
             );
           }
 
-          return Center(
-            child: loading,
-          );
+          return Loading();
         },
       ),
     );
   }
 
+  /// The capacity status for each campus, including campus information
+  /// like email address, phone number and address.
+  ///
   Widget _buildCapacityStatus(
       BuildContext context, int index, List<Workspace> workspaces) {
+    /// The widget if the capacity level is high.
     final Widget buildStatusHigh = Container(
       padding: EdgeInsets.all(8.0),
       color: color_error,
@@ -132,6 +127,7 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
       ),
     );
 
+    /// The widget if the capacity level is medium.
     final Widget buildStatusMid = Container(
       padding: EdgeInsets.all(8.0),
       color: color_warning,
@@ -141,6 +137,7 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
       ),
     );
 
+    /// The widget if the capacity level is low.
     final Widget buildStatusLow = Container(
       padding: EdgeInsets.all(8.0),
       color: color_success,
