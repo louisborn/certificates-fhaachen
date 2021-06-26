@@ -19,3 +19,6 @@ export 'src/screens/qr_code_scanner.dart';
 export 'src/screens/access_workspace.dart';
 export 'src/screens/access_machine.dart';
 export 'src/screens/faq.dart';
+export 'src/screens/loading/loading.dart';
+export 'src/screens/error/error_default.dart';
+export 'src/screens/error/error_no_data.dart';

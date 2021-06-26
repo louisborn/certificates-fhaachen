@@ -1,9 +1,4 @@
-import 'dart:async';
-
-import 'package:certificates/src/theme/colors.dart';
-import 'package:certificates/src/theme/text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import 'package:provider/provider.dart';
 
@@ -105,6 +100,7 @@ class _AccessWorkpsaceScreenState extends State<AccessWorkpsaceScreen> {
       ),
     );
 
+    /// The button to view the list of certificates.
     final Widget buttonForCertificates = BuildButtonContainer(
       title: I18n.of(context).homeOption_2_title,
       subtitle: I18n.of(context).homeOption_2_subtitle,
@@ -121,18 +117,6 @@ class _AccessWorkpsaceScreenState extends State<AccessWorkpsaceScreen> {
         icon: Icons.file_copy_outlined,
         size: 80.0,
       ),
-    );
-
-    /// The loading widget for this screen.
-    final Widget loading = Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(color_accent_green),
-        ),
-        const SizedBox(width: 8.0),
-        Text(I18n.of(context).loading),
-      ],
     );
 
     final Widget main = Column(
@@ -159,8 +143,9 @@ class _AccessWorkpsaceScreenState extends State<AccessWorkpsaceScreen> {
         ),
         child: Consumer<AccessControlService>(
           builder: (BuildContext context, provider, child) {
-            if (_provider.userAccessStatus == UserAccessStatus.Entered)
+            if (_provider.userAccessStatus == UserAccessStatus.Entered) {
               return main;
+            }
 
             if (_provider.userAccessStatus == UserAccessStatus.Denied)
               return Column(
@@ -169,9 +154,7 @@ class _AccessWorkpsaceScreenState extends State<AccessWorkpsaceScreen> {
                 ],
               );
 
-            return Center(
-              child: loading,
-            );
+            return Loading();
           },
         ),
       ),
