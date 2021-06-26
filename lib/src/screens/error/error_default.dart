@@ -9,9 +9,16 @@ class ErrorDefault extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: BuildCallout(
-        type: CalloutType.error,
-        title: I18n.of(context).error_default,
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: 8.0,
+          top: 24.0,
+          right: 8.0,
+        ),
+        child: BuildCallout(
+          type: CalloutType.error,
+          title: I18n.of(context).error_default,
+        ),
       ),
     );
   }

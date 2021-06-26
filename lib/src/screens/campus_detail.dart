@@ -54,18 +54,6 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
       ),
     );
 
-    /// The loading animation for this screen.
-    var loading = Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(color_accent_green),
-        ),
-        const SizedBox(width: 8.0),
-        Text(I18n.of(context).loading),
-      ],
-    );
-
     return Scaffold(
       appBar: appBar,
       body: FutureBuilder(
