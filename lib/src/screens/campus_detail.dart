@@ -188,7 +188,9 @@ class _CampusDetailScreenState extends State<CampusDetailScreen> {
               workspaces[index].maxInWorkspace!)
             buildStatusHigh,
           if (workspaces[index].currentInWorkspace! >
-              workspaces[index].maxInWorkspace! / 2)
+                  workspaces[index].maxInWorkspace! / 2 &&
+              workspaces[index].currentInWorkspace! <
+                  workspaces[index].maxInWorkspace!)
             buildStatusMid,
           if (workspaces[index].currentInWorkspace! <
               workspaces[index].maxInWorkspace! / 2)
