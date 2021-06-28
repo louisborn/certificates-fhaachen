@@ -1,9 +1,10 @@
-![app_store_banner](https://user-images.githubusercontent.com/56700857/123593205-8811fa80-d7ee-11eb-8e8a-31aa4a3a5e99.PNG)
 ## certificates
 
 
 This project is part of the evaluation of the course ‘Mobile Information Systems’ during
 the summer semester of 2021 at the [Fachhochschule Aachen](https://www.fh-aachen.de/).
+
+![app_store_banner](https://user-images.githubusercontent.com/56700857/123593205-8811fa80-d7ee-11eb-8e8a-31aa4a3a5e99.PNG)
 
 ## Context
 
