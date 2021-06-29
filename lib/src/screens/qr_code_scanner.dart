@@ -62,6 +62,9 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
       title: I18n.of(context).qrTitle,
     );
 
+    /// Fetches data from the backend based on the qr code data and
+    /// navigates to a new route.
+    ///
     var doValidateWorkspaceData = () async {
       var data = await Document<Workspace>(path: result!.code).getData();
       await _providerAccess.enterWorkspace(result!.code, data);
@@ -78,6 +81,9 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
       );
     };
 
+    /// Fetches data from the backend based on the qr code data and
+    /// navigates to a new route.
+    ///
     var doValidateCertificateData = () async {
       var data = await Document<Certificate>(path: result!.code).getData();
       await _providerUsage.checkUserAuthorization(data.assignedTo!);
@@ -103,18 +109,6 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
       ),
     );
 
-    /// The loading widget for this screen.
-    final Widget loading = Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(color_accent_green),
-        ),
-        const SizedBox(width: 8.0),
-        Text(I18n.of(context).loading),
-      ],
-    );
-
     if (result != null && result!.code.length > 35 && this.hasData == false) {
       toogleHasData();
       doValidateWorkspaceData();
@@ -127,9 +121,7 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
     return Scaffold(
       appBar: appBar,
       body: _providerAccess.userAccessStatus == UserAccessStatus.Pending
-          ? Center(
-              child: loading,
-            )
+          ? Loading()
           : Padding(
               padding: EdgeInsets.only(
                 left: 24.0,
