@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../generated/i18n.dart';
 import '../../../components.dart';
 
+/// A error screen for a no data error.
+///
+/// Uses a [BuildCallout] with a [CalloutType.error].
+///
 class ErrorNoData extends StatelessWidget {
   const ErrorNoData({Key? key}) : super(key: key);
 
@@ -10,7 +14,7 @@ class ErrorNoData extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           left: 8.0,
           top: 24.0,
           right: 8.0,
